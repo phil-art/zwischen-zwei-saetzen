@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Ein literarischer Pilot zu Beziehungsmissverständnissen – ohne Freitext und ohne Diagnose.">
+    <title>Zwischen zwei Sätzen</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Zum Inhalt springen</a>
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="brand" href="#start" aria-label="Zwischen zwei Sätzen – Startseite">
+          <span class="brand-mark" aria-hidden="true">Z<span>2</span>S</span>
+          <span>Zwischen zwei Sätzen</span>
+        </a>
+        <nav aria-label="Hilfsnavigation">
+          <button class="text-button" id="knowledge-button" type="button">Wissensregal</button>
+          <button class="text-button" id="support-button" type="button">Unterstützung</button>
+        </nav>
+      </header>
+
+      <main id="main" tabindex="-1"></main>
+
+      <footer class="site-footer">
+        <p>Literarische Reflexion, keine Diagnose und keine Therapie.</p>
+        <div><button class="text-button" id="storage-info-button" type="button">Speicherhinweise</button>
+        <button class="text-button" id="save-button" type="button">Auswahl auf diesem Gerät speichern</button></div>
+      </footer>
+    </div>
+    <div class="sr-only" id="announcer" aria-live="polite"></div>
+    <noscript>Diese Pilotseite benötigt JavaScript für ihre verzweigten Wege.</noscript>
+    <script type="module" src="app.mjs"></script>
+  </body>
+</html>
