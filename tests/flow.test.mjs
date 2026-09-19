@@ -50,6 +50,7 @@ test("ordinary concern, uncertainty, and serious concern remain distinct", () =>
   state = applyEvent(state, { type: "report_concern" }, data.contract, nodes);
   assert.equal(state.safety, "concern");
   assert.equal(state.planned_action, null);
+  assert.throws(() => applyEvent(state, { type: "report_safety", value: "no_concern_reported" }, data.contract, nodes));
   const revised = applyEvent(state, { type: "revise_safety_answer", value: "no_concern_reported" }, data.contract, nodes);
   assert.equal(revised.safety, "no_concern_reported");
   assert.ok(revised.context_rev > state.context_rev);
@@ -77,4 +78,3 @@ test("persistent selection remains exactly four non-sensitive fields", () => {
   const state = { ...initialState(data.contract), safety: "concern", planned_action: "P01", action_state: "planned" };
   assert.deepEqual(Object.keys(persistedState(state, data.contract)).sort(), ["day", "goal", "perspective", "topic"]);
 });
-

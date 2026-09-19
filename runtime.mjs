@@ -98,6 +98,7 @@ export function applyEvent(state, event, contract, nodeIndex) {
   }
   if (type === "report_safety") {
     if (!["unknown", "no_concern_reported", "concern"].includes(event.value)) throw new Error("Invalid safety answer");
+    if (next.safety === "concern" && event.value !== "concern") throw new Error("A concern answer can only be changed explicitly");
     if (event.value === "concern") return applyEvent(next, { type: "report_concern" }, contract, nodeIndex);
     Object.assign(next, {
       safety: event.value, partner_willing: "unknown", can_decline: "unknown",
