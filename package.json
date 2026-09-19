@@ -1,0 +1,16 @@
+{
+  "name": "zwischen-zwei-saetzen",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "test:content": "node --test tests/content.test.mjs",
+    "test:flow": "node --test tests/flow.test.mjs",
+    "test:dom": "node --test tests/dom.test.mjs",
+    "test:http": "python3 tests/http_smoke.py"
+  },
+  "devDependencies": {
+    "linkedom": "0.18.13"
+  }
+}
+

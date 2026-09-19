@@ -1,11 +1,17 @@
-import { APP_DATA as data } from "./data.mjs";
-import { applyEvent, canEnter, diagramText, routeStatus, transitionChoice, visibleChoices } from "./runtime.mjs";
+import { APP_DATA as BASE_DATA } from "./data.mjs";
+import { applyW9Content, GOAL_LABELS, PERSPECTIVE_LABELS, SUPPORT_CONTACTS, UI_COPY } from "./content-w9.mjs";
+import { applyEvent, canEnter, diagramText, initialState, routeStatus } from "./runtime.mjs";
 import { loadSelection, saveSelection } from "./storage.mjs";
+import {
+  FLOW_PLAN, SECTION_LABELS, initialFlow, markKnowledgeVisited, markSceneSeen,
+  moveFlow, practiceChoices, prerequisiteFor, preferredSceneId, primaryKnowledgeId,
+  progressPercent, resetFlowForContext, resetFlowForNextStage, stagePlan, topicPlan
+} from "./flow.mjs";
 
+const data = applyW9Content(BASE_DATA);
 const nodeIndex = Object.fromEntries(data.nodes.map((node) => [node.id, node]));
 const topicIndex = Object.fromEntries(data.topics.map((topic) => [topic.id, topic]));
 const rules = data.rule_nodes;
-const available = new Set(Object.keys(nodeIndex));
 const main = document.querySelector("#main");
 const announcer = document.querySelector("#announcer");
 const saveButton = document.querySelector("#save-button");
@@ -15,22 +21,40 @@ const restored = loadSelection(storage, data.contract, data.available_days);
 let state = restored.state;
 let saving = restored.enabled;
 let notice = restored.notice;
+let flow = initialFlow();
 let view = { name: "start" };
 let historyStack = [];
-let pendingEntry = null;
+let selectedScene = null;
+let safetyExamplesOpen = false;
 
-const esc = (value) => String(value).replace(/[&<>'"]/g, (character) => ({
+const esc = (value) => String(value ?? "").replace(/[&<>'"]/g, (character) => ({
   "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;",
 }[character]));
-const labels = { A: "Auf etwas reagieren", B: "Selbst etwas ausgelöst haben", C: "Noch unklar einordnen" };
-const kindNames = { scene: "Szene", knowledge: "Wissenskarte", practice: "Möglichkeit", closing: "Abschluss", day_intro: "Etappe", orientation: "Orientierung", reflection: "Rückschau" };
-const goalLabels = { clarify: "Etwas sortieren", pause: "Eine Pause betrachten", private: "Privat nachdenken", boundary: "Eine Grenze klären", distance: "Abstand betrachten", undecided: "Noch offenlassen", support: "Unterstützung ansehen" };
-const outcomeLabels = { helpful: "Eher hilfreich", unchanged: "Unverändert", worse: "Eher schwieriger", mixed: "Gemischt", unknown: "Noch unklar" };
-const orientationForms = new Set(["O01", "O02", "O03", "O04", "O05"]);
-const stageId = () => `D${String(state.day).padStart(2, "0")}`;
 
-function button(action, label, value = "", style = "quiet-button") {
-  return `<button type="button" class="${style}" data-action="${action}" data-value="${esc(value)}">${esc(label)}</button>`;
+const kindNames = {
+  scene: "Geschichte", knowledge: "Gedanke", practice: "Eine Möglichkeit",
+  closing: "Abschluss", day_intro: "Etappe", orientation: "Orientierung", reflection: "Rückblick"
+};
+const outcomeLabels = {
+  helpful: "Eher hilfreich", unchanged: "Unverändert", worse: "Eher schwieriger",
+  mixed: "Gemischt", unknown: "Noch unklar"
+};
+const capacityLabels = { low: "Heute nur kurz", enough: "Ich habe etwas mehr Raum", unknown: "Ich weiß es noch nicht" };
+const resourceLabels = { sufficient: "Eher ausreichend", limited: "Gerade knapp", unknown: "Noch unklar" };
+
+function button(action, label, value = "", style = "quiet-button", attrs = "") {
+  return `<button type="button" class="` + style + `" data-action="` + esc(action) + `" data-value="` + esc(value) + `" ` + attrs + `>` + esc(label) + `</button>`;
+}
+
+function paragraphs(text) {
+  return String(text).split(/\n{2,}/).map((part) => `<p>` + esc(part) + `</p>`).join("");
+}
+
+function options(name, legend, values, selected = null, required = false) {
+  return `<fieldset><legend>` + esc(legend) + `</legend><div class="option-row">`
+    + values.map(([value, label]) => `<label><input name="` + esc(name) + `" type="radio" value="` + esc(value) + `" `
+      + (value === selected ? "checked " : "") + (required ? "required" : "") + `><span>` + esc(label) + `</span></label>`).join("")
+    + `</div></fieldset>`;
 }
 
 function announce(message) {
@@ -41,313 +65,570 @@ function announce(message) {
 function syncStorage(write = true) {
   if (saving && write && !saveSelection(storage, state, data.contract, true)) {
     saving = false;
-    notice = "Speichern ist auf diesem Gerät gerade nicht möglich. Du kannst ohne Speicherung weiterlesen.";
+    notice = UI_COPY.storageError;
     announce(notice);
   }
   saveButton.textContent = saving ? "Gespeicherte Auswahl löschen" : "Auswahl auf diesem Gerät speichern";
 }
 
+function snapshot() {
+  return { view: { ...view }, flowView: flow.view, flowSection: flow.section };
+}
+
 function navigate(next, remember = true) {
-  if (remember) historyStack.push({ ...view });
+  if (remember) historyStack.push(snapshot());
   view = { ...next };
   render();
 }
 
+function guided(nextView, section = flow.section, remember = true, extra = {}) {
+  if (remember) historyStack.push(snapshot());
+  flow = moveFlow(flow, section, nextView, extra);
+  view = { name: "guided" };
+  render();
+}
+
 function goBack() {
-  view = historyStack.pop() ?? { name: "start" };
-  render(); // Every return rechecks current permissions; old state is never restored.
+  const previous = historyStack.pop();
+  if (!previous) {
+    view = { name: "start" };
+  } else {
+    view = previous.view;
+    if (view.name === "guided") {
+      flow = { ...flow, view: previous.flowView, section: previous.flowSection, highWater: Math.max(flow.highWater, previous.flowSection) };
+    }
+  }
+  render();
 }
 
 function stageTrack() {
-  return `<div class="stage-track" aria-hidden="true">${Array.from({ length: data.stage_count }, (_, index) => `<span class="${index + 1 === state.day ? "active" : ""}"></span>`).join("")}</div>`;
+  return `<div class="stage-track" aria-label="Etappe ` + state.day + ` von ` + data.stage_count + `">`
+    + Array.from({ length: data.stage_count }, (_, index) => `<span class="` + (index + 1 <= state.day ? "active" : "") + `"></span>`).join("")
+    + `</div>`;
+}
+
+function progress() {
+  const percent = progressPercent(flow);
+  const section = flow.section;
+  return `<div class="path-progress"><div class="progress-copy"><span>Etappe ` + state.day + ` von 14</span><span>Abschnitt `
+    + section + ` von 6: ` + esc(SECTION_LABELS[section]) + `</span></div><div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="`
+    + percent + `" aria-label="Fortschritt innerhalb dieser Etappe"><span style="width:` + percent + `%"></span></div></div>`;
 }
 
 function backRow() {
-  return `<div class="back-row">${button("back", "← Zurück", "", "text-button")}</div>`;
+  return `<div class="back-row">` + button("back", UI_COPY.back, "", "text-button") + `</div>`;
 }
 
-function options(name, legend, values, selected = null, required = false) {
-  return `<fieldset><legend>${esc(legend)}</legend><div class="option-row">${values.map(([value, label]) => `<label><input name="${name}" type="radio" value="${value}" ${value === selected ? "checked" : ""} ${required ? "required" : ""}><span>${esc(label)}</span></label>`).join("")}</div></fieldset>`;
+function contextCard() {
+  return `<aside class="side-column"><div class="side-card"><p class="eyebrow">Deine Auswahl</p><dl class="context-list">
+    <dt>Etappe</dt><dd>` + state.day + ` von 14</dd>
+    <dt>Thema</dt><dd>` + esc(topicIndex[state.topic].title) + `</dd>
+    <dt>Perspektive</dt><dd>` + esc(PERSPECTIVE_LABELS[state.perspective]) + `</dd>
+    <dt>Heute</dt><dd>` + esc(GOAL_LABELS[state.goal]) + `</dd>
+  </dl>` + stageTrack() + `</div><div class="side-card"><p class="eyebrow">Du bestimmst das Tempo</p><p>Du kannst jederzeit beim Lesen bleiben oder für heute aufhören.</p>`
+    + button("finish-early", UI_COPY.stop) + `</div></aside>`;
 }
 
-function renderStart() {
-  const groupNames = ["Nachrichten, Tonfall und Aufgaben", "Zeit, Nähe und Streit", "Zuneigung, Geld und Fürsorge", "Privatheit, Wandel und Entscheidungen"];
-  return `<section class="hero" aria-labelledby="hero-title">
-    <div><p class="eyebrow">Ein literarischer Klickpfad</p><h1 id="hero-title">Zwischen zwei Sätzen</h1>
-      <p class="lede">Kurze Szenen und Gedankenwege über Beziehungsmissverständnisse. Du wählst durch Klicks, was du lesen möchtest, und musst keine persönliche Geschichte eingeben.</p>
-      <div class="side-actions">${button("stage", `Etappe ${state.day} öffnen →`, "", "button")}${button("open", "Von vorn beginnen", "O10", "text-button")}</div></div>
-    <aside class="hero-note"><strong>Etappe ${state.day} von 14 · Prototyp</strong><p>${esc(data.prototype_notice)}</p>${stageTrack()}</aside>
-  </section>
-  <section class="topic-section" aria-labelledby="topic-title">
-    <div class="section-heading"><p class="eyebrow">Wähle einen Einstieg</p><h2 id="topic-title">Was kommt deiner Situation am nächsten?</h2>
-      <p>Die Auswahl ist keine Einordnung deiner Beziehung. Du kannst sie jederzeit wechseln.</p></div>
-    ${groupNames.map((name, index) => `<details class="topic-group" ${index === 0 ? "open" : ""}><summary>${name}</summary><div class="topic-grid">${data.topics.filter((topic) => topic.group === index + 1).map((topic) => `<article class="topic-card"><div><h3>${esc(topic.title)}</h3><p>${topic.scene_ids.length ? "Mit literarischen Szenen" : "Wissenseinstieg; Szenen folgen"}</p></div>${button("topic", "Diesen Einstieg wählen →", topic.id, "button")}</article>`).join("")}</div></details>`).join("")}
-  </section>`;
-}
-
-function contextCard(mode) {
-  const close = data.nodes.find((node) => node.kind === "closing" && node.day === state.day);
-  return `<aside class="side-column" aria-label="${mode === "wiki" ? "Privater Lesemodus" : "Aktueller Weg"}">
-    <div class="side-card"><p class="kind-label">${mode === "wiki" ? "Privater Lesemodus" : "Dein aktueller Weg"}</p>
-      <dl class="context-list"><dt>Etappe</dt><dd>${state.day} von ${data.stage_count}</dd><dt>Thema</dt><dd>${esc(topicIndex[state.topic].title)}</dd><dt>Ziel</dt><dd>${esc(goalLabels[state.goal])}</dd></dl>${stageTrack()}
-      ${mode === "wiki" ? "<p>Lesen verändert weder deinen Pfad noch Angaben zu einer Handlung.</p>" : ""}
-      <div class="side-actions">${button(state.safety === "concern" ? "home" : "open", "Das passt nicht · Situation wechseln", "O09")}${close ? button("finish", "Für heute abschließen", "O08") : ""}${state.planned_action && state.safety !== "concern" && mode !== "wiki" ? button("open", "Zum eigenen Versuch", "O07") : ""}</div>
-    </div><div class="side-card"><strong>Du bestimmst das Tempo.</strong><p>Nicht-Handeln, Zurückgehen und Aufhören sind gültige Entscheidungen.</p></div>
-  </aside>`;
+function contentCard(node, extra = "", topline = null) {
+  return `<article class="content-card" aria-labelledby="view-title"><div class="content-topline"><span class="kind-label">`
+    + esc(kindNames[node.kind] ?? node.kind) + `</span><span>` + esc(topline ?? "Deine Etappe") + `</span></div><div class="content-body"><h2 id="view-title">`
+    + esc(node.title) + `</h2>` + paragraphs(node.body) + renderDiagram(node.diagram) + extra + `</div></article>`;
 }
 
 function renderDiagram(diagram) {
   const output = diagramText(diagram);
   if (!output) return "";
-  const labelsById = Object.fromEntries(diagram.nodes.map((node) => [node.id, node.label]));
-  return `<figure class="diagram"><figcaption><strong>Gedankenweg</strong></figcaption>
-    <ol aria-hidden="true">${diagram.edges.map((edge) => `<li><span>${esc(labelsById[edge.from])}</span><span class="arrow">${esc(edge.label)} →</span><span>${esc(labelsById[edge.to])}</span></li>`).join("")}</ol>
-    <p class="diagram-alternative">${esc(output.alternative)}</p></figure>`;
+  return `<figure class="diagram"><figcaption>Als kleine Übersicht</figcaption><ol>`
+    + output.visual.map((line) => `<li>` + esc(line) + `</li>`).join("")
+    + `</ol><p class="diagram-alternative">` + esc(output.alternative) + `</p></figure>`;
 }
 
-function renderNode() {
-  const node = nodeIndex[view.id];
-  const mode = view.mode ?? "flow";
-  const choices = visibleChoices(node, state, mode, data.contract, rules, available);
-  const offset = view.offset ?? 0;
-  const pageSize = pendingEntry && node.id === "K21" && mode === "flow" ? 3 : 4;
-  const page = choices.slice(offset, offset + pageSize);
-  return `${backRow()}<div class="reader-grid"><article class="content-card" aria-labelledby="view-title">
-    <div class="content-topline"><span class="kind-label">${kindNames[node.kind] ?? node.kind}</span><span>${mode === "wiki" ? "Privat lesen" : "Persönlicher Pfad"}</span></div>
-    <div class="content-body"><h2 id="view-title">${esc(node.title)}</h2><p>${esc(node.body)}</p>${renderDiagram(node.diagram)}
-      ${orientationForms.has(node.id) ? renderOrientation(node) : ""}
-      ${node.id === "O07" ? renderReport() : ""}
-      ${node.kind === "reflection" ? `<p class="notice">Dein berichteter Versuch: ${esc(nodeIndex[state.planned_action]?.title ?? "")} · ${esc(outcomeLabels[state.outcome])}.</p>` : ""}
-      ${node.id === "O12" ? `<p class="notice">Speicherung ist aktuell ${saving ? "eingeschaltet" : "ausgeschaltet"}. Die Schaltfläche am Seitenende ändert diese Einstellung.</p>` : ""}
-      ${node.id === "O06" ? `<p class="small-note">${esc(topicIndex[state.topic].title)} · ${esc(labels[state.perspective])}</p>` : ""}
-      ${pendingEntry && node.id === "K21" && mode === "flow" ? `<p class="notice">Du hast knappe Mittel angegeben. Von hier kannst du zur Szenenauswahl weitergehen.</p>${button("pending-entry", "Zur Szenenauswahl →", pendingEntry, "button")}` : ""}
-      ${page.length && !orientationForms.has(node.id) ? `<div class="choices" aria-label="Mögliche Wege">${page.map((choice) => `<button class="choice-button" type="button" data-action="choice" data-value="${choice.id}" ${choice.status === "missing" ? "disabled" : ""}><span>${esc(choice.label)}</span>${choice.status === "missing" ? '<span class="badge">im Ausbau</span>' : `<span aria-hidden="true">${choice.status === "confirmation" ? "Voraussetzungen prüfen →" : "→"}</span>`}</button>`).join("")}</div>` : ""}
-      ${choices.length > pageSize ? `<div class="pagination">${button("more", offset + pageSize < choices.length ? "Weitere Verknüpfungen" : "Erste Verknüpfungen")}</div>` : ""}
-      ${mode === "wiki" && canEnter(node, state, "flow", rules) ? `<div class="mode-switch">${button("use-in-flow", "Diesen Baustein im persönlichen Pfad verwenden", node.id)}<p>Erst im persönlichen Pfad werden passende Praxisoptionen angeboten und ihre Voraussetzungen geprüft.</p></div>` : ""}
-      ${node.kind === "closing" ? `<div class="side-actions">${button("home", "Zur Startseite")}</div>` : ""}
-      ${node.id === "K24" ? `<div class="side-actions">${state.safety !== "concern" ? button("concern", "Ich habe Sorge vor Reaktionen oder Kontrolle") : '<p class="notice">Gesprächs- und Praxisvorschläge bleiben für diese Situation geschlossen.</p>'}${button("leave", "Diese Seite verlassen")}</div><p class="small-note">Verlassen löscht keinen Browser-Verlauf.</p>` : ""}
-    </div></article>${contextCard(mode)}</div>`;
+function renderStart() {
+  const primary = saving || state.day > 1 ? `Bei Etappe ` + state.day + ` weiterlesen` : UI_COPY.start;
+  return `<section class="hero" aria-labelledby="hero-title"><div><p class="eyebrow">` + esc(UI_COPY.heroEyebrow) + `</p>
+    <h1 id="hero-title">` + esc(UI_COPY.title) + `</h1><div class="hero-copy">` + UI_COPY.hero.map((item) => `<p class="lede">` + esc(item) + `</p>`).join("") + `</div>
+    <div class="hero-actions">` + button("start-stage", primary, "", "button") + button("library", UI_COPY.browse) + `</div></div>
+    <aside class="hero-note"><strong>Ohne Freitext</strong><p>` + esc(UI_COPY.prototype) + `</p>` + stageTrack() + `</aside></section>
+    <section class="topic-section" aria-labelledby="topics-title"><div class="section-heading"><p class="eyebrow">Zwölf Alltagsthemen</p>
+    <h2 id="topics-title">Womit möchtest du beginnen?</h2><p>Du kannst ein Thema wählen, ohne deine Geschichte zu erzählen.</p></div>
+    <div class="topic-grid">` + data.topics.map((topic) => `<article class="topic-card"><div><h3>` + esc(topic.title) + `</h3><p>Eine Geschichte und ein ruhiger Gedanke als Einstieg.</p></div>`
+      + button("topic-start", "Dieses Thema wählen →", topic.id, "button") + `</article>`).join("") + `</div></section>`;
+}
+
+function renderStageIntro() {
+  const plan = stagePlan(state.day);
+  const node = nodeIndex[plan.intro];
+  const actions = state.day > 1
+    ? `<div class="choices">` + button("same-context", `Mit „` + topicIndex[state.topic].title + `“ weiterlesen →`, "", "button")
+      + button("change-context", "Thema, Perspektive oder Ziel ändern") + `</div>`
+    : `<div class="choices">` + button("change-context", "Auswahl für heute treffen →", "", "button") + `</div>`;
+  return contentCard(node, actions);
+}
+
+function renderContext() {
+  return `<form class="gate-card setup-grid" data-form="context"><p class="eyebrow">Ankommen</p><h2 id="view-title">Was passt heute zu dir?</h2>
+    <p>Eine ungefähre Auswahl reicht. Du kannst sie später ändern.</p>
+    ` + options("goal", "Was wäre dir heute hilfreich?", Object.entries(GOAL_LABELS), state.goal, true) + `
+    <label class="select-label">Worum soll es gehen?<select name="topic">`
+    + data.topics.map((topic) => `<option value="` + topic.id + `" ` + (topic.id === state.topic ? "selected" : "") + `>` + esc(topic.title) + `</option>`).join("")
+    + `</select></label>` + options("perspective", "Aus welcher Richtung möchtest du lesen?", Object.entries(PERSPECTIVE_LABELS), state.perspective, true)
+    + `<p class="form-error" role="alert" hidden></p><button class="button" type="submit">So weiterlesen →</button></form>`;
+}
+
+function renderCapacity() {
+  return `<form class="gate-card setup-grid" data-form="capacity"><p class="eyebrow">Ankommen</p><h2 id="view-title">Wie viel ist heute möglich?</h2>
+    <p>Diese Angaben gelten nur für den aktuellen Durchgang und werden nicht gespeichert.</p>
+    ` + options("capacity", "Wie viel Zeit und Kraft hast du gerade?", Object.entries(capacityLabels), state.capacity, true)
+    + options("resources", "Sind Zeit, Energie und nötige Mittel gerade vorhanden?", Object.entries(resourceLabels), state.resources, true)
+    + `<p class="form-error" role="alert" hidden></p><button class="button" type="submit">Weiter →</button></form>`;
+}
+
+function safetyExamples() {
+  return `<details class="examples" ` + (safetyExamplesOpen ? "open" : "") + `><summary>Was ist mit Drohung oder Kontrolle gemeint?</summary>
+    <p>Zum Beispiel: Jemand droht dir, überwacht dein Handy oder deine Kontakte, hindert dich am Gehen oder setzt dich nach einem Nein stark unter Druck.</p>
+    <p>Die normale Sorge, dass ein Gespräch unangenehm wird oder jemand enttäuscht sein könnte, ist damit nicht gemeint.</p></details>`;
+}
+
+function renderSafety() {
+  return `<form class="gate-card setup-grid" data-form="safety"><p class="eyebrow">Bevor es weitergeht</p><h2 id="view-title">Eine wichtige Unterscheidung</h2>
+    <p>` + esc(UI_COPY.safetyExplanation) + `</p>` + safetyExamples()
+    + options("safety", UI_COPY.safetyQuestion, Object.entries(UI_COPY.safetyAnswers), null, true)
+    + `<p class="form-error" role="alert" hidden></p><button class="button" type="submit">Antwort übernehmen →</button></form>`;
+}
+
+function currentScene() {
+  return nodeIndex[selectedScene ?? preferredSceneId(state)] ?? nodeIndex[preferredSceneId(state)];
+}
+
+function renderScene() {
+  const scene = currentScene();
+  const alreadySeen = flow.seenSceneFamilies.includes(scene.family_id);
+  const otherScenes = data.nodes.filter((node) => node.kind === "scene" && node.topic_ids.includes(state.topic) && node.perspective === state.perspective);
+  const extras = `<p class="small-note">` + esc(topicIndex[state.topic].title) + ` · ` + esc(PERSPECTIVE_LABELS[state.perspective])
+    + (alreadySeen ? " · Diese Geschichte hast du in dieser Sitzung schon geöffnet." : "") + `</p>
+    <div class="choices">` + button("scene-next", "Mit diesem Gedanken weiter →", "", "button")
+    + `<details><summary>Eine andere Geschichte wählen</summary><div class="library-list">`
+    + otherScenes.map((node) => button("scene-pick", node.title + " →", node.id)).join("") + `</div></details></div>`;
+  return contentCard(scene, extras, "Geschichte");
+}
+
+function renderKnowledge() {
+  const id = primaryKnowledgeId(state);
+  const node = nodeIndex[id];
+  const repeated = flow.visitedKnowledge.includes(id);
+  const extras = (repeated ? `<p class="small-note">` + esc(UI_COPY.repeatedCard) + `</p>` : "")
+    + `<div class="choices">` + button("knowledge-next", "Eine kleine Möglichkeit wählen →", "", "button")
+    + button("library", "Wenn du noch etwas nachlesen möchtest") + `</div>`;
+  return contentCard(node, extras, "Gedanken sortieren");
+}
+
+function practiceStatus(node) {
+  if (state.safety === "concern") return "blocked";
+  return routeStatus(node, state, "flow", rules);
+}
+
+function renderChoice() {
+  if (state.goal === "support") {
+    return `<section class="gate-card"><p class="eyebrow">Dein nächster Schritt</p><h2 id="view-title">Unterstützung ansehen</h2>
+      <p>Du kannst dir Hilfeangebote ansehen, ohne damit eine Sorge-Antwort festzulegen.</p><div class="choices">`
+      + button("support", UI_COPY.supportVoluntary, "", "button") + button("reading-finish", UI_COPY.readingOnly) + `</div></section>`;
+  }
+  const ids = practiceChoices(state);
+  return `<section class="gate-card"><p class="eyebrow">Dein nächster Schritt</p><h2 id="view-title">Was könnte jetzt passen?</h2>
+    <p>Wähle höchstens eine Möglichkeit. Lesen allein ist ebenfalls ein vollständiger Abschluss.</p><div class="practice-grid">`
+    + ids.map((id) => {
+      const node = nodeIndex[id];
+      const status = practiceStatus(node);
+      const note = node.gate === "private" ? "Für dich allein" : node.gate === "agreement" ? "Nur nach gemeinsamer Zustimmung" : "Nur wenn ein Nein oder Später möglich ist";
+      return `<article class="practice-card"><p class="kind-label">` + esc(note) + `</p><h3>` + esc(node.title) + `</h3><p>`
+        + esc(node.body.split(/\n\n/)[0]) + `</p>` + button("practice-select", status === "allowed" ? "Ansehen →" : "Voraussetzungen ansehen →", id) + `</article>`;
+    }).join("") + `</div><div class="choices">` + button("reading-finish", UI_COPY.readingOnly) + `</div></section>`;
+}
+
+function renderPrerequisite() {
+  const id = prerequisiteFor(flow.pendingPractice);
+  const node = nodeIndex[id];
+  const extras = `<div class="choices">` + button("prerequisite-next", "Zur ausgewählten Möglichkeit →", flow.pendingPractice, "button")
+    + button("choice", "Eine andere Möglichkeit wählen") + `</div>`;
+  return contentCard(node, extras, "Ein Gedanke davor");
+}
+
+function renderPracticeGate() {
+  const target = nodeIndex[flow.pendingPractice];
+  const yesNo = [["yes", "Ja"], ["no", "Nein"], ["unknown", "Unklar"]];
+  return `<form class="gate-card setup-grid" data-form="practice-gate" data-target="` + esc(target.id) + `"><p class="eyebrow">Bevor ihr etwas gemeinsam versucht</p>
+    <h2 id="view-title">Passt dieser Schritt gerade?</h2><p>Gemeinsame Vorschläge brauchen aktuelle, freiwillige Antworten. „Unklar“ zählt nicht als Ja.</p>
+    <p>` + esc(UI_COPY.safetyExplanation) + `</p>` + safetyExamples()
+    + options("safety", UI_COPY.safetyQuestion, Object.entries(UI_COPY.safetyAnswers), null, true)
+    + options("partner_willing", "Möchte die andere Person freiwillig mitwirken?", yesNo, null, true)
+    + options("can_decline", "Kann sie ohne Druck Nein oder Später sagen?", yesNo, null, true)
+    + options("resources", "Sind Zeit, Energie und nötige Mittel ausreichend?", Object.entries(resourceLabels), state.resources, true)
+    + (target.gate === "agreement" ? options("mutual_agreement", "Habt ihr dieser konkreten Vereinbarung beide freiwillig zugestimmt?", yesNo, null, true) : "")
+    + `<p class="form-error" role="alert" hidden></p><button class="button" type="submit">Angaben prüfen →</button>
+    <div class="side-actions">` + button("choice", "Etwas für mich allein wählen") + button("support", UI_COPY.supportVoluntary) + `</div></form>`;
+}
+
+function renderPractice() {
+  const node = nodeIndex[flow.selectedPractice];
+  const extra = `<div class="choices">` + button("plan-practice", UI_COPY.plan, node.id, "button")
+    + button("choice", "Eine andere Möglichkeit wählen") + button("reading-finish", UI_COPY.readingOnly) + `</div>`;
+  return contentCard(node, extra, "Dein nächster Schritt");
+}
+
+function renderReport() {
+  const action = nodeIndex[state.planned_action];
+  const status = state.action_state === "planned" ? "für später vorgemerkt" : state.action_state;
+  return `<section class="gate-card"><p class="eyebrow">Deine Auswahl</p><h2 id="view-title">` + esc(action.title) + `</h2>
+    <p>Du hast diese Möglichkeit ` + esc(status) + `. Das ist noch keine Durchführung.</p><div class="choices">`
+    + button("plan-later", UI_COPY.later, "", "button") + button("report-performed", UI_COPY.performed)
+    + button("report-not-done", UI_COPY.notDone) + `</div></section>`;
+}
+
+function renderOutcome() {
+  return `<form class="gate-card setup-grid" data-form="outcome"><p class="eyebrow">Rückblick</p><h2 id="view-title">Wie war es für dich?</h2>
+    <p>Beziehe dich nur auf die Möglichkeit, die du gerade ausgewählt hast. Eine erfreuliche Antwort ist nicht vorausgesetzt.</p>
+    ` + options("outcome", "Was hat sich für dich gezeigt?", Object.entries(outcomeLabels), "unknown", true)
+    + `<p class="form-error" role="alert" hidden></p><button class="button" type="submit">Antwort übernehmen →</button></form>`;
+}
+
+function renderReflection() {
+  const id = `R` + String(state.day * 2).padStart(2, "0");
+  const node = nodeIndex[id];
+  const extra = `<p class="notice">Deine Einschätzung: ` + esc(outcomeLabels[state.outcome]) + `.</p><div class="choices">`
+    + button("reflection-next", "Diese Etappe abschließen →", "", "button") + `</div>`;
+  return contentCard(node, extra, "Rückblick");
+}
+
+function renderClosing() {
+  const id = `R` + String(state.day * 2 - 1).padStart(2, "0");
+  const node = nodeIndex[id];
+  const next = state.day < 14
+    ? button("next-stage", "Zur nächsten Etappe →", "", "button")
+    : `<p class="notice">Du hast den Rahmen von 14 Etappen erreicht. Du kannst jederzeit im Wissensregal weiterlesen oder hier enden.</p>`;
+  const extra = `<div class="choices">` + next + button("home", "Zur Startseite") + button("end", UI_COPY.stop) + `</div>`;
+  return contentCard(node, extra, "Abschluss");
+}
+
+function renderConcern() {
+  const node = nodeIndex.K24;
+  const extra = `<p class="notice">` + esc(UI_COPY.concernNote) + `</p><div class="choices">`
+    + button("support-contacts", "Hilfeangebote ansehen →", "", "button")
+    + button("revise-safety", UI_COPY.reviseSafety)
+    + button("library", "In Ruhe etwas nachlesen")
+    + button("end", UI_COPY.stop) + `</div><p class="small-note">Du brauchst hier nichts Persönliches einzugeben.</p>`;
+  return contentCard(node, extra, "Orientierung und Unterstützung");
+}
+
+function renderGuided() {
+  const renderers = {
+    "stage-intro": renderStageIntro, context: renderContext, capacity: renderCapacity, safety: renderSafety,
+    scene: renderScene, knowledge: renderKnowledge, choice: renderChoice, prerequisite: renderPrerequisite,
+    "practice-gate": renderPracticeGate, practice: renderPractice, report: renderReport, outcome: renderOutcome,
+    reflection: renderReflection, closing: renderClosing, concern: renderConcern
+  };
+  const renderer = renderers[flow.view] ?? renderStageIntro;
+  return progress() + backRow() + `<div class="reader-grid"><div>` + renderer() + `</div>` + contextCard() + `</div>`;
 }
 
 function renderLibrary() {
-  return `${backRow()}<section><div class="section-heading"><p class="eyebrow">Privater Lesemodus</p><h2 id="view-title">Wissensregal</h2><p>${esc(nodeIndex.O11.body)}</p></div>
-    <div class="library-list">${data.nodes.filter((node) => node.kind === "knowledge").map((node) => button("wiki", `${node.title} →`, node.id)).join("")}</div></section>`;
+  return backRow() + `<section><div class="section-heading"><p class="eyebrow">In Ruhe stöbern</p><h2 id="view-title">Wissensregal</h2>
+    <p>Hier darfst du kreuz und quer lesen. Das verändert weder deine Angaben noch den Fortschritt deiner Etappe.</p></div>
+    <div class="library-list">` + data.nodes.filter((node) => node.kind === "knowledge").map((node) => button("wiki", node.title + " →", node.id)).join("")
+    + `</div><div class="choices">` + (view.returnToGuided ? button("return-guided", UI_COPY.returnToStage, "", "button") : "") + `</div></section>`;
 }
 
-function renderGate() {
-  const target = nodeIndex[view.target];
-  const yesNo = [["yes", "Ja"], ["no", "Nein"], ["unknown", "Unklar"]];
-  return `${backRow()}<form class="gate-card" data-form="gate">
-    <p class="eyebrow">${esc(target.title)}</p><h2 id="view-title">Passt das gerade?</h2>
-    <p>Du kannst hier aufhören oder privat weiterlesen. Die Angaben bleiben nur für diese Sitzung bestehen; Klickfragen können keine Sicherheit feststellen.</p>
-    ${options("safety", "Machen dir Kontrolle, Drohung oder eine beängstigende Reaktion Sorge?", [["concern", "Ja"], ["no_concern_reported", "Nein"], ["unknown", "Unklar"]], null, true)}
-    ${options("partner_willing", "Möchte die andere Person freiwillig mitwirken?", yesNo, null, true)}
-    ${options("can_decline", "Kann sie ohne Druck Nein oder Später sagen?", yesNo, null, true)}
-    ${options("resources", "Sind Zeit, Energie und nötige Mittel ausreichend?", [["sufficient", "Ja"], ["limited", "Nein"], ["unknown", "Unklar"]], null, true)}
-    ${target.gate === "agreement" ? options("mutual_agreement", "Liegt für die konkrete Vereinbarung bereits eine freiwillige Zustimmung von euch beiden vor?", yesNo, null, true) : ""}
-    <p class="form-error" role="alert" hidden></p><button class="button" type="submit">Angaben prüfen →</button>
-    <div class="side-actions">${button("private-reading", "Privat weiterlesen")}${button("support", "Grenzen des Angebots und Unterstützung")}</div>
-  </form>`;
+function renderWiki() {
+  const node = nodeIndex[view.id];
+  const links = node.choices.filter((choice) => nodeIndex[choice.target]?.kind === "knowledge");
+  const extra = `<div class="choices">` + links.map((choice) => button("wiki", choice.label + " →", choice.target)).join("")
+    + button("library", "Zurück zum Wissensregal")
+    + (view.returnToGuided ? button("return-guided", UI_COPY.returnToStage, "", "button") : "") + `</div>`;
+  return backRow() + contentCard(node, extra, "Freies Lesen");
+}
+
+function renderSupport() {
+  const node = nodeIndex.K24;
+  const isConcern = state.safety === "concern";
+  const extra = (isConcern ? `<p class="notice">` + esc(UI_COPY.concernNote) + `</p>`
+    : `<p class="notice">Du hast diese Seite freiwillig geöffnet. Dadurch wird keine Sorge-Antwort gesetzt und kein Weg gesperrt.</p>`)
+    + `<div class="choices">` + button("support-contacts", "Hilfeangebote ansehen →", "", "button")
+    + (isConcern ? button("revise-safety", UI_COPY.reviseSafety) : "")
+    + (view.returnToGuided ? button("return-guided", UI_COPY.returnToStage) : button("home", "Zur Startseite"))
+    + button("end", UI_COPY.stop) + `</div>`;
+  return backRow() + contentCard(node, extra, "Orientierung und Unterstützung");
+}
+
+function renderSafetyRevision() {
+  return backRow() + `<form class="gate-card setup-grid" data-form="revise-safety"><p class="eyebrow">Antwort korrigieren</p>
+    <h2 id="view-title">Was meintest du?</h2><p>Eine Änderung beginnt die Orientierung für diese Situation neu. Frühere Zustimmungen und geplante Versuche werden nicht übernommen.</p>
+    <p>` + esc(UI_COPY.safetyExplanation) + `</p>` + safetyExamples()
+    + options("safety", UI_COPY.safetyQuestion, Object.entries(UI_COPY.safetyAnswers), null, true)
+    + `<p class="form-error" role="alert" hidden></p><button class="button" type="submit">Antwort neu übernehmen →</button></form>`;
+}
+
+function renderContacts() {
+  const node = nodeIndex.O14;
+  const contacts = `<div class="contact-list">` + SUPPORT_CONTACTS.map((contact) => `<article class="contact-card"><h3>` + esc(contact.label) + `</h3>
+    <p>` + esc(contact.value) + `</p><div class="side-actions">`
+    + (contact.href ? `<a class="button" href="` + esc(contact.href) + `">Anrufen</a>` : "")
+    + (contact.url ? `<a class="quiet-button" href="` + esc(contact.url) + `" rel="noopener noreferrer" referrerpolicy="no-referrer">Offizielle Website öffnen</a>` : "")
+    + `</div>` + (contact.note ? `<p class="small-note">` + esc(contact.note) + `</p>` : "") + `</article>`).join("") + `</div>
+    <p class="small-note">Die Nummern gelten für Deutschland. Bei unmittelbarer Gefahr zählt schnelle Hilfe vor Ort.</p>`;
+  return backRow() + contentCard(node, contacts, "Hilfe außerhalb dieser Website");
+}
+
+function renderStorageInfo() {
+  const node = nodeIndex.O12;
+  const extra = `<p class="notice">Speicherung ist aktuell ` + (saving ? "eingeschaltet" : "ausgeschaltet") + `.</p><div class="choices">`
+    + button("toggle-storage", saving ? "Gespeicherte Auswahl löschen" : "Auswahl auf diesem Gerät speichern", "", "button")
+    + button("home", "Zur Startseite") + `</div>`;
+  return backRow() + contentCard(node, extra, "Speichern");
+}
+
+function renderEnded() {
+  return `<section class="gate-card"><p class="eyebrow">Für heute beendet</p><h2 id="view-title">Bis hierhin war es genug.</h2>
+    <p>Du kannst die Seite schließen oder später wiederkommen. ` + (saving ? "Deine freiwillig gespeicherte Auswahl bleibt auf diesem Gerät." : "Deine Auswahl wurde nicht gespeichert.") + `</p>
+    <div class="choices">` + button("home", "Zur Startseite", "", "button") + button("leave", UI_COPY.leave) + `</div><p class="small-note">` + esc(UI_COPY.leaveNote) + `</p></section>`;
 }
 
 function render() {
-  if (view.name === "node" && view.id === "O11") view = { name: "library" };
-  if (view.name === "node") {
-    const status = routeStatus(nodeIndex[view.id], state, view.mode ?? "flow", rules);
-    if (status === "confirmation") view = { name: "gate", target: view.id };
-    else if (status !== "allowed") {
-      notice = "Dieser Inhalt passt nicht zu den aktuellen Angaben. Du kannst einen anderen Einstieg wählen.";
-      view = state.safety === "concern" ? { name: "node", id: "K24", mode: "flow" } : { name: "start" };
-    }
-  }
-  if (view.name === "gate" && routeStatus(nodeIndex[view.target], state, "flow", rules) === "blocked") {
-    view = state.safety === "concern" ? { name: "node", id: "K24", mode: "flow" } : { name: "start" };
-  }
-  const html = { start: renderStart, node: renderNode, library: renderLibrary, gate: renderGate, ended: renderEnded }[view.name]();
-  main.innerHTML = `${notice ? `<p class="notice" role="status">${esc(notice)}</p>` : ""}${html}`;
+  const renderers = {
+    start: renderStart, guided: renderGuided, library: renderLibrary, wiki: renderWiki,
+    support: renderSupport, "revise-safety": renderSafetyRevision, contacts: renderContacts,
+    storage: renderStorageInfo, ended: renderEnded
+  };
+  const html = (renderers[view.name] ?? renderStart)();
+  main.innerHTML = (notice ? `<p class="notice" role="status">` + esc(notice) + `</p>` : "") + html;
   notice = "";
   const title = main.querySelector("#view-title, #hero-title")?.textContent ?? data.title;
-  document.title = `${title} · ${data.title}`;
+  document.title = title + " · " + data.title;
   main.focus({ preventScroll: true });
   window.scrollTo({ top: 0, behavior: "auto" });
   announce(title);
 }
 
-function formError(message) {
-  const error = main.querySelector(".form-error");
+function formError(form, message = UI_COPY.missingAnswer) {
+  const error = form.querySelector(".form-error");
+  if (!error) return;
   error.hidden = false;
   error.textContent = message;
+  error.focus?.();
 }
 
-function renderOrientation(node) {
-  let fields = "";
-  if (node.id === "O01") fields = options("goal", "Was möchtest du gerade ansehen?", Object.entries(goalLabels), state.goal);
-  if (node.id === "O02") fields = `<label class="select-label">Thema<select name="topic">${data.topics.map((topic) => `<option value="${topic.id}" ${topic.id === state.topic ? "selected" : ""}>${esc(topic.title)}</option>`).join("")}</select></label>${options("perspective", "Aus welcher Perspektive möchtest du lesen?", Object.entries(labels), state.perspective)}`;
-  if (node.id === "O03") fields = options("capacity", "Wie viel Raum ist gerade da?", [["low", "Nur kurz"], ["enough", "Etwas mehr"], ["unknown", "Noch offen"]], state.capacity);
-  if (node.id === "O04") fields = options("safety", "Machen dir Kontrolle, Drohung oder Reaktionen Sorge?", [["unknown", "Offenlassen / unklar"], ["no_concern_reported", "Ich gebe keine Sorge an"], ["concern", "Ja, ich habe Sorge"]], state.safety);
-  if (node.id === "O05") fields = options("resources", "Sind die nötigen Mittel gerade ausreichend?", [["sufficient", "Eher ausreichend"], ["limited", "Eher knapp"], ["unknown", "Noch unklar"]], state.resources);
-  return `<form class="orientation-form" data-form="orientation" data-node="${node.id}">${fields}<p class="form-error" role="alert" hidden></p><button type="submit" class="button">${esc(node.id === "O05" ? "Mit dieser Angabe weiter →" : node.choices[0].label + " →")}</button></form>`;
-}
-
-function renderReport() {
-  const action = nodeIndex[state.planned_action];
-  if (!action) return '<p class="notice">Für diese Etappe ist noch kein eigener Versuch geplant. Du kannst ohne Bericht abschließen.</p>';
-  const status = { planned: "geplant", performed: "als durchgeführt angegeben", not_done: "als nicht durchgeführt angegeben" }[state.action_state];
-  const summary = `<p class="notice">Dein eigener Versuch: ${esc(action.title)} · ${status}.</p>`;
-  if (!["planned", "performed"].includes(state.action_state)) return summary;
-  return `${summary}<form class="orientation-form" data-form="report" data-action-id="${esc(action.id)}">
-    ${options("action_status", "Hast du genau diesen eigenen Versuch durchgeführt?", [["performed", "Ja, durchgeführt"], ["not_done", "Nein, nicht durchgeführt"]], null, true)}
-    ${options("outcome", "Wie schätzt du das Ergebnis ein, falls du ihn durchgeführt hast?", Object.entries(outcomeLabels), "unknown")}
-    <p>Eine Durchführung ist nicht voreingestellt. Du kannst stattdessen ohne Bericht abschließen.</p><p class="form-error" role="alert" hidden></p><button class="button" type="submit">Angabe übernehmen →</button></form>`;
-}
-
-function renderEnded() {
-  return `<section class="gate-card"><p class="eyebrow">Abgeschlossen</p><h2 id="view-title">Für jetzt ist Schluss.</h2><p>Du kannst die Seite schließen. ${saving ? "Deine freiwillig gespeicherte Auswahl bleibt auf diesem Gerät; du kannst sie am Seitenende löschen." : "Die Auswahl wird nicht gespeichert."}</p><div class="side-actions">${button("home", "Zur Startseite")}${button("leave", "Diese Seite verlassen")}</div></section>`;
-}
-
-function followChoice(choiceId) {
-  if (view.name !== "node") return;
-  const mode = view.mode ?? "flow";
-  if (routeStatus(nodeIndex[view.id], state, mode, rules) !== "allowed") return render();
-  const choice = visibleChoices(nodeIndex[view.id], state, mode, data.contract, rules, available).find((item) => item.id === choiceId);
-  if (choice?.status === "confirmation") return navigate({ name: "gate", target: choice.target });
-  if (choice?.status !== "allowed") return;
-  state = transitionChoice(choice, state, mode, data.contract, rules, available);
-  if (["next_day", "restart", "exit"].includes(choice.event.type)) { pendingEntry = null; historyStack = []; }
+function submitContext(form) {
+  const values = new FormData(form);
+  const next = { goal: values.get("goal"), topic: values.get("topic"), perspective: values.get("perspective") };
+  if (!data.contract.enum_fields.goal.includes(next.goal) || !data.contract.enum_fields.topic.includes(next.topic)
+    || !data.contract.enum_fields.perspective.includes(next.perspective)) return formError(form);
+  const changed = Object.entries(next).some(([key, value]) => state[key] !== value);
+  if (changed) state = applyEvent(state, { type: "change_context", values: next }, data.contract, rules);
+  selectedScene = null;
+  flow = resetFlowForContext(flow);
   syncStorage();
-  return navigate(choice.target === "EXIT" ? { name: "ended" } : { name: "node", id: choice.target, mode }, !["next_day", "restart", "exit"].includes(choice.event.type));
+  guided("capacity", 1, false);
 }
 
-function submitOrientation(form) {
-  const id = form.dataset.node;
-  if (view.name !== "node" || view.id !== id || !orientationForms.has(id) || !canEnter(nodeIndex[id], state, "flow", rules)) return render();
+function submitCapacity(form) {
   const values = new FormData(form);
   try {
-    if (id === "O01" && values.get("goal") !== state.goal) state = applyEvent(state, { type: "change_context", values: { goal: values.get("goal") } }, data.contract, rules);
-    if (id === "O02") {
-      state = applyEvent(state, { type: "change_context", values: { topic: values.get("topic"), perspective: values.get("perspective") } }, data.contract, rules);
-      pendingEntry = null;
-    }
-    if (id === "O03") state = applyEvent(state, { type: "set_capacity", value: values.get("capacity") }, data.contract, rules);
-    if (id === "O04") state = applyEvent(state, { type: "confirm_interaction", values: { safety: values.get("safety"), partner_willing: "unknown", can_decline: "unknown", mutual_agreement: "unknown" } }, data.contract, rules);
-    if (id === "O05") state = applyEvent(state, { type: "report_resources", value: values.get("resources") }, data.contract, rules);
-  } catch { return formError("Bitte prüfe die Auswahl. Offenlassen ist möglich."); }
-  if (state.safety === "concern") return navigate({ name: "node", id: "K24", mode: "flow" });
+    state = applyEvent(state, { type: "set_capacity", value: values.get("capacity") }, data.contract, rules);
+    state = applyEvent(state, { type: "report_resources", value: values.get("resources") }, data.contract, rules);
+  } catch { return formError(form); }
+  guided("safety", 1);
+}
+
+function safetyValue(form) {
+  return new FormData(form).get("safety");
+}
+
+function submitSafety(form) {
+  const value = safetyValue(form);
+  if (value === "examples") {
+    safetyExamplesOpen = true;
+    notice = "Die Beispiele sind jetzt aufgeklappt. Deine Antwort bleibt offen.";
+    return render();
+  }
+  try { state = applyEvent(state, { type: "report_safety", value }, data.contract, rules); }
+  catch { return formError(form); }
+  if (value === "concern") return guided("concern", 1);
+  if (state.goal === "support") return navigate({ name: "support", returnToGuided: true });
+  selectPreferredScene();
+  guided("scene", 2);
+}
+
+function selectPreferredScene() {
+  selectedScene = preferredSceneId(state);
+  const scene = nodeIndex[selectedScene];
+  if (!scene) throw new Error("Missing planned scene");
+  flow = markSceneSeen(flow, scene.family_id);
+}
+
+function openPrimaryKnowledge() {
+  const id = primaryKnowledgeId(state);
+  flow = markKnowledgeVisited(flow, id);
+  guided("knowledge", 3);
+}
+
+function selectPractice(id) {
   const node = nodeIndex[id];
-  if (id === "O05" && state.resources === "limited") { pendingEntry = "O06"; return followChoice(node.choices.find((c) => c.target === "K21").id); }
-  return followChoice(node.choices[0].id);
+  if (!node || node.kind !== "practice" || !node.topic_ids.includes(state.topic)) return;
+  flow = { ...flow, pendingPractice: id };
+  const prerequisite = prerequisiteFor(id);
+  if (prerequisite && !flow.visitedKnowledge.includes(prerequisite)) {
+    flow = markKnowledgeVisited(flow, prerequisite);
+    return guided("prerequisite", 4);
+  }
+  if (routeStatus(node, state, "flow", rules) === "allowed") {
+    flow = { ...flow, selectedPractice: id, pendingPractice: null };
+    return guided("practice", 4);
+  }
+  guided("practice-gate", 4);
 }
 
-function submitReport(form) {
-  if (view.name !== "node" || view.id !== "O07" || form.dataset.actionId !== state.planned_action || !canEnter(nodeIndex.O07, state, "flow", rules)) return render();
+function submitPracticeGate(form) {
+  const target = nodeIndex[form.dataset.target];
   const values = new FormData(form);
-  const status = values.get("action_status");
+  const safety = values.get("safety");
+  if (safety === "examples") {
+    safetyExamplesOpen = true;
+    notice = "Die Beispiele sind jetzt aufgeklappt. Deine Antwort bleibt offen.";
+    return render();
+  }
+  const interaction = {
+    safety,
+    partner_willing: values.get("partner_willing"),
+    can_decline: values.get("can_decline"),
+    mutual_agreement: target.gate === "agreement" ? values.get("mutual_agreement") : "unknown"
+  };
   try {
-    state = applyEvent(state, { type: "report_action", action_id: form.dataset.actionId, status, outcome: status === "not_done" ? "unknown" : values.get("outcome") }, data.contract, rules);
-  } catch { return formError("Bitte gib ausdrücklich an, ob du diesen Versuch durchgeführt hast, oder schließe ohne Bericht ab."); }
-  notice = "Deine Angabe gilt für diese Sitzung. Sie wird nicht gespeichert.";
+    state = applyEvent(state, { type: "confirm_interaction", values: interaction }, data.contract, rules);
+    state = applyEvent(state, { type: "report_resources", value: values.get("resources") }, data.contract, rules);
+  } catch { return formError(form); }
+  if (state.safety === "concern") return guided("concern", 4);
+  if (canEnter(target, state, "flow", rules)) {
+    flow = { ...flow, selectedPractice: target.id, pendingPractice: null };
+    return guided("practice", 4);
+  }
+  formError(form, "Für diesen gemeinsamen Schritt fehlt gerade eine Voraussetzung. Du kannst etwas für dich allein wählen.");
+}
+
+function submitOutcome(form) {
+  const value = new FormData(form).get("outcome");
+  try {
+    state = applyEvent(state, { type: "report_action", action_id: state.planned_action, status: "performed", outcome: value }, data.contract, rules);
+  } catch { return formError(form); }
+  guided("reflection", 5);
+}
+
+function submitSafetyRevision(form) {
+  const value = safetyValue(form);
+  if (value === "examples") {
+    safetyExamplesOpen = true;
+    notice = "Die Beispiele sind jetzt aufgeklappt. Deine Antwort bleibt offen.";
+    return render();
+  }
+  try { state = applyEvent(state, { type: "revise_safety_answer", value }, data.contract, rules); }
+  catch { return formError(form); }
+  flow = resetFlowForContext(flow);
+  selectedScene = null;
+  historyStack = [];
+  syncStorage();
+  if (value === "concern") {
+    flow = moveFlow(flow, 1, "concern");
+  } else {
+    flow = moveFlow(flow, 1, "capacity");
+  }
+  view = { name: "guided" };
+  notice = "Deine Antwort wurde neu übernommen. Die Orientierung beginnt für diese Situation noch einmal.";
   render();
 }
 
-function submitGate(form) {
-  const target = nodeIndex[view.target];
-  if (routeStatus(target, state, "flow", rules) === "blocked") return navigate({ name: "node", id: "K24", mode: "flow" });
-  const values = new FormData(form);
-  const interaction = Object.fromEntries(["safety", "partner_willing", "can_decline"].map((key) => [key, values.get(key)]));
-  interaction.mutual_agreement = target.gate === "agreement" ? values.get("mutual_agreement") : "unknown";
-  if (Object.entries(interaction).some(([key, value]) => !data.contract.enum_fields[key].includes(value)) || !data.contract.enum_fields.resources.includes(values.get("resources"))) return formError("Bitte beantworte jede Frage. „Unklar“ ist möglich.");
-  state = applyEvent(state, { type: "confirm_interaction", values: interaction }, data.contract, rules);
-  state = applyEvent(state, { type: "report_resources", value: values.get("resources") }, data.contract, rules);
-  if (state.safety === "concern") return navigate({ name: "node", id: "K24", mode: "flow" });
-  if (canEnter(target, state, "flow", rules)) return navigate({ name: "node", id: target.id, mode: "flow" });
-  formError("Diese Möglichkeit bleibt geschlossen. Du kannst privat weiterlesen oder aufhören.");
+function toggleStorage() {
+  const next = !saving;
+  if (!saveSelection(storage, state, data.contract, next)) {
+    notice = next ? UI_COPY.storageError : "Die gespeicherte Auswahl konnte nicht gelöscht werden. Bitte nutze dafür die Website-Daten deines Browsers.";
+    return render();
+  }
+  saving = next;
+  syncStorage(false);
+  notice = saving
+    ? "Etappe, Thema, Perspektive und Ziel werden auf diesem Gerät gespeichert. Sorge, Zustimmungen und Versuche bleiben ungespeichert."
+    : "Gespeicherte Auswahl wurde gelöscht.";
+  render();
+}
+
+function handle(action, value) {
+  if (action === "back") return goBack();
+  if (action === "home") { historyStack = []; view = { name: "start" }; return render(); }
+  if (action === "start-stage") { historyStack = []; flow = resetFlowForNextStage(flow); view = { name: "guided" }; return render(); }
+  if (action === "topic-start" && topicIndex[value]) {
+    state = applyEvent(state, { type: "change_context", values: { topic: value } }, data.contract, rules);
+    selectedScene = null; flow = resetFlowForContext(flow); historyStack = []; syncStorage();
+    view = { name: "guided" }; return render();
+  }
+  if (action === "change-context") return guided("context", 1);
+  if (action === "same-context") return guided("capacity", 1);
+  if (action === "scene-pick" && nodeIndex[value]?.kind === "scene") {
+    selectedScene = value; flow = markSceneSeen(flow, nodeIndex[value].family_id); return render();
+  }
+  if (action === "scene-next") return openPrimaryKnowledge();
+  if (action === "knowledge-next" || action === "choice") return guided("choice", 4);
+  if (action === "practice-select") return selectPractice(value);
+  if (action === "prerequisite-next") return selectPractice(value);
+  if (action === "plan-practice" && value === flow.selectedPractice) {
+    try { state = applyEvent(state, { type: "plan_action", action_id: value }, data.contract, rules); }
+    catch { notice = UI_COPY.noSuggestion; return guided("choice", 4); }
+    return guided("report", 4);
+  }
+  if (action === "plan-later") return guided("closing", 6);
+  if (action === "report-performed") return guided("outcome", 5);
+  if (action === "report-not-done") {
+    try { state = applyEvent(state, { type: "report_action", action_id: state.planned_action, status: "not_done", outcome: "unknown" }, data.contract, rules); }
+    catch { notice = UI_COPY.noSuggestion; }
+    notice = UI_COPY.notDoneNote;
+    return guided("closing", 6);
+  }
+  if (action === "reflection-next" || action === "reading-finish" || action === "finish-early") return guided("closing", 6);
+  if (action === "next-stage") {
+    try { state = applyEvent(state, { type: "next_day" }, data.contract, rules); }
+    catch { return; }
+    flow = resetFlowForNextStage(flow); selectedScene = null; historyStack = []; syncStorage();
+    view = { name: "guided" }; return render();
+  }
+  if (action === "library") return navigate({ name: "library", returnToGuided: view.name === "guided" || view.returnToGuided });
+  if (action === "wiki" && nodeIndex[value]?.kind === "knowledge") return navigate({ name: "wiki", id: value, returnToGuided: view.returnToGuided });
+  if (action === "return-guided") { view = { name: "guided" }; return render(); }
+  if (action === "support") return navigate({ name: "support", returnToGuided: view.name === "guided" || view.returnToGuided });
+  if (action === "support-contacts") return navigate({ name: "contacts", returnToGuided: view.returnToGuided });
+  if (action === "revise-safety") return navigate({ name: "revise-safety" });
+  if (action === "storage") return navigate({ name: "storage" });
+  if (action === "toggle-storage") return toggleStorage();
+  if (action === "end") return navigate({ name: "ended" });
+  if (action === "leave") return window.location.replace("about:blank");
 }
 
 main.addEventListener("submit", (event) => {
   const form = event.target;
   if (!form.matches("form[data-form]")) return;
   event.preventDefault();
-  if (form.dataset.form === "gate") submitGate(form);
-  if (form.dataset.form === "orientation") submitOrientation(form);
-  if (form.dataset.form === "report") submitReport(form);
+  const handlers = {
+    context: submitContext, capacity: submitCapacity, safety: submitSafety,
+    "practice-gate": submitPracticeGate, outcome: submitOutcome, "revise-safety": submitSafetyRevision
+  };
+  handlers[form.dataset.form]?.(form);
 });
-
-main.addEventListener("change", (event) => {
-  if ((view.name === "gate" || (view.name === "node" && view.id === "O04")) && event.target.name === "safety" && event.target.value === "concern") {
-    state = applyEvent(state, { type: "report_concern" }, data.contract, rules);
-    pendingEntry = null;
-    return navigate({ name: "node", id: "K24", mode: "flow" });
-  }
-  if (event.target.name === "action_status") {
-    const form = event.target.closest("form");
-    const notDone = event.target.value === "not_done";
-    form.querySelectorAll('input[name="outcome"]').forEach((input) => { input.disabled = notDone; if (notDone) input.checked = input.value === "unknown"; });
-  }
-});
-
-function handle(action, value) {
-  if (action === "back") return goBack();
-  if (action === "home") return navigate({ name: "start" });
-  if (action === "stage") return navigate({ name: "node", id: stageId(), mode: "flow" });
-  if (action === "open" && ["O07", "O09", "O10", "O12"].includes(value)) return navigate({ name: "node", id: value, mode: "flow" });
-  if (action === "library") return navigate({ name: "library" });
-  if (action === "wiki") return navigate({ name: "node", id: value, mode: "wiki" });
-  if (action === "support") return navigate({ name: "node", id: "K24", mode: "flow" });
-  if (action === "leave") return window.location.replace("about:blank");
-  if (action === "finish") return navigate({ name: "node", id: value, mode: "flow" });
-  if (action === "concern") {
-    state = applyEvent(state, { type: "report_concern" }, data.contract, rules);
-    pendingEntry = null;
-    return navigate({ name: "node", id: "K24", mode: "flow" });
-  }
-  if (action === "topic" && topicIndex[value]) {
-    state = applyEvent(state, { type: "change_context", values: { topic: value } }, data.contract, rules);
-    pendingEntry = null;
-    historyStack = [];
-    syncStorage();
-    return navigate({ name: "node", id: stageId(), mode: "flow" });
-  }
-  if (action === "private-reading") {
-    const origin = [...historyStack].reverse().find((item) => item.name === "node" && nodeIndex[item.id]?.kind === "knowledge");
-    return navigate(origin ? { name: "node", id: origin.id, mode: "wiki" } : { name: "library" });
-  }
-  if (action === "use-in-flow" && view.name === "node" && nodeIndex[value]?.kind === "knowledge") return navigate({ name: "node", id: value, mode: "flow" });
-  if (action === "pending-entry" && value === pendingEntry) {
-    if (routeStatus(nodeIndex[value], state, "flow", rules) !== "allowed") return render();
-    if (nodeIndex[value].kind === "scene") state = applyEvent(state, { type: "enter_scene", scene_id: value }, data.contract, rules);
-    pendingEntry = null;
-    return navigate({ name: "node", id: value, mode: "flow" });
-  }
-  if (action === "more" && view.name === "node") {
-    const count = visibleChoices(nodeIndex[view.id], state, view.mode ?? "flow", data.contract, rules, available).length;
-    const step = pendingEntry && view.id === "K21" && (view.mode ?? "flow") === "flow" ? 3 : 4;
-    view.offset = (view.offset ?? 0) + step < count ? (view.offset ?? 0) + step : 0;
-    return render();
-  }
-  if (action === "choice" && view.name === "node") {
-    return followChoice(value);
-  }
-}
 
 main.addEventListener("click", (event) => {
-  const target = event.target.closest("button[data-action]");
+  const target = event.target.closest("[data-action]");
   if (target && !target.disabled) handle(target.dataset.action, target.dataset.value);
 });
+
 document.querySelector(".brand").addEventListener("click", (event) => { event.preventDefault(); handle("home"); });
 document.querySelector("#knowledge-button").addEventListener("click", () => handle("library"));
 document.querySelector("#support-button").addEventListener("click", () => handle("support"));
-document.querySelector("#storage-info-button").addEventListener("click", () => handle("open", "O12"));
-saveButton.addEventListener("click", () => {
-  const next = !saving;
-  if (!saveSelection(storage, state, data.contract, next)) {
-    notice = next ? "Die Auswahl konnte nicht gespeichert werden. Du kannst ohne Speicherung weiterlesen." : "Die gespeicherte Auswahl konnte nicht gelöscht werden. Bitte nutze dafür die Website-Daten deines Browsers.";
-    return render();
-  }
-  saving = next;
-  syncStorage(false);
-  notice = saving ? "Etappe, Thema, Perspektive und Ziel werden auf diesem Gerät gespeichert. Angaben zu Mitwirkung, Sorge oder Handlungen bleiben ungespeichert." : "Gespeicherte Auswahl wurde gelöscht.";
-  render();
-});
+document.querySelector("#storage-info-button").addEventListener("click", () => handle("storage"));
+saveButton.addEventListener("click", toggleStorage);
 
 syncStorage(false);
 render();
+

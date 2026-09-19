@@ -4,6 +4,17 @@
 
 Die Website ist als literarische Reflexion angelegt. Sie stellt keine Diagnose und ersetzt keine Therapie oder professionelle Beratung.
 
+Die veröffentlichte Website ist vollständig statisch. Der W9-Kandidat für wärmere Texte, einen endlichen geführten Weg, Abschnittsfortschritt und eine klarere Sorge-Abfrage wird im Branch `work/w9-warme-texte` geprüft. Technische und redaktionelle Nachweise stehen dort in `W9_REVIEW.md`. Der Kandidatenstatus ist keine menschliche fachliche Freigabe.
+
+## Kandidat lokal prüfen
+
+```sh
+npm ci
+npm test
+npm run test:http
+python3 -m http.server 4173
+```
+
 ## Nutzung und Urheberrecht
 
 © 2026 phil-art. Alle Rechte vorbehalten.

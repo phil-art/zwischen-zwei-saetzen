@@ -89,7 +89,30 @@ export function applyEvent(state, event, contract, nodeIndex) {
     return next;
   }
   if (type === "report_concern") {
-    Object.assign(next, { safety: "concern", confirmation_rev: null });
+    Object.assign(next, {
+      safety: "concern", partner_willing: "unknown", can_decline: "unknown",
+      mutual_agreement: "unknown", confirmation_rev: null, planned_action: null,
+      action_state: "not_planned", outcome: "unknown",
+    });
+    return next;
+  }
+  if (type === "report_safety") {
+    if (!["unknown", "no_concern_reported", "concern"].includes(event.value)) throw new Error("Invalid safety answer");
+    if (event.value === "concern") return applyEvent(next, { type: "report_concern" }, contract, nodeIndex);
+    Object.assign(next, {
+      safety: event.value, partner_willing: "unknown", can_decline: "unknown",
+      mutual_agreement: "unknown", confirmation_rev: next.context_rev,
+    });
+    return next;
+  }
+  if (type === "revise_safety_answer") {
+    if (!["unknown", "no_concern_reported", "concern"].includes(event.value)) throw new Error("Invalid safety answer");
+    const keep = Object.fromEntries(["day", "topic", "perspective", "goal"].map((key) => [key, next[key]]));
+    const revision = next.context_rev + 1;
+    next = initialState(contract);
+    Object.assign(next, keep, { context_rev: revision });
+    if (event.value === "concern") return applyEvent(next, { type: "report_concern" }, contract, nodeIndex);
+    Object.assign(next, { safety: event.value, confirmation_rev: revision });
     return next;
   }
   if (type === "plan_action") {
