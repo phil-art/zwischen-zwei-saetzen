@@ -89,6 +89,7 @@ button:focus-visible, a:focus-visible, select:focus-visible, summary:focus-visib
 .brand-mark span { color: var(--coral); font-size: 1rem; }
 
 main { min-height: calc(100vh - 11rem); padding-block: clamp(2.5rem, 7vw, 6rem); }
+main:focus { outline: none; }
 
 .hero, .reader-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(17rem, .65fr); gap: clamp(2rem, 5vw, 5rem); }
 .hero { align-items: end; }
