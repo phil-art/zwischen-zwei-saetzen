@@ -74,6 +74,16 @@ test("reviewed fact, motive, consent, and pronoun regressions stay corrected", (
   assert.doesNotMatch(rendered["S-T06-F02-B"], /offenbar etwas Dringendes/);
   assert.match(rendered["S-T05-F03-B"], /Ob daraus eine gemeinsame Pause wird, entscheiden beide/);
   for (const id of ["S-T06-F03-A", "S-T06-F03-B", "S-T06-F03-C"]) assert.match(rendered[id], /gemeinsam|beide|Zustimmung|Antwort/);
+  assert.doesNotMatch(rendered["S-T05-F01-C"], /geschlossene Tür/);
+  assert.doesNotMatch(rendered["S-T11-F01-C"], /treffen Verzögerung/);
+  assert.equal(rendered["S-T11-F01-A"].match(/akustisch oder inhaltlich unterbrochen/g)?.length, 1);
+  assert.equal(rendered["S-T11-F02-A"].match(/leichteren Weg/g)?.length, 1);
+
+  const diagrams = Object.fromEntries(data.nodes.filter((node) => node.diagram).map((node) => [node.id, node.diagram.text_alternative]));
+  assert.doesNotMatch(diagrams.K05, /Arbeitshypothese/);
+  assert.match(diagrams.K19, /beweisen nicht, wodurch das Ergebnis entstanden ist/);
+  assert.doesNotMatch(diagrams.K19, /automatische einen/);
+  assert.match(diagrams.K24, /nicht zuverlässig beurteilen/);
 });
 
 test("T04 through T12 close each perspective in its own voice", () => {

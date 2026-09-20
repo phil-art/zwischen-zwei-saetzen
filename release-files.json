@@ -13,7 +13,7 @@
     },
     {
       "file": "content-w9.mjs",
-      "sha256": "c423bddb8bbd0346f4d4fe2eb91a1605c2f6dbf6822a279fa60a6d9de107d1b1"
+      "sha256": "f965ed2117ef711f554fb2bf0dda470888a00909726579a8b6c52507c48e0427"
     },
     {
       "file": "data.mjs",
@@ -45,7 +45,7 @@
     },
     {
       "file": "revisions/editorial-phase4-fixes.mjs",
-      "sha256": "e4bae597ea08b5cbe3cd08c153b316e8eed87468d5dc34a820c2da4f9c14f9c9"
+      "sha256": "7cf4791db4736ec2f80eb1d4dd5eeaa3957c6ca8b739452ad63a6a9a518c280b"
     },
     {
       "file": "revisions/editorial-practice.mjs",

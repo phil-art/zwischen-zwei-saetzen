@@ -471,7 +471,7 @@
             "label": "Abfolge bleibt"
           }
         ],
-        "text_alternative": "Eine mögliche Abfolge lautet: Ein Thema kommt auf, eine Person drängt auf Klärung, die andere zieht sich zurück, und das Thema wird später erneut aufgegriffen. Diese Abfolge bleibt eine Arbeitshypothese und keine Diagnose."
+        "text_alternative": "Eine mögliche Abfolge lautet: Ein Thema kommt auf, eine Person drängt auf Klärung, die andere zieht sich zurück, und das Thema wird später erneut aufgegriffen. Diese Beschreibung ist eine mögliche Lesart und keine Diagnose."
       }
     },
     {
@@ -1039,7 +1039,7 @@
             "label": "beweist nicht"
           }
         ],
-        "text_alternative": "Ein selbst berichtetes Ergebnis kann hilfreich, unverändert, schlechter, gemischt oder unklar sein. Die Durchführung oder der zeitliche Zusammenhang beweist keine automatische einen sicheren Grund."
+        "text_alternative": "Ein selbst berichtetes Ergebnis kann hilfreich, unverändert, schwieriger, gemischt oder unklar sein. Die Durchführung und der zeitliche Zusammenhang beweisen nicht, wodurch das Ergebnis entstanden ist."
       }
     },
     {
@@ -1277,7 +1277,7 @@
             "label": "kann verweisen auf"
           }
         ],
-        "text_alternative": "Die Grenzen des Angebots umfassen: Klickfragen stellen keine Diagnose und liefern keinen Sicherheitsnachweis. Als mögliche Richtungen können private Orientierung oder externe Unterstützung betrachtet werden."
+        "text_alternative": "Die Seite stellt keine Diagnose und kann die Sicherheit einer Situation nicht zuverlässig beurteilen. Sie kann zu privater Orientierung oder externer Unterstützung führen."
       }
     },
     {
@@ -4719,7 +4719,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Nach Hause kommen",
-      "body": "Jorun kommt nach Hause, stellt die Tasche ab und geht ins andere Zimmer. Mireva sitzt mit zwei Bechern am Küchentisch. Am Küchentisch bleiben eine abgestellte Tasche, ein Weg ins Zimmer und zwei Becher zurück. Eine Absicht steht auf keinem davon.\n\nManchmal treffen beim Heimkommen zwei ganz verschiedene Wünsche aufeinander: erst einmal durchatmen oder endlich miteinander sein. Keiner davon ist lieblos. Schwierig wird es, wenn beide glauben, der eigene Wunsch sei offensichtlich.\n\nZwei Becher und eine geschlossene Tür erzählen noch keine gemeinsame Absicht. Ein Satz könnte sie erst sichtbar machen.",
+      "body": "Jorun kommt nach Hause, stellt die Tasche ab und geht ins andere Zimmer. Mireva sitzt mit zwei Bechern am Küchentisch. Am Küchentisch bleiben eine abgestellte Tasche, ein Weg ins Zimmer und zwei Becher zurück. Eine Absicht steht auf keinem davon.\n\nManchmal treffen beim Heimkommen zwei ganz verschiedene Wünsche aufeinander: erst einmal durchatmen oder endlich miteinander sein. Keiner davon ist lieblos. Schwierig wird es, wenn beide glauben, der eigene Wunsch sei offensichtlich.\n\nWas beide jetzt brauchen, ist noch nicht ausgesprochen. Ein Satz könnte den Abend klarer machen.",
       "choice_labels": [
         {
           "id": "E0324",
@@ -6231,7 +6231,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Ein Blick auf das Display",
-      "body": "Während eines Besuchs leuchtet Tavias Telefon auf. Solvian blickt auf das Display; Tavia dreht das Gerät um. Der kurze Moment zeigt Licht, einen Blick und eine Handbewegung. Misstrauen oder Täuschung lassen sich daraus nicht zuverlässig erkennen.\n\nEin kurzer Blick kann aus Neugier entstehen und trotzdem eine Grenze berühren. Das Umdrehen kann Privatsphäre schützen, ohne ein Geheimnis zu beweisen.\n\nPrivatsphäre und Vertrauen stehen nicht automatisch gegeneinander. Der kurze Moment entscheidet darüber noch nichts.\n\nPrivatsphäre und Vertrauen können gleichzeitig wichtig sein, ohne sich gegenseitig auszuschließen.",
+      "body": "Während eines Besuchs leuchtet Tavias Telefon auf. Solvian blickt auf das Display; Tavia dreht das Gerät um. Der kurze Moment zeigt Licht, einen Blick und eine Handbewegung. Misstrauen oder Täuschung lassen sich daraus nicht zuverlässig erkennen.\n\nEin kurzer Blick kann aus Neugier entstehen und trotzdem eine Grenze berühren. Das Umdrehen kann Privatsphäre schützen, ohne ein Geheimnis zu beweisen.\n\nPrivatsphäre und Vertrauen stehen nicht automatisch gegeneinander. Der kurze Moment entscheidet darüber noch nichts.\n\nErst ein Gespräch könnte zeigen, was beide wahrgenommen haben und welche Grenze künftig gelten soll.",
       "choice_labels": [
         {
           "id": "E0576",
@@ -6399,7 +6399,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Ein Anruf über Distanz",
-      "body": "Im Anruf zwischen zwei Wohnungen entstehen Pausen. Tavia setzt an, während Solvian noch redet; danach schweigen beide. Solvian darf seinen Gedanken zu Ende bringen wollen. Tavias Einsetzen muss nicht bedeuten, dass sie ihm nicht zuhört.\n\nÜber eine Verbindung fehlen Blicke, kleine Gesten und das sichere Gefühl, wann ein Satz zu Ende ist. Eine Überschneidung kann technische Verzögerung, Eile oder Aufregung sein.\n\nSolvian kann kurz prüfen, ob Tavia ihn akustisch oder inhaltlich unterbrochen hat, bevor er weiterredet.\n\nSolvian kann kurz prüfen, ob Tavia ihn akustisch oder inhaltlich unterbrochen hat.",
+      "body": "Im Anruf zwischen zwei Wohnungen entstehen Pausen. Tavia setzt an, während Solvian noch redet; danach schweigen beide. Solvian darf seinen Gedanken zu Ende bringen wollen. Tavias Einsetzen muss nicht bedeuten, dass sie ihm nicht zuhört.\n\nÜber eine Verbindung fehlen Blicke, kleine Gesten und das sichere Gefühl, wann ein Satz zu Ende ist. Eine Überschneidung kann technische Verzögerung, Eile oder Aufregung sein.\n\nSolvian kann kurz prüfen, ob Tavia ihn akustisch oder inhaltlich unterbrochen hat, bevor er weiterredet.\n\nVor dem nächsten Satz kann er Tavia den Raum für ihre Antwort lassen.",
       "choice_labels": [
         {
           "id": "E0604",
@@ -6447,7 +6447,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Ein Anruf über Distanz",
-      "body": "Im Anruf zwischen zwei Wohnungen entstehen Pausen. Tavia setzt an, während Solvian noch redet; danach schweigen beide. Im Anruf treffen zwei Stimmen aufeinander; danach folgt Stille. Das Verbindungssymbol wirkt zuverlässig; für die Verständigung übernimmt es leider keine Verantwortung.\n\nÜber eine Verbindung fehlen Blicke, kleine Gesten und das sichere Gefühl, wann ein Satz zu Ende ist. Eine Überschneidung kann technische Verzögerung, Eile oder Aufregung sein.\n\nIm Anruf treffen Verzögerung und zwei Stimmen aufeinander. Ein kurzes „Du zuerst“ könnte genügen. Keiner muss dabei sofort nachgeben.",
+      "body": "Im Anruf zwischen zwei Wohnungen entstehen Pausen. Tavia setzt an, während Solvian noch redet; danach schweigen beide. Im Anruf treffen zwei Stimmen aufeinander; danach folgt Stille. Das Verbindungssymbol wirkt zuverlässig; für die Verständigung übernimmt es leider keine Verantwortung.\n\nÜber eine Verbindung fehlen Blicke, kleine Gesten und das sichere Gefühl, wann ein Satz zu Ende ist. Eine Überschneidung kann technische Verzögerung, Eile oder Aufregung sein.\n\nEine kurze Abstimmung darüber, wer beginnt, könnte genügen. Keiner muss dabei sofort nachgeben. Keiner muss dabei sofort nachgeben.",
       "choice_labels": [
         {
           "id": "E0612",
@@ -6471,7 +6471,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Schriftlich ist es leichter",
-      "body": "Solvian liest Tavias Nachricht: „Schriftlich ist es leichter.“ Zwischen den Wohnungen liegen viele Kilometer. Solvian darf sich nach ihrer Stimme sehnen. Tavias Wunsch nach Schriftlichkeit ist trotzdem keine automatische Ablehnung von Nähe.\n\nSchreiben kann Zeit zum Sortieren geben; ein Gespräch kann Wärme, Tonfall und unmittelbare Rückfragen bieten. Die leichtere Form für eine Person muss nicht für beide reichen.\n\nSolvian kann seinen Wunsch nach ihrer Stimme äußern, ohne Tavias leichteren Weg abzuwerten.\n\nEr kann seinen Wunsch äußern, ohne Tavias leichteren Weg dadurch abzuwerten.",
+      "body": "Solvian liest Tavias Nachricht: „Schriftlich ist es leichter.“ Zwischen den Wohnungen liegen viele Kilometer. Solvian darf sich nach ihrer Stimme sehnen. Tavias Wunsch nach Schriftlichkeit ist trotzdem keine automatische Ablehnung von Nähe.\n\nSchreiben kann Zeit zum Sortieren geben; ein Gespräch kann Wärme, Tonfall und unmittelbare Rückfragen bieten. Die leichtere Form für eine Person muss nicht für beide reichen.\n\nSolvian kann seinen Wunsch nach ihrer Stimme äußern, ohne Tavias leichteren Weg abzuwerten.\n\nEr darf zugleich fragen, ob für bestimmte Themen später auch ein Anruf möglich wäre.",
       "choice_labels": [
         {
           "id": "E0616",
@@ -6519,7 +6519,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Schriftlich ist es leichter",
-      "body": "Solvian liest Tavias Nachricht: „Schriftlich ist es leichter.“ Zwischen den Wohnungen liegen viele Kilometer. Tavia hat eine bevorzugte Kommunikationsform benannt. Für welches Thema und für wie lange sie gelten soll, bleibt offen.\n\nSchreiben kann Zeit zum Sortieren geben; ein Gespräch kann Wärme, Tonfall und unmittelbare Rückfragen bieten. Die leichtere Form für eine Person muss nicht für beide reichen.\n\nText und Stimme müssen nicht gegeneinander gewinnen. Welche Mischung passt, entscheiden beide erst noch.\n\nBeide Formen dürfen einander ergänzen, statt um den ersten Platz zu kämpfen.",
+      "body": "Solvian liest Tavias Nachricht: „Schriftlich ist es leichter.“ Zwischen den Wohnungen liegen viele Kilometer. Tavia hat eine bevorzugte Kommunikationsform benannt. Für welches Thema und für wie lange sie gelten soll, bleibt offen.\n\nSchreiben kann Zeit zum Sortieren geben; ein Gespräch kann Wärme, Tonfall und unmittelbare Rückfragen bieten. Die leichtere Form für eine Person muss nicht für beide reichen.\n\nText und Stimme müssen nicht gegeneinander gewinnen. Welche Mischung passt, entscheiden beide erst noch.\n\nFür verschiedene Themen dürfen dabei auch verschiedene Wege passen.",
       "choice_labels": [
         {
           "id": "E0624",

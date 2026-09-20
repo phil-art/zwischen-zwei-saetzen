@@ -71,10 +71,10 @@ const EDITORIAL_EXTENSIONS = Object.freeze({
   "S-T03-F04-A": "Ihre eigene Zeit darf dabei ebenso vorkommen wie die sichtbare Betreuungslücke.",
   "S-T03-F04-C": "Vielleicht braucht es einen kleineren Plan oder Hilfe, nicht einen überzeugenderen Vorwurf.",
   "S-T07-F03-A": "Ein kurzes „Ich denke darüber nach“ könnte den stillen Zwischenraum freundlicher machen.",
-  "S-T10-F02-C": "Privatsphäre und Vertrauen können gleichzeitig wichtig sein, ohne sich gegenseitig auszuschließen.",
-  "S-T11-F01-A": "Solvian kann kurz prüfen, ob Tavia ihn akustisch oder inhaltlich unterbrochen hat.",
-  "S-T11-F02-A": "Er kann seinen Wunsch äußern, ohne Tavias leichteren Weg dadurch abzuwerten.",
-  "S-T11-F02-C": "Beide Formen dürfen einander ergänzen, statt um den ersten Platz zu kämpfen.",
+  "S-T10-F02-C": "Erst ein Gespräch könnte zeigen, was beide wahrgenommen haben und welche Grenze künftig gelten soll.",
+  "S-T11-F01-A": "Vor dem nächsten Satz kann er Tavia den Raum für ihre Antwort lassen.",
+  "S-T11-F02-A": "Er darf zugleich fragen, ob für bestimmte Themen später auch ein Anruf möglich wäre.",
+  "S-T11-F02-C": "Für verschiedene Themen dürfen dabei auch verschiedene Wege passen.",
   "S-T11-F03-B": "Ihre frühe Verfügbarkeit ist ein Angebot, kein Beweis für fehlende Flexibilität.",
   "S-T12-F04-A": "Ein vereinbarter Zeitpunkt kann ihr helfen, die offene Frage für heute abzulegen."
 });

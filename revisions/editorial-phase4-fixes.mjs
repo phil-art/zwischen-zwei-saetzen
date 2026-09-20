@@ -86,7 +86,7 @@ const endings = {
   "T05-F01": {
     A: "Mireva kann ihren Wunsch hörbar machen: „Ich würde gern kurz mit dir sitzen – passt das heute?“",
     B: "Jorun kann erst ankommen und danach fragen, ob Mireva sich für den Abend etwas gewünscht hatte.",
-    C: "Zwei Becher und eine geschlossene Tür erzählen noch keine gemeinsame Absicht. Ein Satz könnte sie erst sichtbar machen."
+    C: "Was beide jetzt brauchen, ist noch nicht ausgesprochen. Ein Satz könnte den Abend klarer machen."
   },
   "T05-F02": {
     A: "Jorun kann den ruhigen Sonntag benennen, ohne Mirevas Ausflugsidee kleinzumachen.",
@@ -206,7 +206,7 @@ const endings = {
   "T11-F01": {
     A: "Solvian kann kurz prüfen, ob Tavia ihn akustisch oder inhaltlich unterbrochen hat, bevor er weiterredet.",
     B: "Tavia kann sagen, ob sie ergänzen wollte oder das Ende des Satzes vermutete.",
-    C: "Im Anruf treffen Verzögerung und zwei Stimmen aufeinander. Ein kurzes „Du zuerst“ könnte genügen."
+    C: "Eine kurze Abstimmung darüber, wer beginnt, könnte genügen. Keiner muss dabei sofort nachgeben."
   },
   "T11-F02": {
     A: "Solvian kann seinen Wunsch nach ihrer Stimme äußern, ohne Tavias leichteren Weg abzuwerten.",
@@ -355,17 +355,20 @@ const conciseAdditions = {
 };
 for (const [id, addition] of Object.entries(conciseAdditions)) replaceLast(id, `${body(id).split(/\n\n/).at(-1)} ${addition}`);
 
-function relabelDiagram(id, replacements) {
+function relabelDiagram(id, replacements, textAlternative) {
   const diagram = structuredClone(KNOWLEDGE_REVISIONS[id].diagram);
   for (const node of diagram.nodes) if (replacements[node.label]) node.label = replacements[node.label];
-  let alternative = diagram.text_alternative;
-  for (const [before, after] of Object.entries(replacements)) alternative = alternative.split(before).join(after);
+  let alternative = textAlternative ?? diagram.text_alternative;
+  if (!textAlternative) for (const [before, after] of Object.entries(replacements)) alternative = alternative.split(before).join(after);
   fixes[id] = { ...(EDITORIAL_KNOWLEDGE[id] ?? {}), ...(fixes[id] ?? {}), diagram: { ...diagram, text_alternative: alternative } };
 }
 
-relabelDiagram("K05", { "Arbeitshypothese, keine Diagnose": "Eine mögliche Lesart, keine Diagnose" });
-relabelDiagram("K19", { "Kausalität": "einen sicheren Grund" });
-relabelDiagram("K24", { "Kein Sicherheitsnachweis": "Keine sichere Beurteilung durch diese Seite" });
+relabelDiagram("K05", { "Arbeitshypothese, keine Diagnose": "Eine mögliche Lesart, keine Diagnose" },
+  "Eine mögliche Abfolge lautet: Ein Thema kommt auf, eine Person drängt auf Klärung, die andere zieht sich zurück, und das Thema wird später erneut aufgegriffen. Diese Beschreibung ist eine mögliche Lesart und keine Diagnose.");
+relabelDiagram("K19", { "Kausalität": "einen sicheren Grund" },
+  "Ein selbst berichtetes Ergebnis kann hilfreich, unverändert, schwieriger, gemischt oder unklar sein. Die Durchführung und der zeitliche Zusammenhang beweisen nicht, wodurch das Ergebnis entstanden ist.");
+relabelDiagram("K24", { "Kein Sicherheitsnachweis": "Keine sichere Beurteilung durch diese Seite" },
+  "Die Seite stellt keine Diagnose und kann die Sicherheit einer Situation nicht zuverlässig beurteilen. Sie kann zu privater Orientierung oder externer Unterstützung führen.");
 
 fixes.R16 = { body: `Dein kleiner Versuch muss nichts beweisen. Du kannst in Ruhe ansehen, was sich verändert hat, was gleich blieb und was du noch nicht weißt.
 
