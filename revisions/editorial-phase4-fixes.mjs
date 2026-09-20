@@ -340,7 +340,6 @@ const conciseAdditions = {
   "S-T10-F02-B": "Tavias Grenze bleibt dabei vollständig gültig.",
   "S-T10-F04-A": "Seine Frage darf bis dahin klein bleiben.",
   "S-T11-F01-B": "Solvian darf darauf anders antworten, als sie hofft.",
-  "S-T11-F01-C": "Keiner muss dabei sofort nachgeben.",
   "S-T11-F02-B": "Solvian darf dazu einen eigenen Wunsch haben.",
   "S-T11-F03-A": "Tavia darf diesen Vorschlag trotzdem ablehnen.",
   "S-T11-F03-C": "Heute muss daraus kein Gespräch mehr werden.",
