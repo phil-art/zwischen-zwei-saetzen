@@ -630,7 +630,10 @@ export function initialFlow() {
     pendingPractice: null,
     visitedKnowledge: [],
     seenSceneFamilies: [],
-    stageCompleted: false
+    seenSceneIds: [],
+    stageCompleted: false,
+    stageStarted: false,
+    safetyOrigin: null
   };
 }
 
@@ -648,13 +651,14 @@ export function topicPlan(topic) {
 
 export function moveFlow(flow, section, view, extra = {}) {
   if (!Number.isInteger(section) || section < 1 || section > 6) throw new Error("Invalid section");
-  return { ...flow, ...extra, section, highWater: Math.max(flow.highWater, section), view };
+  return { ...flow, ...extra, section, highWater: Math.max(flow.highWater, section), view, stageStarted: true };
 }
 
 export function resetFlowForContext(flow) {
   return {
     ...initialFlow(),
     seenSceneFamilies: [...flow.seenSceneFamilies],
+    seenSceneIds: [...(flow.seenSceneIds ?? [])],
     view: "capacity"
   };
 }
@@ -663,6 +667,7 @@ export function resetFlowForNextStage(flow) {
   return {
     ...initialFlow(),
     seenSceneFamilies: [...flow.seenSceneFamilies],
+    seenSceneIds: [...(flow.seenSceneIds ?? [])],
     view: "stage-intro"
   };
 }
@@ -677,11 +682,19 @@ export function preferredSceneId(state) {
 }
 
 export function primaryKnowledgeId(state) {
+  return knowledgeCandidates(state)[0];
+}
+
+export function knowledgeCandidates(state) {
+  const candidates = [];
+  const add = (id) => { if (id && !candidates.includes(id)) candidates.push(id); };
   const focused = FLOW_PLAN.goal_focus[state.goal];
-  if (Array.isArray(focused) && focused.length) return focused[0];
+  if (Array.isArray(focused)) focused.forEach(add);
   const stage = stagePlan(state.day);
-  if (stage.primary_knowledge !== "topic") return stage.primary_knowledge;
-  return topicPlan(state.topic).entry_knowledge;
+  add(stage.primary_knowledge === "topic" ? topicPlan(state.topic).entry_knowledge : stage.primary_knowledge);
+  (stage.fallback_knowledge ?? []).forEach(add);
+  add(topicPlan(state.topic).entry_knowledge);
+  return candidates;
 }
 
 export function practiceChoices(state) {
@@ -713,6 +726,13 @@ export function markSceneSeen(flow, familyId) {
   return { ...flow, seenSceneFamilies: seen };
 }
 
+export function markSceneIdSeen(flow, sceneId) {
+  const seen = (flow.seenSceneIds ?? []).includes(sceneId)
+    ? flow.seenSceneIds
+    : [...(flow.seenSceneIds ?? []), sceneId];
+  return { ...flow, seenSceneIds: seen };
+}
+
 export function openLibrary(flow, currentView) {
   return { ...flow, parkedView: currentView, view: "library" };
 }
@@ -720,4 +740,3 @@ export function openLibrary(flow, currentView) {
 export function returnFromLibrary(flow) {
   return { ...flow, view: flow.parkedView ?? "stage-intro", parkedView: null };
 }
-

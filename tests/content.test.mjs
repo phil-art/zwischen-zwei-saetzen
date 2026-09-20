@@ -40,7 +40,8 @@ test("scene identity and graph identity remain stable", () => {
   assert.equal(scenes.length, 144);
   assert.equal(new Set(scenes.map((node) => node.family_id)).size, 48);
   for (const family of new Set(scenes.map((node) => node.family_id))) {
-    assert.deepEqual(scenes.filter((node) => node.family_id === family).map((node) => node.perspective).sort(), ["A", "B", "C"]);
+    const variants = scenes.filter((node) => node.family_id === family);
+    assert.deepEqual(variants.map((node) => node.perspective).sort(), ["A", "B", "C"]);
+    assert.equal(new Set(variants.map((node) => node.body.split("\n\n")[0])).size, 3, `${family}: distinct perspective openings`);
   }
 });
-

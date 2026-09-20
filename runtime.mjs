@@ -80,6 +80,7 @@ export function applyEvent(state, event, contract, nodeIndex) {
       if (!contract.enum_fields[key].includes(value)) throw new Error("Invalid interaction answer");
     }
     if (next.safety === "concern" && event.values.safety !== "concern") throw new Error("Changed situation requires a new context");
+    if (event.values.safety === "concern") return applyEvent(next, { type: "report_concern" }, contract, nodeIndex);
     Object.assign(next, event.values, { confirmation_rev: next.context_rev });
     return next;
   }

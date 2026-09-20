@@ -123,8 +123,9 @@ h3 { margin: 0; font-size: 1.03rem; }
 .hero-note p, .side-card p { margin: .45rem 0 0; color: var(--muted); }
 
 .stage-track { display: grid; grid-template-columns: repeat(14, 1fr); gap: .25rem; margin-top: 1.2rem; }
-.stage-track span { height: .35rem; border-radius: 99px; background: var(--line); }
-.stage-track span.active { background: var(--coral); }
+.stage-track > span { height: .35rem; border-radius: 99px; background: var(--line); }
+.stage-track > span.complete { background: var(--coral); }
+.stage-track > span.current { background: var(--paper); box-shadow: inset 0 0 0 2px var(--coral); }
 
 .path-progress { margin-bottom: 1.35rem; }
 .progress-copy { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .35rem 1rem; color: var(--muted); font-size: .86rem; font-weight: 720; }

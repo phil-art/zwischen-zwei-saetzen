@@ -4,7 +4,7 @@ import { applyEvent, canEnter, diagramText, initialState, routeStatus } from "./
 import { loadSelection, saveSelection } from "./storage.mjs";
 import {
   FLOW_PLAN, SECTION_LABELS, initialFlow, markKnowledgeVisited, markSceneSeen,
-  moveFlow, practiceChoices, prerequisiteFor, preferredSceneId, primaryKnowledgeId,
+  markSceneIdSeen, moveFlow, knowledgeCandidates, practiceChoices, prerequisiteFor, preferredSceneId, primaryKnowledgeId,
   progressPercent, resetFlowForContext, resetFlowForNextStage, stagePlan, topicPlan
 } from "./flow.mjs";
 
@@ -25,7 +25,10 @@ let flow = initialFlow();
 let view = { name: "start" };
 let historyStack = [];
 let selectedScene = null;
+let selectedKnowledge = null;
 let safetyExamplesOpen = false;
+let sceneWasSeen = false;
+let knowledgeWasSeen = false;
 
 const esc = (value) => String(value ?? "").replace(/[&<>'"]/g, (character) => ({
   "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;",
@@ -72,7 +75,7 @@ function syncStorage(write = true) {
 }
 
 function snapshot() {
-  return { view: { ...view }, flowView: flow.view, flowSection: flow.section };
+  return { view: { ...view }, flow: { ...flow, visitedKnowledge: [...flow.visitedKnowledge], seenSceneFamilies: [...flow.seenSceneFamilies], seenSceneIds: [...(flow.seenSceneIds ?? [])] }, contextRev: state.context_rev, day: state.day };
 }
 
 function navigate(next, remember = true) {
@@ -83,7 +86,7 @@ function navigate(next, remember = true) {
 
 function guided(nextView, section = flow.section, remember = true, extra = {}) {
   if (remember) historyStack.push(snapshot());
-  flow = moveFlow(flow, section, nextView, extra);
+  flow = moveFlow(flow, section, nextView, { ...extra, stageCompleted: nextView === "closing" || nextView === "concern-closing" ? true : flow.stageCompleted });
   view = { name: "guided" };
   render();
 }
@@ -93,9 +96,16 @@ function goBack() {
   if (!previous) {
     view = { name: "start" };
   } else {
-    view = previous.view;
-    if (view.name === "guided") {
-      flow = { ...flow, view: previous.flowView, section: previous.flowSection, highWater: Math.max(flow.highWater, previous.flowSection) };
+    if (previous.contextRev !== state.context_rev || previous.day !== state.day) {
+      historyStack = [];
+      view = { name: "guided" };
+      flow = moveFlow(resetFlowForContext(flow), 1, state.safety === "concern" ? "concern" : "capacity");
+    } else {
+      view = previous.view;
+      if (view.name === "guided") {
+        const reached = flow.highWater;
+        flow = { ...previous.flow, highWater: Math.max(reached, previous.flow.highWater) };
+      }
     }
   }
   render();
@@ -103,7 +113,13 @@ function goBack() {
 
 function stageTrack() {
   return `<div class="stage-track" aria-label="Etappe ` + state.day + ` von ` + data.stage_count + `">`
-    + Array.from({ length: data.stage_count }, (_, index) => `<span class="` + (index + 1 <= state.day ? "active" : "") + `"></span>`).join("")
+    + Array.from({ length: data.stage_count }, (_, index) => {
+      const day = index + 1;
+      const complete = day < state.day || (day === state.day && flow.stageCompleted);
+      const current = day === state.day && !flow.stageCompleted;
+      return `<span class="` + (complete ? "complete" : current ? "current" : "") + `" ` + (current ? `aria-current="step"` : "")
+        + `><span class="sr-only">` + (complete ? `Etappe ${day} abgeschlossen` : current ? `Aktuelle Etappe ${day}` : `Etappe ${day}`) + `</span></span>`;
+    }).join("")
     + `</div>`;
 }
 
@@ -111,7 +127,7 @@ function progress() {
   const percent = progressPercent(flow);
   const section = flow.section;
   return `<div class="path-progress"><div class="progress-copy"><span>Etappe ` + state.day + ` von 14</span><span>Abschnitt `
-    + section + ` von 6: ` + esc(SECTION_LABELS[section]) + `</span></div><div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="`
+    + section + ` von 6: <span aria-current="step">` + esc(SECTION_LABELS[section]) + `</span></span></div><div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="`
     + percent + `" aria-label="Fortschritt innerhalb dieser Etappe"><span style="width:` + percent + `%"></span></div></div>`;
 }
 
@@ -144,7 +160,7 @@ function renderDiagram(diagram) {
 }
 
 function renderStart() {
-  const primary = saving || state.day > 1 ? `Bei Etappe ` + state.day + ` weiterlesen` : UI_COPY.start;
+  const primary = saving || state.day > 1 || flow.stageStarted ? `Bei Etappe ` + state.day + ` weiterlesen` : UI_COPY.start;
   return `<section class="hero" aria-labelledby="hero-title"><div><p class="eyebrow">` + esc(UI_COPY.heroEyebrow) + `</p>
     <h1 id="hero-title">` + esc(UI_COPY.title) + `</h1><div class="hero-copy">` + UI_COPY.hero.map((item) => `<p class="lede">` + esc(item) + `</p>`).join("") + `</div>
     <div class="hero-actions">` + button("start-stage", primary, "", "button") + button("library", UI_COPY.browse) + `</div></div>
@@ -190,10 +206,19 @@ function safetyExamples() {
 }
 
 function renderSafety() {
-  return `<form class="gate-card setup-grid" data-form="safety"><p class="eyebrow">Bevor es weitergeht</p><h2 id="view-title">Eine wichtige Unterscheidung</h2>
+  return `<form class="gate-card setup-grid" data-form="safety" data-revision="${state.context_rev}" data-day="${state.day}"><p class="eyebrow">Bevor es weitergeht</p><h2 id="view-title">Eine wichtige Unterscheidung</h2>
     <p>` + esc(UI_COPY.safetyExplanation) + `</p>` + safetyExamples()
     + options("safety", UI_COPY.safetyQuestion, Object.entries(UI_COPY.safetyAnswers), null, true)
     + `<p class="form-error" role="alert" hidden></p><button class="button" type="submit">Antwort übernehmen →</button></form>`;
+}
+
+function renderSafetyExamples() {
+  const fromGate = flow.safetyOrigin === "practice-gate";
+  return `<section class="gate-card"><p class="eyebrow">Zur Einordnung</p><h2 id="view-title">Welche Sorgen sind hier gemeint?</h2>
+    <p>Vor einem Gespräch nervös zu sein oder eine enttäuschte Antwort zu erwarten, ist etwas anderes als bedroht oder kontrolliert zu werden. Gemeint sind zum Beispiel Einschüchterung, erzwungene Überwachung, das Verhindern von Kontakten oder Druck, mit dem ein Nein bestraft werden soll.</p>
+    <p>Du musst nicht sicher wissen, wie du deine Situation nennen sollst, um Unterstützung zu suchen. Diese Beispiele entscheiden nicht für dich.</p>
+    <div class="choices">` + button("safety-answer", "Meine Antwort wählen →", fromGate ? "practice-gate" : "safety", "button")
+    + button("safety-private", "Vorerst für mich weiterlesen") + button("support", UI_COPY.supportVoluntary) + `</div></section>`;
 }
 
 function currentScene() {
@@ -202,7 +227,7 @@ function currentScene() {
 
 function renderScene() {
   const scene = currentScene();
-  const alreadySeen = flow.seenSceneFamilies.includes(scene.family_id);
+  const alreadySeen = Boolean(flow.openedSceneRepeat);
   const otherScenes = data.nodes.filter((node) => node.kind === "scene" && node.topic_ids.includes(state.topic) && node.perspective === state.perspective);
   const extras = `<p class="small-note">` + esc(topicIndex[state.topic].title) + ` · ` + esc(PERSPECTIVE_LABELS[state.perspective])
     + (alreadySeen ? " · Diese Geschichte hast du in dieser Sitzung schon geöffnet." : "") + `</p>
@@ -213,9 +238,9 @@ function renderScene() {
 }
 
 function renderKnowledge() {
-  const id = primaryKnowledgeId(state);
+  const id = selectedKnowledge ?? primaryKnowledgeId(state);
   const node = nodeIndex[id];
-  const repeated = flow.visitedKnowledge.includes(id);
+  const repeated = Boolean(flow.openedKnowledgeRepeat);
   const extras = (repeated ? `<p class="small-note">` + esc(UI_COPY.repeatedCard) + `</p>` : "")
     + `<div class="choices">` + button("knowledge-next", "Eine kleine Möglichkeit wählen →", "", "button")
     + button("library", "Wenn du noch etwas nachlesen möchtest") + `</div>`;
@@ -234,14 +259,19 @@ function renderChoice() {
       + button("support", UI_COPY.supportVoluntary, "", "button") + button("reading-finish", UI_COPY.readingOnly) + `</div></section>`;
   }
   const ids = practiceChoices(state);
+  const noPreferredFit = topicPlan(state.topic).preferred_private_by_goal[state.goal] == null;
   return `<section class="gate-card"><p class="eyebrow">Dein nächster Schritt</p><h2 id="view-title">Was könnte jetzt passen?</h2>
-    <p>Wähle höchstens eine Möglichkeit. Lesen allein ist ebenfalls ein vollständiger Abschluss.</p><div class="practice-grid">`
+    <p>` + (noPreferredFit
+      ? `Keiner der vorhandenen Vorschläge ist deinem heutigen Ziel eindeutig zugeordnet. Du kannst beim Lesen bleiben oder eine weitere Möglichkeit dieses Themas ansehen.`
+      : `Wähle höchstens eine Möglichkeit. Lesen allein ist ebenfalls ein vollständiger Abschluss.`) + `</p><div class="practice-grid">`
     + ids.map((id) => {
       const node = nodeIndex[id];
       const status = practiceStatus(node);
       const note = node.gate === "private" ? "Für dich allein" : node.gate === "agreement" ? "Nur nach gemeinsamer Zustimmung" : "Nur wenn ein Nein oder Später möglich ist";
       return `<article class="practice-card"><p class="kind-label">` + esc(note) + `</p><h3>` + esc(node.title) + `</h3><p>`
-        + esc(node.body.split(/\n\n/)[0]) + `</p>` + button("practice-select", status === "allowed" ? "Ansehen →" : "Voraussetzungen ansehen →", id) + `</article>`;
+        + esc(node.body.split(/\n\n/)[0]) + `</p>` + (status === "blocked"
+          ? `<p class="small-note">Diese Möglichkeit ist im aktuellen Durchgang nicht verfügbar.</p>`
+          : button("practice-select", status === "allowed" ? "Ansehen →" : "Voraussetzungen ansehen →", id, "quiet-button", `data-revision="${state.context_rev}" data-day="${state.day}"`)) + `</article>`;
     }).join("") + `</div><div class="choices">` + button("reading-finish", UI_COPY.readingOnly) + `</div></section>`;
 }
 
@@ -255,8 +285,9 @@ function renderPrerequisite() {
 
 function renderPracticeGate() {
   const target = nodeIndex[flow.pendingPractice];
+  if (!target || !["partner", "agreement"].includes(target.gate)) return renderChoice();
   const yesNo = [["yes", "Ja"], ["no", "Nein"], ["unknown", "Unklar"]];
-  return `<form class="gate-card setup-grid" data-form="practice-gate" data-target="` + esc(target.id) + `"><p class="eyebrow">Bevor ihr etwas gemeinsam versucht</p>
+  return `<form class="gate-card setup-grid" data-form="practice-gate" data-target="` + esc(target.id) + `" data-revision="${state.context_rev}" data-day="${state.day}"><p class="eyebrow">Bevor ihr etwas gemeinsam versucht</p>
     <h2 id="view-title">Passt dieser Schritt gerade?</h2><p>Gemeinsame Vorschläge brauchen aktuelle, freiwillige Antworten. „Unklar“ zählt nicht als Ja.</p>
     <p>` + esc(UI_COPY.safetyExplanation) + `</p>` + safetyExamples()
     + options("safety", UI_COPY.safetyQuestion, Object.entries(UI_COPY.safetyAnswers), null, true)
@@ -270,22 +301,27 @@ function renderPracticeGate() {
 
 function renderPractice() {
   const node = nodeIndex[flow.selectedPractice];
-  const extra = `<div class="choices">` + button("plan-practice", UI_COPY.plan, node.id, "button")
+  if (!node || !canEnter(node, state, "flow", rules)) return renderChoice();
+  const extra = `<div class="choices">` + button("plan-practice", UI_COPY.plan, node.id, "button", `data-revision="${state.context_rev}" data-day="${state.day}"`)
     + button("choice", "Eine andere Möglichkeit wählen") + button("reading-finish", UI_COPY.readingOnly) + `</div>`;
   return contentCard(node, extra, "Dein nächster Schritt");
 }
 
 function renderReport() {
   const action = nodeIndex[state.planned_action];
-  const status = state.action_state === "planned" ? "für später vorgemerkt" : state.action_state;
+  if (!action) return renderChoice();
+  if (state.action_state === "performed") return `<section class="gate-card"><p class="eyebrow">Deine Rückmeldung</p><h2 id="view-title">` + esc(action.title) + `</h2>
+    <p>Du hast angegeben, dass du diese Möglichkeit ausprobiert hast. Deine Rückschau bleibt bei genau diesem Schritt.</p><div class="choices">`
+    + button("show-reflection", "Zur Rückschau →", "", "button") + button("reading-finish", UI_COPY.readingOnly) + `</div></section>`;
+  if (state.action_state === "not_done") return renderNotDone();
   return `<section class="gate-card"><p class="eyebrow">Deine Auswahl</p><h2 id="view-title">` + esc(action.title) + `</h2>
-    <p>Du hast diese Möglichkeit ` + esc(status) + `. Das ist noch keine Durchführung.</p><div class="choices">`
+    <p>Du hast diese Möglichkeit für später vorgemerkt. Das ist noch keine Durchführung.</p><div class="choices">`
     + button("plan-later", UI_COPY.later, "", "button") + button("report-performed", UI_COPY.performed)
     + button("report-not-done", UI_COPY.notDone) + `</div></section>`;
 }
 
 function renderOutcome() {
-  return `<form class="gate-card setup-grid" data-form="outcome"><p class="eyebrow">Rückblick</p><h2 id="view-title">Wie war es für dich?</h2>
+  return `<form class="gate-card setup-grid" data-form="outcome" data-action-id="` + esc(state.planned_action) + `" data-revision="${state.context_rev}" data-day="${state.day}"><p class="eyebrow">Rückblick</p><h2 id="view-title">Wie war es für dich?</h2>
     <p>Beziehe dich nur auf die Möglichkeit, die du gerade ausgewählt hast. Eine erfreuliche Antwort ist nicht vorausgesetzt.</p>
     ` + options("outcome", "Was hat sich für dich gezeigt?", Object.entries(outcomeLabels), "unknown", true)
     + `<p class="form-error" role="alert" hidden></p><button class="button" type="submit">Antwort übernehmen →</button></form>`;
@@ -309,6 +345,20 @@ function renderClosing() {
   return contentCard(node, extra, "Abschluss");
 }
 
+function renderNotDone() {
+  const node = nodeIndex.K20;
+  const extra = `<p class="notice">` + esc(UI_COPY.notDoneNote) + `</p><div class="choices">`
+    + button("not-done-finish", "Für heute abschließen →", "", "button") + `</div>`;
+  return contentCard(node, extra, "Wenn es beim Lesen bleibt");
+}
+
+function renderConcernClosing() {
+  return `<section class="gate-card"><p class="eyebrow">Für heute beendet</p><h2 id="view-title">Du kannst hier anhalten.</h2>
+    <p>Die normale Etappe bleibt für diese Situation pausiert. Du kannst später Informationen oder Hilfeangebote ansehen oder deine Antwort ausdrücklich neu prüfen.</p>
+    <div class="choices">` + button("support-contacts", "Hilfeangebote ansehen") + button("revise-safety", UI_COPY.reviseSafety)
+    + button("home", "Zur Startseite") + button("end", UI_COPY.stop) + `</div></section>`;
+}
+
 function renderConcern() {
   const node = nodeIndex.K24;
   const extra = `<p class="notice">` + esc(UI_COPY.concernNote) + `</p><div class="choices">`
@@ -319,15 +369,49 @@ function renderConcern() {
   return contentCard(node, extra, "Orientierung und Unterstützung");
 }
 
+function normalizeGuidedView() {
+  if (state.safety === "concern") {
+    if (flow.view === "concern-closing") return;
+    if (flow.view !== "concern") flow = moveFlow(flow, Math.min(flow.section, 4), "concern", { pendingPractice: null, selectedPractice: null, safetyOrigin: null });
+    return;
+  }
+  if (flow.view === "practice") {
+    const target = nodeIndex[flow.selectedPractice];
+    if (!target || !canEnter(target, state, "flow", rules)) flow = moveFlow(flow, 4, "choice", { selectedPractice: null, pendingPractice: null });
+  }
+  if (flow.view === "practice-gate") {
+    const target = nodeIndex[flow.pendingPractice];
+    if (!target || routeStatus(target, state, "flow", rules) !== "confirmation") flow = moveFlow(flow, 4, "choice", { pendingPractice: null });
+  }
+  if (flow.view === "prerequisite" && (!flow.pendingPractice || !prerequisiteFor(flow.pendingPractice))) {
+    flow = moveFlow(flow, 4, "choice", { pendingPractice: null });
+  }
+  if (["report", "outcome"].includes(flow.view) && (!state.planned_action || !nodeIndex[state.planned_action])) {
+    flow = moveFlow(flow, 4, "choice", { selectedPractice: null });
+  }
+  if (flow.view === "outcome" && state.action_state === "performed") flow = moveFlow(flow, 5, "reflection");
+  if (["report", "outcome"].includes(flow.view) && state.action_state === "not_done") flow = moveFlow(flow, 5, "not-done");
+  if (flow.view === "reflection" && state.action_state !== "performed") flow = moveFlow(flow, 6, "closing");
+  if (flow.view === "not-done" && state.action_state !== "not_done") flow = moveFlow(flow, 6, "closing");
+}
+
 function renderGuided() {
+  normalizeGuidedView();
   const renderers = {
     "stage-intro": renderStageIntro, context: renderContext, capacity: renderCapacity, safety: renderSafety,
-    scene: renderScene, knowledge: renderKnowledge, choice: renderChoice, prerequisite: renderPrerequisite,
+    scene: renderScene, knowledge: renderKnowledge, "resource-knowledge": renderResourceKnowledge, choice: renderChoice, prerequisite: renderPrerequisite,
     "practice-gate": renderPracticeGate, practice: renderPractice, report: renderReport, outcome: renderOutcome,
-    reflection: renderReflection, closing: renderClosing, concern: renderConcern
+    reflection: renderReflection, closing: renderClosing, "not-done": renderNotDone, concern: renderConcern,
+    "concern-closing": renderConcernClosing, "safety-examples": renderSafetyExamples
   };
   const renderer = renderers[flow.view] ?? renderStageIntro;
   return progress() + backRow() + `<div class="reader-grid"><div>` + renderer() + `</div>` + contextCard() + `</div>`;
+}
+
+function renderResourceKnowledge() {
+  const node = nodeIndex.K21;
+  return contentCard(node, `<div class="choices">` + button("resource-next", "Weiter zur Geschichte →", "", "button")
+    + button("library", "Wenn du noch etwas nachlesen möchtest") + `</div>`, "Bevor die Geschichte beginnt");
 }
 
 function renderLibrary() {
@@ -353,13 +437,13 @@ function renderSupport() {
     : `<p class="notice">Du hast diese Seite freiwillig geöffnet. Dadurch wird keine Sorge-Antwort gesetzt und kein Weg gesperrt.</p>`)
     + `<div class="choices">` + button("support-contacts", "Hilfeangebote ansehen →", "", "button")
     + (isConcern ? button("revise-safety", UI_COPY.reviseSafety) : "")
-    + (view.returnToGuided ? button("return-guided", UI_COPY.returnToStage) : button("home", "Zur Startseite"))
+    + (view.returnToGuided ? button("return-guided", state.goal === "support" ? "Für heute abschließen" : UI_COPY.returnToStage) : button("home", "Zur Startseite"))
     + button("end", UI_COPY.stop) + `</div>`;
   return backRow() + contentCard(node, extra, "Orientierung und Unterstützung");
 }
 
 function renderSafetyRevision() {
-  return backRow() + `<form class="gate-card setup-grid" data-form="revise-safety"><p class="eyebrow">Antwort korrigieren</p>
+  return backRow() + `<form class="gate-card setup-grid" data-form="revise-safety" data-revision="${state.context_rev}" data-day="${state.day}"><p class="eyebrow">Antwort korrigieren</p>
     <h2 id="view-title">Was meintest du?</h2><p>Eine Änderung beginnt die Orientierung für diese Situation neu. Frühere Zustimmungen und geplante Versuche werden nicht übernommen.</p>
     <p>` + esc(UI_COPY.safetyExplanation) + `</p>` + safetyExamples()
     + options("safety", UI_COPY.safetyQuestion, Object.entries(UI_COPY.safetyAnswers), null, true)
@@ -373,7 +457,9 @@ function renderContacts() {
     + (contact.href ? `<a class="button" href="` + esc(contact.href) + `">Anrufen</a>` : "")
     + (contact.url ? `<a class="quiet-button" href="` + esc(contact.url) + `" rel="noopener noreferrer" referrerpolicy="no-referrer">Offizielle Website öffnen</a>` : "")
     + `</div>` + (contact.note ? `<p class="small-note">` + esc(contact.note) + `</p>` : "") + `</article>`).join("") + `</div>
-    <p class="small-note">Die Nummern gelten für Deutschland. Bei unmittelbarer Gefahr zählt schnelle Hilfe vor Ort.</p>`;
+    <p class="small-note">Die Nummern gelten für Deutschland. Bei unmittelbarer Gefahr zählt schnelle Hilfe vor Ort. Außerhalb Deutschlands kannst du örtliche Notruf- und Beratungsangebote nutzen.</p>
+    <div class="choices">` + (view.returnToGuided ? button("return-guided", UI_COPY.returnToStage, "", "button") : button("home", "Zur Startseite"))
+    + button("end", UI_COPY.stop) + `</div>`;
   return backRow() + contentCard(node, contacts, "Hilfe außerhalb dieser Website");
 }
 
@@ -415,6 +501,11 @@ function formError(form, message = UI_COPY.missingAnswer) {
   error.focus?.();
 }
 
+function formIsCurrent(form) {
+  return Number(form.dataset.revision ?? state.context_rev) === state.context_rev
+    && Number(form.dataset.day ?? state.day) === state.day;
+}
+
 function submitContext(form) {
   const values = new FormData(form);
   const next = { goal: values.get("goal"), topic: values.get("topic"), perspective: values.get("perspective") };
@@ -442,16 +533,23 @@ function safetyValue(form) {
 }
 
 function submitSafety(form) {
+  if (!formIsCurrent(form)) return formError(form, "Diese Ansicht gehört zu einem früheren Stand. Bitte beginne für die aktuelle Situation erneut.");
   const value = safetyValue(form);
   if (value === "examples") {
-    safetyExamplesOpen = true;
-    notice = "Die Beispiele sind jetzt aufgeklappt. Deine Antwort bleibt offen.";
-    return render();
+    return guided("safety-examples", 1, true, { safetyOrigin: "safety" });
   }
   try { state = applyEvent(state, { type: "report_safety", value }, data.contract, rules); }
   catch { return formError(form); }
   if (value === "concern") return guided("concern", 1);
-  if (state.goal === "support") return navigate({ name: "support", returnToGuided: true });
+  if (state.goal === "support") {
+    flow = moveFlow(flow, 6, "closing", { stageCompleted: true });
+    return navigate({ name: "support", returnToGuided: true });
+  }
+  if (state.resources === "limited" && !flow.visitedKnowledge.includes(FLOW_PLAN.policy.limited_resources_prelude)) {
+    flow = markKnowledgeVisited(flow, FLOW_PLAN.policy.limited_resources_prelude);
+    knowledgeWasSeen = false;
+    return guided("resource-knowledge", 1);
+  }
   selectPreferredScene();
   guided("scene", 2);
 }
@@ -460,16 +558,23 @@ function selectPreferredScene() {
   selectedScene = preferredSceneId(state);
   const scene = nodeIndex[selectedScene];
   if (!scene) throw new Error("Missing planned scene");
+  sceneWasSeen = (flow.seenSceneIds ?? []).includes(scene.id);
   flow = markSceneSeen(flow, scene.family_id);
+  flow = markSceneIdSeen(flow, scene.id);
+  flow = { ...flow, openedSceneRepeat: sceneWasSeen };
 }
 
 function openPrimaryKnowledge() {
-  const id = primaryKnowledgeId(state);
+  const id = knowledgeCandidates(state).find((candidate) => !flow.visitedKnowledge.includes(candidate)) ?? primaryKnowledgeId(state);
+  selectedKnowledge = id;
+  knowledgeWasSeen = flow.visitedKnowledge.includes(id);
   flow = markKnowledgeVisited(flow, id);
+  flow = { ...flow, openedKnowledgeRepeat: knowledgeWasSeen };
   guided("knowledge", 3);
 }
 
-function selectPractice(id) {
+function selectPractice(id, revision = state.context_rev, day = state.day) {
+  if (Number(revision) !== state.context_rev || Number(day) !== state.day || state.safety === "concern") return guided("concern", Math.min(flow.section, 4));
   const node = nodeIndex[id];
   if (!node || node.kind !== "practice" || !node.topic_ids.includes(state.topic)) return;
   flow = { ...flow, pendingPractice: id };
@@ -478,21 +583,27 @@ function selectPractice(id) {
     flow = markKnowledgeVisited(flow, prerequisite);
     return guided("prerequisite", 4);
   }
-  if (routeStatus(node, state, "flow", rules) === "allowed") {
-    flow = { ...flow, selectedPractice: id, pendingPractice: null };
-    return guided("practice", 4);
+  const status = routeStatus(node, state, "flow", rules);
+  if (status === "allowed") {
+    return guided("practice", 4, true, { selectedPractice: id, pendingPractice: null });
   }
-  guided("practice-gate", 4);
+  if (status === "confirmation") return guided("practice-gate", 4);
+  flow = { ...flow, pendingPractice: null };
+  notice = state.planned_action
+    ? "Du hast bereits eine andere Möglichkeit vorgemerkt. Schließe diesen Durchgang ab oder beginne ausdrücklich mit einer neuen Situation."
+    : UI_COPY.noSuggestion;
+  guided("choice", 4);
 }
 
 function submitPracticeGate(form) {
   const target = nodeIndex[form.dataset.target];
+  if (!formIsCurrent(form) || !target || target.id !== flow.pendingPractice || !["partner", "agreement"].includes(target.gate)) {
+    return formError(form, "Diese Prüfung gehört nicht mehr zur aktuellen Auswahl. Bitte wähle die Möglichkeit neu.");
+  }
   const values = new FormData(form);
   const safety = values.get("safety");
   if (safety === "examples") {
-    safetyExamplesOpen = true;
-    notice = "Die Beispiele sind jetzt aufgeklappt. Deine Antwort bleibt offen.";
-    return render();
+    return guided("safety-examples", 4, true, { safetyOrigin: "practice-gate" });
   }
   const interaction = {
     safety,
@@ -506,13 +617,15 @@ function submitPracticeGate(form) {
   } catch { return formError(form); }
   if (state.safety === "concern") return guided("concern", 4);
   if (canEnter(target, state, "flow", rules)) {
-    flow = { ...flow, selectedPractice: target.id, pendingPractice: null };
-    return guided("practice", 4);
+    return guided("practice", 4, true, { selectedPractice: target.id, pendingPractice: null });
   }
   formError(form, "Für diesen gemeinsamen Schritt fehlt gerade eine Voraussetzung. Du kannst etwas für dich allein wählen.");
 }
 
 function submitOutcome(form) {
+  if (!formIsCurrent(form) || form.dataset.actionId !== state.planned_action || state.action_state !== "planned") {
+    return formError(form, "Diese Rückmeldung gehört nicht mehr zur aktuell vorgemerkten Möglichkeit.");
+  }
   const value = new FormData(form).get("outcome");
   try {
     state = applyEvent(state, { type: "report_action", action_id: state.planned_action, status: "performed", outcome: value }, data.contract, rules);
@@ -521,11 +634,11 @@ function submitOutcome(form) {
 }
 
 function submitSafetyRevision(form) {
+  if (!formIsCurrent(form)) return formError(form, "Diese Ansicht gehört zu einem früheren Stand. Öffne die Korrektur bitte erneut.");
   const value = safetyValue(form);
   if (value === "examples") {
-    safetyExamplesOpen = true;
-    notice = "Die Beispiele sind jetzt aufgeklappt. Deine Antwort bleibt offen.";
-    return render();
+    notice = "Die Beispiele sind auf der Unterstützungsseite erklärt. Deine bisherige Antwort bleibt bestehen, bis du eine neue Antwort bestätigst.";
+    return navigate({ name: "support", returnToGuided: true });
   }
   try { state = applyEvent(state, { type: "revise_safety_answer", value }, data.contract, rules); }
   catch { return formError(form); }
@@ -557,25 +670,48 @@ function toggleStorage() {
   render();
 }
 
-function handle(action, value) {
+function handle(action, value, meta = {}) {
   if (action === "back") return goBack();
   if (action === "home") { historyStack = []; view = { name: "start" }; return render(); }
-  if (action === "start-stage") { historyStack = []; flow = resetFlowForNextStage(flow); view = { name: "guided" }; return render(); }
+  if (action === "start-stage") {
+    historyStack = [];
+    if (!flow.stageStarted) flow = resetFlowForNextStage(flow);
+    view = { name: "guided" };
+    return render();
+  }
   if (action === "topic-start" && topicIndex[value]) {
     state = applyEvent(state, { type: "change_context", values: { topic: value } }, data.contract, rules);
-    selectedScene = null; flow = resetFlowForContext(flow); historyStack = []; syncStorage();
+    selectedScene = null; selectedKnowledge = null; flow = moveFlow(resetFlowForContext(flow), 1, "context"); historyStack = []; syncStorage();
     view = { name: "guided" }; return render();
   }
   if (action === "change-context") return guided("context", 1);
   if (action === "same-context") return guided("capacity", 1);
   if (action === "scene-pick" && nodeIndex[value]?.kind === "scene") {
-    selectedScene = value; flow = markSceneSeen(flow, nodeIndex[value].family_id); return render();
+    selectedScene = value;
+    sceneWasSeen = (flow.seenSceneIds ?? []).includes(value);
+    flow = markSceneSeen(flow, nodeIndex[value].family_id);
+    flow = markSceneIdSeen(flow, value);
+    flow = { ...flow, openedSceneRepeat: sceneWasSeen };
+    return render();
   }
+  if (action === "resource-next") { selectPreferredScene(); return guided("scene", 2); }
   if (action === "scene-next") return openPrimaryKnowledge();
   if (action === "knowledge-next" || action === "choice") return guided("choice", 4);
-  if (action === "practice-select") return selectPractice(value);
-  if (action === "prerequisite-next") return selectPractice(value);
+  if (action === "practice-select") return selectPractice(value, meta.revision, meta.day);
+  if (action === "prerequisite-next") return selectPractice(value, state.context_rev, state.day);
+  if (action === "safety-answer") return guided(value === "practice-gate" ? "practice-gate" : "safety", flow.section, true, { safetyOrigin: null });
+  if (action === "safety-private") {
+    try { state = applyEvent(state, { type: "report_safety", value: "unknown" }, data.contract, rules); }
+    catch { return guided("concern", Math.min(flow.section, 4)); }
+    if (flow.safetyOrigin === "practice-gate") return guided("choice", 4, true, { pendingPractice: null, safetyOrigin: null });
+    selectPreferredScene();
+    return guided("scene", 2, true, { safetyOrigin: null });
+  }
   if (action === "plan-practice" && value === flow.selectedPractice) {
+    if (Number(meta.revision ?? state.context_rev) !== state.context_rev || Number(meta.day ?? state.day) !== state.day) {
+      notice = "Diese Möglichkeit gehört zu einem früheren Stand. Bitte wähle für die aktuelle Situation neu.";
+      return guided("choice", 4);
+    }
     try { state = applyEvent(state, { type: "plan_action", action_id: value }, data.contract, rules); }
     catch { notice = UI_COPY.noSuggestion; return guided("choice", 4); }
     return guided("report", 4);
@@ -586,20 +722,22 @@ function handle(action, value) {
     try { state = applyEvent(state, { type: "report_action", action_id: state.planned_action, status: "not_done", outcome: "unknown" }, data.contract, rules); }
     catch { notice = UI_COPY.noSuggestion; }
     notice = UI_COPY.notDoneNote;
-    return guided("closing", 6);
+    return guided("not-done", 5);
   }
-  if (action === "reflection-next" || action === "reading-finish" || action === "finish-early") return guided("closing", 6);
+  if (action === "show-reflection") return guided("reflection", 5);
+  if (action === "not-done-finish" || action === "reflection-next" || action === "reading-finish") return guided("closing", 6);
+  if (action === "finish-early") return guided(state.safety === "concern" ? "concern-closing" : "closing", 6);
   if (action === "next-stage") {
     try { state = applyEvent(state, { type: "next_day" }, data.contract, rules); }
     catch { return; }
-    flow = resetFlowForNextStage(flow); selectedScene = null; historyStack = []; syncStorage();
+    flow = resetFlowForNextStage(flow); selectedScene = null; selectedKnowledge = null; historyStack = []; syncStorage();
     view = { name: "guided" }; return render();
   }
   if (action === "library") return navigate({ name: "library", returnToGuided: view.name === "guided" || view.returnToGuided });
   if (action === "wiki" && nodeIndex[value]?.kind === "knowledge") return navigate({ name: "wiki", id: value, returnToGuided: view.returnToGuided });
   if (action === "return-guided") { view = { name: "guided" }; return render(); }
   if (action === "support") return navigate({ name: "support", returnToGuided: view.name === "guided" || view.returnToGuided });
-  if (action === "support-contacts") return navigate({ name: "contacts", returnToGuided: view.returnToGuided });
+  if (action === "support-contacts") return navigate({ name: "contacts", returnToGuided: view.name === "guided" || view.returnToGuided });
   if (action === "revise-safety") return navigate({ name: "revise-safety" });
   if (action === "storage") return navigate({ name: "storage" });
   if (action === "toggle-storage") return toggleStorage();
@@ -620,7 +758,7 @@ main.addEventListener("submit", (event) => {
 
 main.addEventListener("click", (event) => {
   const target = event.target.closest("[data-action]");
-  if (target && !target.disabled) handle(target.dataset.action, target.dataset.value);
+  if (target && !target.disabled) handle(target.dataset.action, target.dataset.value, target.dataset);
 });
 
 document.querySelector(".brand").addEventListener("click", (event) => { event.preventDefault(); handle("home"); });
@@ -631,4 +769,3 @@ saveButton.addEventListener("click", toggleStorage);
 
 syncStorage(false);
 render();
-

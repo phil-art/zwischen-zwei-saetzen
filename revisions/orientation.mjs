@@ -1,0 +1,312 @@
+// Explicit W9 revision data. Each entry is reviewed and versioned by stable node ID.
+export const REVISIONS = Object.freeze({
+  "O01": {
+    "title": "Was wäre dir heute hilfreich?",
+    "body": "Vielleicht möchtest du etwas besser verstehen. Vielleicht brauchst du eher Ruhe oder möchtest eine Grenze für dich klären.\n\nWähle, was heute am ehesten passt. Du legst dich damit nicht für die nächsten Etappen fest.\n\nWenn du noch kein Ziel hast, kannst du das ebenfalls offenlassen.",
+    "choice_labels": {
+      "E0085": "Zur Situationsauswahl"
+    },
+    "diagram": null
+  },
+  "O02": {
+    "title": "Worum soll es heute gehen?",
+    "body": "Wähle ein Thema, das deiner Situation nahe genug kommt. Du brauchst weder Namen noch eine Vorgeschichte einzugeben.\n\nDer bisherige Vorschlag darf stehenbleiben, wenn du nichts ändern möchtest. Eine neue Auswahl beginnt einen neuen Zusammenhang; frühere Angaben zu einen gemeinsamen Schritt oder Handlungen werden dafür nicht übernommen.\n\nKeine Kategorie erklärt deine Beziehung.",
+    "choice_labels": {
+      "E0086": "Wie viel Raum gerade da ist ansehen"
+    },
+    "diagram": null
+  },
+  "O03": {
+    "title": "Wie viel Raum ist gerade da?",
+    "body": "Wie viel Aufmerksamkeit möchtest du diesem Einstieg gerade geben? „Nur kurz“, „Etwas mehr“ und „Noch offen“ sind gleichwertige Angaben.\n\nSie beschreiben keine Eigenschaft deiner Person. Der Klickpfad kürzt dadurch keine Geschichte automatisch; du kannst jederzeit abschließen oder einen anderen Weg wählen.\n\nEine bestimmte Lesedauer wird hier nicht verlangt.",
+    "choice_labels": {
+      "E0087": "Situation vor einem Gespräch ansehen"
+    },
+    "diagram": null
+  },
+  "O04": {
+    "title": "Bevor es weitergeht",
+    "body": "Manche Sorgen gehören zu einem schwierigen Gespräch. Andere betreffen Drohungen, Einschüchterung oder Kontrolle.\n\nDamit die nächsten Vorschläge zu deiner Situation passen, kommt hier eine kurze Frage dazu. Du brauchst keine Einzelheiten zu erzählen.\n\nWenn du nicht sicher bist, was gemeint ist, kannst du zuerst Beispiele lesen.",
+    "choice_labels": {
+      "E0088": "Ressourcen ansehen"
+    },
+    "diagram": null
+  },
+  "O05": {
+    "title": "Was ist gerade vorhanden?",
+    "body": "Zeit, Energie, Geld, Betreuung oder Wege können eine Situation begrenzen. Du kannst angeben, ob die nötigen Mittel gerade eher ausreichen, knapp oder unklar sind.\n\nUnklar bleibt eine gültige Antwort. Bei Knappheit wird zuerst die tatsächliche Belastung betrachtet; von dort erreichst du die Szenenauswahl.\n\nDie Angabe verteilt keine Aufgaben neu.",
+    "choice_labels": {
+      "E0089": "Zur Szenenauswahl",
+      "E0090": "Sachbelastung zuerst ansehen"
+    },
+    "diagram": null
+  },
+  "O06": {
+    "title": "Wähle eine Geschichte",
+    "body": "Wähle eine Szene und einen Blickwinkel zum aktuellen Thema. Die Figuren sind erfunden; ihre Erlebnisse werden nicht als Angaben über dich behandelt.\n\nDie Varianten zeigen denselben Anlass aus unterschiedlichen Perspektiven und setzen einander nicht fort. Du kannst einen Text lesen, eine andere Auswahl treffen oder ohne Wiedererkennen weitergehen.",
+    "choice_labels": {
+      "E0123": "Ein Wort als Antwort — empfangende Perspektive",
+      "E0127": "Ein Wort als Antwort — auslösende Perspektive",
+      "E0131": "Ein Wort als Antwort — noch unklare Einordnung",
+      "E0135": "Eine Nachricht bleibt offen — empfangende Perspektive",
+      "E0139": "Eine Nachricht bleibt offen — auslösende Perspektive",
+      "E0143": "Eine Nachricht bleibt offen — noch unklare Einordnung",
+      "E0147": "Sprachnachricht statt Text — empfangende Perspektive",
+      "E0151": "Sprachnachricht statt Text — auslösende Perspektive",
+      "E0155": "Sprachnachricht statt Text — noch unklare Einordnung",
+      "E0159": "Das Telefon bleibt am Tisch — empfangende Perspektive",
+      "E0163": "Das Telefon bleibt am Tisch — auslösende Perspektive",
+      "E0167": "Das Telefon bleibt am Tisch — noch unklare Einordnung",
+      "E0171": "Der missglückte Scherz — empfangende Perspektive",
+      "E0175": "Der missglückte Scherz — auslösende Perspektive",
+      "E0179": "Der missglückte Scherz — noch unklare Einordnung",
+      "E0183": "Eine knappe Korrektur — empfangende Perspektive",
+      "E0187": "Eine knappe Korrektur — auslösende Perspektive",
+      "E0191": "Eine knappe Korrektur — noch unklare Einordnung",
+      "E0195": "Direkt klingt anders — empfangende Perspektive",
+      "E0199": "Direkt klingt anders — auslösende Perspektive",
+      "E0203": "Direkt klingt anders — noch unklare Einordnung",
+      "E0207": "Eine Bemerkung vor Freunden — empfangende Perspektive",
+      "E0211": "Eine Bemerkung vor Freunden — auslösende Perspektive",
+      "E0215": "Eine Bemerkung vor Freunden — noch unklare Einordnung",
+      "E0219": "Die volle Spüle — empfangende Perspektive",
+      "E0223": "Die volle Spüle — auslösende Perspektive",
+      "E0227": "Die volle Spüle — noch unklare Einordnung",
+      "E0231": "Wer an den Termin denkt — empfangende Perspektive",
+      "E0235": "Wer an den Termin denkt — auslösende Perspektive",
+      "E0239": "Wer an den Termin denkt — noch unklare Einordnung",
+      "E0243": "Zwei verschiedene Listen — empfangende Perspektive",
+      "E0247": "Zwei verschiedene Listen — auslösende Perspektive",
+      "E0251": "Zwei verschiedene Listen — noch unklare Einordnung",
+      "E0255": "Die Woche ohne Reserven — empfangende Perspektive",
+      "E0259": "Die Woche ohne Reserven — auslösende Perspektive",
+      "E0263": "Die Woche ohne Reserven — noch unklare Einordnung",
+      "E0267": "Zwanzig Minuten später — empfangende Perspektive",
+      "E0271": "Zwanzig Minuten später — auslösende Perspektive",
+      "E0275": "Zwanzig Minuten später — noch unklare Einordnung",
+      "E0279": "Zwei Kalender — empfangende Perspektive",
+      "E0283": "Zwei Kalender — auslösende Perspektive",
+      "E0287": "Zwei Kalender — noch unklare Einordnung",
+      "E0291": "Ein abgesagter Abend — empfangende Perspektive",
+      "E0295": "Ein abgesagter Abend — auslösende Perspektive",
+      "E0299": "Ein abgesagter Abend — noch unklare Einordnung",
+      "E0303": "Was zugesagt war — empfangende Perspektive",
+      "E0307": "Was zugesagt war — auslösende Perspektive",
+      "E0311": "Was zugesagt war — noch unklare Einordnung",
+      "E0315": "Nach Hause kommen — empfangende Perspektive",
+      "E0319": "Nach Hause kommen — auslösende Perspektive",
+      "E0323": "Nach Hause kommen — noch unklare Einordnung",
+      "E0327": "Ein freier Sonntag — empfangende Perspektive",
+      "E0331": "Ein freier Sonntag — auslösende Perspektive",
+      "E0335": "Ein freier Sonntag — noch unklare Einordnung",
+      "E0339": "Tür zu und Gedanken offen — empfangende Perspektive",
+      "E0343": "Tür zu und Gedanken offen — auslösende Perspektive",
+      "E0347": "Tür zu und Gedanken offen — noch unklare Einordnung",
+      "E0351": "Zusammen im selben Raum — empfangende Perspektive",
+      "E0355": "Zusammen im selben Raum — auslösende Perspektive",
+      "E0359": "Zusammen im selben Raum — noch unklare Einordnung",
+      "E0363": "Der dritte Anlauf — empfangende Perspektive",
+      "E0367": "Der dritte Anlauf — auslösende Perspektive",
+      "E0371": "Der dritte Anlauf — noch unklare Einordnung",
+      "E0375": "Worte werden schneller — empfangende Perspektive",
+      "E0379": "Worte werden schneller — auslösende Perspektive",
+      "E0383": "Worte werden schneller — noch unklare Einordnung",
+      "E0387": "Erst morgen reden — empfangende Perspektive",
+      "E0391": "Erst morgen reden — auslösende Perspektive",
+      "E0395": "Erst morgen reden — noch unklare Einordnung",
+      "E0399": "Ein Thema wird zu fünf — empfangende Perspektive",
+      "E0403": "Ein Thema wird zu fünf — auslösende Perspektive",
+      "E0407": "Ein Thema wird zu fünf — noch unklare Einordnung",
+      "E0411": "Ein Nein am Abend — empfangende Perspektive",
+      "E0415": "Ein Nein am Abend — auslösende Perspektive",
+      "E0419": "Ein Nein am Abend — noch unklare Einordnung",
+      "E0423": "Andere Zeichen von Nähe — empfangende Perspektive",
+      "E0427": "Andere Zeichen von Nähe — auslösende Perspektive",
+      "E0431": "Andere Zeichen von Nähe — noch unklare Einordnung",
+      "E0435": "Ein Wunsch bleibt offen — empfangende Perspektive",
+      "E0439": "Ein Wunsch bleibt offen — auslösende Perspektive",
+      "E0443": "Ein Wunsch bleibt offen — noch unklare Einordnung",
+      "E0447": "Zärtlichkeit ohne Erwartung — empfangende Perspektive",
+      "E0451": "Zärtlichkeit ohne Erwartung — auslösende Perspektive",
+      "E0455": "Zärtlichkeit ohne Erwartung — noch unklare Einordnung",
+      "E0459": "Die gemeinsame Ausgabe — empfangende Perspektive",
+      "E0463": "Die gemeinsame Ausgabe — auslösende Perspektive",
+      "E0467": "Die gemeinsame Ausgabe — noch unklare Einordnung",
+      "E0471": "Eine berufliche Veränderung — empfangende Perspektive",
+      "E0475": "Eine berufliche Veränderung — auslösende Perspektive",
+      "E0479": "Eine berufliche Veränderung — noch unklare Einordnung",
+      "E0483": "Unterschiedliche Sparziele — empfangende Perspektive",
+      "E0487": "Unterschiedliche Sparziele — auslösende Perspektive",
+      "E0491": "Unterschiedliche Sparziele — noch unklare Einordnung",
+      "E0495": "Ein Plan mit fehlender Zeit — empfangende Perspektive",
+      "E0499": "Ein Plan mit fehlender Zeit — auslösende Perspektive",
+      "E0503": "Ein Plan mit fehlender Zeit — noch unklare Einordnung",
+      "E0507": "Wer heute abholt — empfangende Perspektive",
+      "E0511": "Wer heute abholt — auslösende Perspektive",
+      "E0515": "Wer heute abholt — noch unklare Einordnung",
+      "E0519": "Ein Anruf aus der Pflege — empfangende Perspektive",
+      "E0523": "Ein Anruf aus der Pflege — auslösende Perspektive",
+      "E0527": "Ein Anruf aus der Pflege — noch unklare Einordnung",
+      "E0531": "Besuch am Wochenende — empfangende Perspektive",
+      "E0535": "Besuch am Wochenende — auslösende Perspektive",
+      "E0539": "Besuch am Wochenende — noch unklare Einordnung",
+      "E0543": "Die Verantwortung zwischen Terminen — empfangende Perspektive",
+      "E0547": "Die Verantwortung zwischen Terminen — auslösende Perspektive",
+      "E0551": "Die Verantwortung zwischen Terminen — noch unklare Einordnung",
+      "E0555": "Der eigene Abend — empfangende Perspektive",
+      "E0559": "Der eigene Abend — auslösende Perspektive",
+      "E0563": "Der eigene Abend — noch unklare Einordnung",
+      "E0567": "Ein Blick auf das Display — empfangende Perspektive",
+      "E0571": "Ein Blick auf das Display — auslösende Perspektive",
+      "E0575": "Ein Blick auf das Display — noch unklare Einordnung",
+      "E0579": "Verschiedene Freundeskreise — empfangende Perspektive",
+      "E0583": "Verschiedene Freundeskreise — auslösende Perspektive",
+      "E0587": "Verschiedene Freundeskreise — noch unklare Einordnung",
+      "E0591": "Die unbeantwortete Nachfrage — empfangende Perspektive",
+      "E0595": "Die unbeantwortete Nachfrage — auslösende Perspektive",
+      "E0599": "Die unbeantwortete Nachfrage — noch unklare Einordnung",
+      "E0603": "Ein Anruf über Distanz — empfangende Perspektive",
+      "E0607": "Ein Anruf über Distanz — auslösende Perspektive",
+      "E0611": "Ein Anruf über Distanz — noch unklare Einordnung",
+      "E0615": "Schriftlich ist es leichter — empfangende Perspektive",
+      "E0619": "Schriftlich ist es leichter — auslösende Perspektive",
+      "E0623": "Schriftlich ist es leichter — noch unklare Einordnung",
+      "E0627": "Andere Tagesrhythmen — empfangende Perspektive",
+      "E0631": "Andere Tagesrhythmen — auslösende Perspektive",
+      "E0635": "Andere Tagesrhythmen — noch unklare Einordnung",
+      "E0639": "Pläne mit begrenzter Energie — empfangende Perspektive",
+      "E0643": "Pläne mit begrenzter Energie — auslösende Perspektive",
+      "E0647": "Pläne mit begrenzter Energie — noch unklare Einordnung",
+      "E0651": "Schon wieder derselbe Punkt — empfangende Perspektive",
+      "E0655": "Schon wieder derselbe Punkt — auslösende Perspektive",
+      "E0659": "Schon wieder derselbe Punkt — noch unklare Einordnung",
+      "E0663": "Eine Entschuldigung ohne Ende — empfangende Perspektive",
+      "E0667": "Eine Entschuldigung ohne Ende — auslösende Perspektive",
+      "E0671": "Eine Entschuldigung ohne Ende — noch unklare Einordnung",
+      "E0675": "Ein Wunsch passt nicht mehr — empfangende Perspektive",
+      "E0679": "Ein Wunsch passt nicht mehr — auslösende Perspektive",
+      "E0683": "Ein Wunsch passt nicht mehr — noch unklare Einordnung",
+      "E0687": "Heute keine Entscheidung — empfangende Perspektive",
+      "E0691": "Heute keine Entscheidung — auslösende Perspektive",
+      "E0695": "Heute keine Entscheidung — noch unklare Einordnung"
+    },
+    "diagram": null
+  },
+  "O07": {
+    "title": "Wie möchtest du weitergehen?",
+    "body": "Du hast eine Möglichkeit ausgewählt. Vielleicht möchtest du sie später ausprobieren, vielleicht hast du es schon getan.\n\nBeides ist ein eigener Schritt. Falls du etwas berichten möchtest, kannst du unten auswählen, ob du genau diesen Versuch durchgeführt hast.\n\nDu kannst die Etappe auch ohne diese Angabe beenden.",
+    "choice_labels": {
+      "E0003": "Wie war es für mich?",
+      "E0009": "Wie war es für mich?",
+      "E0015": "Wie war es für mich?",
+      "E0021": "Wie war es für mich?",
+      "E0027": "Wie war es für mich?",
+      "E0033": "Wie war es für mich?",
+      "E0039": "Wie war es für mich?",
+      "E0045": "Wie war es für mich?",
+      "E0051": "Wie war es für mich?",
+      "E0057": "Wie war es für mich?",
+      "E0063": "Wie war es für mich?",
+      "E0069": "Wie war es für mich?",
+      "E0075": "Wie war es für mich?",
+      "E0081": "Wie war es für mich?",
+      "E0091": "Nicht ausprobiert: Passung ansehen",
+      "E0092": "Später entscheiden"
+    },
+    "diagram": null
+  },
+  "O08": {
+    "title": "Für heute darf es reichen",
+    "body": "Du kannst die aktuelle Etappe ohne Erfolgswertung beenden. Es wird dabei weder eine tägliche Serie gezählt noch angenommen, dass du etwas ausgeführt hast.\n\nDer angezeigte Abschluss gehört zu deiner aktuellen Etappe. Später kannst du weitergehen.\n\nFür eine Pause braucht es hier weder eine Begründung noch ein besonders ordentliches Ergebnis.",
+    "choice_labels": {
+      "E0002": "Etappe 1 abschließen",
+      "E0008": "Etappe 2 abschließen",
+      "E0014": "Etappe 3 abschließen",
+      "E0020": "Etappe 4 abschließen",
+      "E0026": "Etappe 5 abschließen",
+      "E0032": "Etappe 6 abschließen",
+      "E0038": "Etappe 7 abschließen",
+      "E0044": "Etappe 8 abschließen",
+      "E0050": "Etappe 9 abschließen",
+      "E0056": "Etappe 10 abschließen",
+      "E0062": "Etappe 11 abschließen",
+      "E0068": "Etappe 12 abschließen",
+      "E0074": "Etappe 13 abschließen",
+      "E0080": "Etappe 14 abschließen"
+    },
+    "diagram": null
+  },
+  "O09": {
+    "title": "Wenn dieser Weg nicht passt",
+    "body": "Wenn eine Szene oder Möglichkeit nicht passt, musst du sie nicht passend machen. Du kannst eine andere Situation wählen oder abschließen.\n\nDie neue Auswahl verwirft frühere Angaben zu einen gemeinsamen Schritt und Handlungen, damit sie nicht versehentlich weitergelten. Aus dem Nichtpassen folgt keine Erklärung über dich oder deine Beziehung.",
+    "choice_labels": {
+      "E0093": "Andere Situation wählen"
+    },
+    "diagram": null
+  },
+  "O10": {
+    "title": "Wieder einsteigen",
+    "body": "Du kannst mit der aktuellen Fassung neu einsteigen. Beim Neustart beginnt der Klickpfad bei Etappe eins; frühere Angaben zu Sorge, einen gemeinsamen Schritt oder Handlungen werden nicht übernommen.\n\nDas ist keine Bewertung deines bisherigen Weges. Wenn du gerade nicht neu anfangen möchtest, kannst du die Seite auch einfach verlassen.",
+    "choice_labels": {
+      "E0094": "Neu einsteigen"
+    },
+    "diagram": null
+  },
+  "O11": {
+    "title": "In Ruhe stöbern",
+    "body": "Hier kannst du einen Wissensbaustein direkt nach seinem Titel öffnen. Die Texte bieten Begriffe und Unterscheidungen zur Orientierung.\n\nIm Wissensregal bleibst du im privaten Lesemodus; ein Text öffnet dort keine Übung und verändert keine Handlungsangabe. Für Praxisoptionen kannst du ausdrücklich in den persönlichen Pfad wechseln.\n\nAuch reines Lesen bleibt möglich.",
+    "choice_labels": {
+      "E0099": "Was passiert ist – und was ich vermute",
+      "E0100": "Offene Hypothesen",
+      "E0101": "Wie viel Raum habe ich gerade?",
+      "E0102": "Eine Pause für mich",
+      "E0103": "Wenn es sich wiederholt",
+      "E0104": "Was rundherum mitwirkt",
+      "E0105": "Eigene Gefühle privat benennen",
+      "E0106": "Für mich klären, was mir wichtig ist",
+      "E0107": "Was wäre heute hilfreich?",
+      "E0108": "Was liegt bei mir – und was nicht?",
+      "E0109": "Konkrete Bitte",
+      "E0110": "Prüfen, was angekommen ist",
+      "E0111": "Wie und wann ihr sprecht",
+      "E0112": "Mein Plan oder unsere Vereinbarung?",
+      "E0113": "Eine Grenze für mich",
+      "E0114": "Bei dem bleiben, was wirklich schwierig ist",
+      "E0115": "Eigener Anteil",
+      "E0116": "Kleiner eigener Versuch",
+      "E0117": "Offen ansehen, was sich gezeigt hat",
+      "E0118": "Wenn es beim Lesen blieb",
+      "E0119": "Was im Alltag wirklich schwer ist",
+      "E0120": "Unterschiede stehenlassen",
+      "E0121": "Es noch offenlassen",
+      "E0122": "Unterstützung und Grenzen dieses Angebots"
+    },
+    "diagram": null
+  },
+  "O12": {
+    "title": "Beim nächsten Mal leichter einsteigen",
+    "body": "Wenn du möchtest, merkt sich dieser Browser deine Etappe, dein Thema, die Perspektive und dein Ziel. Deine Antworten zu Sorge, gemeinsamen Schritten und eigenen Versuchen werden dabei nicht gespeichert.\n\nInnerhalb einer Etappe beginnt die Orientierung beim nächsten Öffnen neu. Am Seitenende kannst du die Speicherung einschalten oder die gespeicherte Auswahl wieder löschen.",
+    "choice_labels": {
+      "E0095": "Zum Etappenabschluss"
+    },
+    "diagram": null
+  },
+  "O13": {
+    "title": "Erst einmal für dich bleiben",
+    "body": "Du musst hier nichts über deine Beziehung offenlegen. Du kannst eine Wissenskarte lesen, nach einer Beratungsstelle schauen oder einfach Schluss machen.\n\nWenn du dich bedroht oder kontrolliert fühlst, bleibt dieser Weg bei Orientierung und Unterstützung. Du brauchst dafür weder etwas aufzuschreiben noch eine schwierige Aussprache vorzubereiten.",
+    "choice_labels": {
+      "E0096": "Information zu externer Unterstützung"
+    },
+    "diagram": null
+  },
+  "O14": {
+    "title": "Mit jemandem sprechen können",
+    "body": "Manchmal hilft es, die eigene Situation mit einer Person außerhalb der Beziehung zu besprechen. Du musst dafür noch nicht genau wissen, wie du sie nennen sollst.\n\nDie folgenden Stellen bieten Informationen und Beratung an. Bei unmittelbarer Gefahr ist dagegen schnelle Hilfe vor Ort wichtig.\n\nWelche Anlaufstelle passt, hängt auch davon ab, in welchem Land du bist.",
+    "choice_labels": {
+      "E0097": "Bei privater Orientierung bleiben",
+      "E0098": "Beenden"
+    },
+    "diagram": null
+  }
+});
+

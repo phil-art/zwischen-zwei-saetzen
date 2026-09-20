@@ -1,5 +1,84 @@
 // W9 public editorial layer. Static, deterministic, and browser-only.
-export const W9_VERSION = "0.5.0-w9-candidate";
+import { REVISIONS as DAY_INTRO_REVISIONS } from "./revisions/day_intro.mjs";
+import { REVISIONS as KNOWLEDGE_REVISIONS } from "./revisions/knowledge.mjs";
+import { REVISIONS as ORIENTATION_REVISIONS } from "./revisions/orientation.mjs";
+import { REVISIONS as PRACTICE_REVISIONS } from "./revisions/practice.mjs";
+import { REVISIONS as CLOSING_REVISIONS } from "./revisions/closing.mjs";
+import { REVISIONS as REFLECTION_REVISIONS } from "./revisions/reflection.mjs";
+import { REVISIONS as T01_REVISIONS } from "./revisions/t01.mjs";
+import { REVISIONS as T02_REVISIONS } from "./revisions/t02.mjs";
+import { REVISIONS as T03_REVISIONS } from "./revisions/t03.mjs";
+import { REVISIONS as T04_REVISIONS } from "./revisions/t04.mjs";
+import { REVISIONS as T05_REVISIONS } from "./revisions/t05.mjs";
+import { REVISIONS as T06_REVISIONS } from "./revisions/t06.mjs";
+import { REVISIONS as T07_REVISIONS } from "./revisions/t07.mjs";
+import { REVISIONS as T08_REVISIONS } from "./revisions/t08.mjs";
+import { REVISIONS as T09_REVISIONS } from "./revisions/t09.mjs";
+import { REVISIONS as T10_REVISIONS } from "./revisions/t10.mjs";
+import { REVISIONS as T11_REVISIONS } from "./revisions/t11.mjs";
+import { REVISIONS as T12_REVISIONS } from "./revisions/t12.mjs";
+import { EDITORIAL_SHORT } from "./revisions/editorial-short.mjs";
+import { EDITORIAL_KNOWLEDGE } from "./revisions/editorial-knowledge.mjs";
+import { EDITORIAL_PRACTICE } from "./revisions/editorial-practice.mjs";
+import { EDITORIAL_T01 } from "./revisions/editorial-t01.mjs";
+import { EDITORIAL_T02 } from "./revisions/editorial-t02.mjs";
+import { EDITORIAL_T03 } from "./revisions/editorial-t03.mjs";
+import { EDITORIAL_T04 } from "./revisions/editorial-t04.mjs";
+import { EDITORIAL_T05 } from "./revisions/editorial-t05.mjs";
+import { EDITORIAL_T06 } from "./revisions/editorial-t06.mjs";
+import { EDITORIAL_T07 } from "./revisions/editorial-t07.mjs";
+import { EDITORIAL_T08 } from "./revisions/editorial-t08.mjs";
+import { EDITORIAL_T09 } from "./revisions/editorial-t09.mjs";
+import { EDITORIAL_T10 } from "./revisions/editorial-t10.mjs";
+import { EDITORIAL_T11 } from "./revisions/editorial-t11.mjs";
+import { EDITORIAL_T12 } from "./revisions/editorial-t12.mjs";
+
+export const W9_VERSION = "0.6.0-w9-candidate";
+
+const W9_REVISIONS = Object.freeze(Object.assign({}, DAY_INTRO_REVISIONS, KNOWLEDGE_REVISIONS,
+  ORIENTATION_REVISIONS, PRACTICE_REVISIONS, CLOSING_REVISIONS, REFLECTION_REVISIONS,
+  T01_REVISIONS, T02_REVISIONS, T03_REVISIONS, T04_REVISIONS, T05_REVISIONS, T06_REVISIONS,
+  T07_REVISIONS, T08_REVISIONS, T09_REVISIONS, T10_REVISIONS, T11_REVISIONS, T12_REVISIONS));
+
+const EDITORIAL_OVERRIDES = Object.freeze(Object.assign({}, EDITORIAL_SHORT, EDITORIAL_KNOWLEDGE,
+  EDITORIAL_PRACTICE, EDITORIAL_T01, EDITORIAL_T02, EDITORIAL_T03, EDITORIAL_T04,
+  EDITORIAL_T05, EDITORIAL_T06, EDITORIAL_T07, EDITORIAL_T08, EDITORIAL_T09,
+  EDITORIAL_T10, EDITORIAL_T11, EDITORIAL_T12));
+
+// Individually reviewed additions for entries whose concise draft fell below its editorial span.
+const EDITORIAL_EXTENSIONS = Object.freeze({
+  P22: "Du darfst dabei auch notieren, welche Zahl sich für dich noch tragbar anfühlt.",
+  P30: "Du entscheidest selbst, welche Form heute genug Abstand und zugleich Klarheit bietet.",
+  P33: "Auch seltene, aber verlässliche Zeiten können näher wirken als häufige vage Versprechen.",
+  P34: "Vielleicht ist das passendste Ziel heute einfach, freundlicher mit der eigenen Unsicherheit umzugehen.",
+  "S-T01-F04-A": "Vielleicht braucht dieser unscheinbare Moment auch gar keine größere Bedeutung als heute.",
+  "S-T02-F01-B": "Für beide darf erst später sichtbar werden, was an diesem Satz wirklich nachklingt.",
+  "S-T02-F02-A": "Eine Rückfrage könnte mehr Nähe schaffen als jede noch so schlüssige eigene Erklärung.",
+  "S-T02-F02-B": "Jorun darf den Ton neu betrachten, ohne die eigene Absicht deshalb zu verleugnen.",
+  "S-T02-F02-C": "Der Moment kann klein bleiben oder wichtig werden; beides ist noch möglich.",
+  "S-T02-F03-A": "Mireva darf sich Zeit lassen, bevor sie entscheidet, wie viel Gewicht das hat.",
+  "S-T02-F03-B": "Jorun kann später nachfragen, ohne schon zu wissen, welche Antwort kommen wird.",
+  "S-T02-F03-C": "Vielleicht war es Flüchtigkeit; vielleicht braucht es Aufmerksamkeit. Noch ist beides denkbar.",
+  "S-T02-F04-B": "Ein verantwortlicher nächster Satz darf kurz sein und trotzdem den öffentlichen Rahmen anerkennen.",
+  "S-T02-F04-C": "Auch vor anderen darf eine Irritation erst einmal ohne abschließendes Urteil stehenbleiben.",
+  "S-T03-F01-C": "Bevor jemand nachgibt, darf sichtbar werden, was jede Person an diesem Abend trägt.",
+  "S-T03-F02-B": "Eine konkrete Bitte wäre leichter zu beantworten als die Hoffnung, verstanden zu werden.",
+  "S-T03-F02-C": "Manchmal liegt die Entlastung zuerst darin, die unsichtbaren Schritte gemeinsam zu benennen.",
+  "S-T03-F03-A": "Quirin darf seine Kraft ebenso ehrlich ansehen wie die Dringlichkeit der Aufgabe.",
+  "S-T03-F03-B": "Liviane muss eine offene Aufgabe nicht automatisch zu ihrer eigenen machen.",
+  "S-T03-F03-C": "Ein realistischer Plan beginnt dort, wo auch begrenzte Kraft mitgerechnet wird.",
+  "S-T03-F04-B": "Ihre eigene Zeit darf dabei ebenso vorkommen wie die sichtbare Betreuungslücke.",
+  "S-T03-F04-C": "Vielleicht braucht es einen kleineren Plan oder Hilfe, nicht einen überzeugenderen Vorwurf.",
+  "S-T06-F03-A": "So bleibt Quirin mit seinem Anliegen nicht bis auf Weiteres in der Luft.",
+  "S-T06-F03-B": "Das schützt ihre Grenze und zugleich ein Stück Verlässlichkeit zwischen beiden.",
+  "S-T07-F03-B": "Ein kurzes „Ich denke darüber nach“ könnte den stillen Zwischenraum freundlicher machen.",
+  "S-T10-F02-C": "Privatsphäre und Vertrauen können gleichzeitig wichtig sein, ohne sich gegenseitig auszuschließen.",
+  "S-T11-F01-A": "Solvian kann kurz prüfen, ob Tavia ihn akustisch oder inhaltlich unterbrochen hat.",
+  "S-T11-F02-A": "Er kann seinen Wunsch äußern, ohne Tavias leichteren Weg dadurch abzuwerten.",
+  "S-T11-F02-C": "Beide Formen dürfen einander ergänzen, statt um den ersten Platz zu kämpfen.",
+  "S-T11-F03-B": "Ihre frühe Verfügbarkeit ist ein Angebot, kein Beweis für fehlende Flexibilität.",
+  "S-T12-F04-A": "Ein vereinbarter Zeitpunkt kann ihm helfen, die offene Frage für heute abzulegen."
+});
 
 export const UI_COPY = Object.freeze({
   title: "Zwischen zwei Sätzen",
@@ -358,14 +437,16 @@ export function applyW9Content(baseData) {
   data.version = W9_VERSION;
   data.prototype_notice = UI_COPY.prototype;
   data.nodes = data.nodes.map((node) => {
-    const reference = REFERENCE[node.id];
-    const body = sceneSpecificWarmth(node.id, paragraphize(reference?.body ?? node.body, node.kind));
+    const revision = W9_REVISIONS[node.id];
+    if (!revision) throw new Error(`Missing W9 revision for ${node.id}`);
+    const editorial = EDITORIAL_OVERRIDES[node.id] ?? {};
+    const choiceLabels = { ...revision.choice_labels, ...(editorial.choice_labels ?? {}) };
     return {
       ...node,
-      title: titleFor(node),
-      body,
-      diagram: warmDiagram(node.diagram),
-      choices: node.choices.map((choice) => ({ ...choice, label: warmChoice(choice.label) }))
+      title: editorial.title ?? revision.title,
+      body: `${editorial.body ?? revision.body}${EDITORIAL_EXTENSIONS[node.id] ? `\n\n${EDITORIAL_EXTENSIONS[node.id]}` : ""}`,
+      diagram: editorial.diagram ?? revision.diagram,
+      choices: node.choices.map((choice) => ({ ...choice, label: choiceLabels[choice.id] }))
     };
   });
   return data;

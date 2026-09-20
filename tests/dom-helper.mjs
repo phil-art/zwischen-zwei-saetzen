@@ -19,7 +19,7 @@ class FormDataFromDOM {
   get(name) { return this.#values.get(name) ?? null; }
 }
 
-export async function setupApp(tag) {
+export async function setupApp(tag, savedSelection = null) {
   const html = fs.readFileSync(new URL("../index.html", import.meta.url), "utf8");
   const parsed = parseHTML(html);
   globalThis.window = parsed.window;
@@ -28,6 +28,7 @@ export async function setupApp(tag) {
   globalThis.requestAnimationFrame = (callback) => callback();
   window.scrollTo = () => {};
   if (!("localStorage" in window)) Object.defineProperty(window, "localStorage", { value: new MemoryStorage() });
+  if (savedSelection) window.localStorage.setItem("z2s-pilot-selection-v1", JSON.stringify(savedSelection));
   await import(`../app.mjs?${tag}`);
   return {
     click(selector) {

@@ -4,7 +4,7 @@
 
 Die Website ist als literarische Reflexion angelegt. Sie stellt keine Diagnose und ersetzt keine Therapie oder professionelle Beratung.
 
-Die veröffentlichte Website ist vollständig statisch. Der W9-Kandidat für wärmere Texte, einen endlichen geführten Weg, Abschnittsfortschritt und eine klarere Sorge-Abfrage wird im Branch `work/w9-warme-texte` geprüft. Technische und redaktionelle Nachweise stehen dort in `W9_REVIEW.md`. Der Kandidatenstatus ist keine menschliche fachliche Freigabe.
+Die veröffentlichte Website ist vollständig statisch. Der korrigierte W9-Kandidat für wärmere Texte, sichere endliche Wege, nachvollziehbaren Abschnittsfortschritt und eine klarere Sorge-Abfrage liegt getrennt von `main` zur erneuten Prüfung bereit. Technische und redaktionelle Nachweise stehen in `W9_REVIEW.md`. Der Kandidatenstatus ist keine menschliche fachliche Freigabe.
 
 ## Kandidat lokal prüfen
 
@@ -12,6 +12,8 @@ Die veröffentlichte Website ist vollständig statisch. Der W9-Kandidat für wä
 npm ci
 npm test
 npm run test:http
+npm run validate:w9
+npm run verify:release
 python3 -m http.server 4173
 ```
 
