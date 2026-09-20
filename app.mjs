@@ -176,7 +176,7 @@ function renderStart() {
     <aside class="hero-note"><strong>Ohne Freitext</strong><p>` + esc(UI_COPY.prototype) + `</p>` + stageTrack() + `</aside></section>
     <section class="topic-section" aria-labelledby="topics-title"><div class="section-heading"><p class="eyebrow">Zwölf Alltagsthemen</p>
     <h2 id="topics-title">Womit möchtest du beginnen?</h2><p>Du kannst ein Thema wählen, ohne deine Geschichte zu erzählen.</p></div>
-    <div class="topic-grid">` + data.topics.map((topic) => `<article class="topic-card"><div><h3>` + esc(topic.title) + `</h3><p>Eine Geschichte und ein ruhiger Gedanke als Einstieg.</p></div>`
+    <div class="topic-grid">` + data.topics.map((topic) => `<article class="topic-card"><h3>` + esc(topic.title) + `</h3>`
       + button("topic-start", "Dieses Thema wählen →", topic.id, "button") + `</article>`).join("") + `</div></section>`;
 }
 
