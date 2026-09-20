@@ -139,8 +139,7 @@ h3 { margin: 0; font-size: 1.03rem; }
 .topic-section { margin-top: clamp(4rem, 10vw, 8rem); }
 .topic-group { margin-top: 1rem; }
 .topic-group summary { padding: .8rem; font-weight: 750; cursor: pointer; }
-.topic-card { display: flex; min-height: 14rem; padding: 1.35rem; flex-direction: column; justify-content: space-between; }
-.topic-card p { color: var(--muted); }
+.topic-card { display: flex; padding: 1.35rem; flex-direction: column; justify-content: space-between; gap: 1.15rem; }
 
 .button, .choice-button, .quiet-button, .topic-card button {
   display: inline-flex;
@@ -248,7 +247,6 @@ legend { margin-bottom: .85rem; font-weight: 800; }
 @media (max-width: 800px) {
   .hero, .reader-grid { grid-template-columns: 1fr; }
   .topic-grid { grid-template-columns: 1fr; }
-  .topic-card { min-height: 0; }
   .side-column { position: static; }
   .site-footer { align-items: flex-start; flex-direction: column; justify-content: center; padding-block: .8rem; }
   .footer-actions { justify-content: flex-start; }
