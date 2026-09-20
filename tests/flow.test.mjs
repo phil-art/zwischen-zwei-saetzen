@@ -78,3 +78,12 @@ test("persistent selection remains exactly four non-sensitive fields", () => {
   const state = { ...initialState(data.contract), safety: "concern", planned_action: "P01", action_state: "planned" };
   assert.deepEqual(Object.keys(persistedState(state, data.contract)).sort(), ["day", "goal", "perspective", "topic"]);
 });
+
+test("planning is centrally bound to the current-stage knowledge prerequisite", () => {
+  const state = initialState(data.contract);
+  assert.throws(() => applyEvent(state, { type: "plan_action", action_id: "P02" }, data.contract, nodes), /prerequisite/);
+  const planned = applyEvent(state, { type: "plan_action", action_id: "P02", visited_knowledge: ["K04"] }, data.contract, nodes);
+  assert.equal(planned.planned_action, "P02");
+  const notDone = applyEvent(planned, { type: "report_action", action_id: "P02", status: "not_done", outcome: "unknown" }, data.contract, nodes);
+  assert.throws(() => applyEvent(notDone, { type: "plan_action", action_id: "P01", visited_knowledge: ["K01"] }, data.contract, nodes), /not eligible|One reported/);
+});

@@ -45,3 +45,47 @@ test("scene identity and graph identity remain stable", () => {
     assert.equal(new Set(variants.map((node) => node.body.split("\n\n")[0])).size, 3, `${family}: distinct perspective openings`);
   }
 });
+
+test("the twelve corrected A and B pairs retain their declared perspectives", () => {
+  const expected = {
+    "S-T03-F02-A": /Liviane blickt/, "S-T03-F02-B": /Quirin hört sich selbst/,
+    "S-T03-F04-A": /Liviane weist/, "S-T03-F04-B": /Quirin zeigt/,
+    "S-T06-F01-A": /Liviane darf/, "S-T06-F01-B": /Quirin darf/,
+    "S-T06-F04-A": /Liviane darf/, "S-T06-F04-B": /Quirin darf/,
+    "S-T07-F03-A": /Jorun darf/, "S-T07-F03-B": /Mireva hat/,
+    "S-T08-F02-A": /Tavia darf/, "S-T08-F02-B": /Solvian teilt/,
+    "S-T08-F04-A": /Tavia sieht/, "S-T08-F04-B": /Solvian hat/,
+    "S-T09-F02-A": /Liviane darf/, "S-T09-F02-B": /Quirin darf/,
+    "S-T09-F04-A": /Liviane sieht/, "S-T09-F04-B": /Quirin darf/,
+    "S-T10-F02-A": /Tavia darf/, "S-T10-F02-B": /Solvian darf/,
+    "S-T10-F03-A": /Tavia darf/, "S-T10-F03-B": /Solvian darf/,
+    "S-T12-F01-A": /Jorun darf/, "S-T12-F01-B": /Mireva darf/
+  };
+  for (const [id, pattern] of Object.entries(expected)) assert.match(data.nodes.find((node) => node.id === id).body, pattern, id);
+});
+
+test("reviewed fact, motive, consent, and pronoun regressions stay corrected", () => {
+  const rendered = Object.fromEntries(data.nodes.map((node) => [node.id, node.body]));
+  assert.doesNotMatch(rendered["S-T12-F04-A"], /Er kann Mirevas|kann ihm helfen/);
+  assert.doesNotMatch(rendered["S-T01-F03-B"], /Schreiben würde.*länger dauern|Form, die gerade möglich war/);
+  assert.doesNotMatch(rendered["S-T05-F01-A"], /zweite Becher war eine Einladung/);
+  assert.doesNotMatch(rendered["S-T05-F01-B"], /auf ein gemeinsames Ankommen gehofft/);
+  assert.doesNotMatch(rendered["S-T05-F04-A"], /Geste sagt zunächst nur/);
+  assert.doesNotMatch(rendered["S-T06-F02-B"], /offenbar etwas Dringendes/);
+  assert.match(rendered["S-T05-F03-B"], /Ob daraus eine gemeinsame Pause wird, entscheiden beide/);
+  for (const id of ["S-T06-F03-A", "S-T06-F03-B", "S-T06-F03-C"]) assert.match(rendered[id], /gemeinsam|beide|Zustimmung|Antwort/);
+});
+
+test("T04 through T12 close each perspective in its own voice", () => {
+  for (let topic = 4; topic <= 12; topic += 1) {
+    for (let family = 1; family <= 4; family += 1) {
+      const prefix = `S-T${String(topic).padStart(2, "0")}-F${String(family).padStart(2, "0")}-`;
+      const endings = data.nodes.filter((node) => node.id.startsWith(prefix))
+        .map((node) => node.body.split(/\n\n/).at(-1));
+      assert.equal(new Set(endings).size, 3, prefix);
+    }
+  }
+  const openViews = data.nodes.filter((node) => node.kind === "scene" && node.perspective === "C" && Number(node.id.slice(3, 5)) >= 4);
+  assert.equal(openViews.length, 36);
+  assert.ok(openViews.every((node) => !node.body.includes("Von außen")));
+});

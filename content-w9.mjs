@@ -32,8 +32,9 @@ import { EDITORIAL_T09 } from "./revisions/editorial-t09.mjs";
 import { EDITORIAL_T10 } from "./revisions/editorial-t10.mjs";
 import { EDITORIAL_T11 } from "./revisions/editorial-t11.mjs";
 import { EDITORIAL_T12 } from "./revisions/editorial-t12.mjs";
+import { EDITORIAL_PHASE4_FIXES } from "./revisions/editorial-phase4-fixes.mjs";
 
-export const W9_VERSION = "0.6.0-w9-candidate";
+export const W9_VERSION = "0.6.1-w9-candidate";
 
 const W9_REVISIONS = Object.freeze(Object.assign({}, DAY_INTRO_REVISIONS, KNOWLEDGE_REVISIONS,
   ORIENTATION_REVISIONS, PRACTICE_REVISIONS, CLOSING_REVISIONS, REFLECTION_REVISIONS,
@@ -43,7 +44,7 @@ const W9_REVISIONS = Object.freeze(Object.assign({}, DAY_INTRO_REVISIONS, KNOWLE
 const EDITORIAL_OVERRIDES = Object.freeze(Object.assign({}, EDITORIAL_SHORT, EDITORIAL_KNOWLEDGE,
   EDITORIAL_PRACTICE, EDITORIAL_T01, EDITORIAL_T02, EDITORIAL_T03, EDITORIAL_T04,
   EDITORIAL_T05, EDITORIAL_T06, EDITORIAL_T07, EDITORIAL_T08, EDITORIAL_T09,
-  EDITORIAL_T10, EDITORIAL_T11, EDITORIAL_T12));
+  EDITORIAL_T10, EDITORIAL_T11, EDITORIAL_T12, EDITORIAL_PHASE4_FIXES));
 
 // Individually reviewed additions for entries whose concise draft fell below its editorial span.
 const EDITORIAL_EXTENSIONS = Object.freeze({
@@ -67,17 +68,15 @@ const EDITORIAL_EXTENSIONS = Object.freeze({
   "S-T03-F03-A": "Quirin darf seine Kraft ebenso ehrlich ansehen wie die Dringlichkeit der Aufgabe.",
   "S-T03-F03-B": "Liviane muss eine offene Aufgabe nicht automatisch zu ihrer eigenen machen.",
   "S-T03-F03-C": "Ein realistischer Plan beginnt dort, wo auch begrenzte Kraft mitgerechnet wird.",
-  "S-T03-F04-B": "Ihre eigene Zeit darf dabei ebenso vorkommen wie die sichtbare Betreuungslücke.",
+  "S-T03-F04-A": "Ihre eigene Zeit darf dabei ebenso vorkommen wie die sichtbare Betreuungslücke.",
   "S-T03-F04-C": "Vielleicht braucht es einen kleineren Plan oder Hilfe, nicht einen überzeugenderen Vorwurf.",
-  "S-T06-F03-A": "So bleibt Quirin mit seinem Anliegen nicht bis auf Weiteres in der Luft.",
-  "S-T06-F03-B": "Das schützt ihre Grenze und zugleich ein Stück Verlässlichkeit zwischen beiden.",
-  "S-T07-F03-B": "Ein kurzes „Ich denke darüber nach“ könnte den stillen Zwischenraum freundlicher machen.",
+  "S-T07-F03-A": "Ein kurzes „Ich denke darüber nach“ könnte den stillen Zwischenraum freundlicher machen.",
   "S-T10-F02-C": "Privatsphäre und Vertrauen können gleichzeitig wichtig sein, ohne sich gegenseitig auszuschließen.",
   "S-T11-F01-A": "Solvian kann kurz prüfen, ob Tavia ihn akustisch oder inhaltlich unterbrochen hat.",
   "S-T11-F02-A": "Er kann seinen Wunsch äußern, ohne Tavias leichteren Weg dadurch abzuwerten.",
   "S-T11-F02-C": "Beide Formen dürfen einander ergänzen, statt um den ersten Platz zu kämpfen.",
   "S-T11-F03-B": "Ihre frühe Verfügbarkeit ist ein Angebot, kein Beweis für fehlende Flexibilität.",
-  "S-T12-F04-A": "Ein vereinbarter Zeitpunkt kann ihm helfen, die offene Frage für heute abzulegen."
+  "S-T12-F04-A": "Ein vereinbarter Zeitpunkt kann ihr helfen, die offene Frage für heute abzulegen."
 });
 
 export const UI_COPY = Object.freeze({

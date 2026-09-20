@@ -2,7 +2,7 @@
   "schema_version": 1,
   "base_file": "data.mjs",
   "base_version": "0.4.0-w8-prototype",
-  "content_version": "0.6.0-w9-candidate",
+  "content_version": "0.6.1-w9-candidate",
   "hash_algorithm": "sha256",
   "canonicalization": "Recursive object-key sort; array order preserved; compact UTF-8 JSON; original source prose is not normalized.",
   "review_scope": "Candidate-level editorial and automated checks; independent Astra/browser review remains pending.",
@@ -446,7 +446,7 @@
           },
           {
             "id": "d5",
-            "label": "Arbeitshypothese, keine Diagnose"
+            "label": "Eine mögliche Lesart, keine Diagnose"
           }
         ],
         "edges": [
@@ -1004,7 +1004,7 @@
           },
           {
             "id": "d7",
-            "label": "Kausalität"
+            "label": "einen sicheren Grund"
           }
         ],
         "edges": [
@@ -1039,7 +1039,7 @@
             "label": "beweist nicht"
           }
         ],
-        "text_alternative": "Ein selbst berichtetes Ergebnis kann hilfreich, unverändert, schlechter, gemischt oder unklar sein. Die Durchführung oder der zeitliche Zusammenhang beweist keine automatische Kausalität."
+        "text_alternative": "Ein selbst berichtetes Ergebnis kann hilfreich, unverändert, schlechter, gemischt oder unklar sein. Die Durchführung oder der zeitliche Zusammenhang beweist keine automatische einen sicheren Grund."
       }
     },
     {
@@ -1244,7 +1244,7 @@
           },
           {
             "id": "d3",
-            "label": "Kein Sicherheitsnachweis"
+            "label": "Keine sichere Beurteilung durch diese Seite"
           },
           {
             "id": "d4",
@@ -3283,7 +3283,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Wie war es für dich?",
-      "body": "Der berichtete Versuch durfte klein sein. Seine Größe sagt nicht, ob er zur Situation passte.\n\nDu kannst ansehen, was sich verändert hat, was gleich blieb und was unbekannt ist. Auch ein schwierigeres Ergebnis gehört zur Rückschau. Daraus muss kein weiterer Versuch folgen.",
+      "body": "Dein kleiner Versuch muss nichts beweisen. Du kannst in Ruhe ansehen, was sich verändert hat, was gleich blieb und was du noch nicht weißt.\n\nAuch ein schwieriges oder gemischtes Ergebnis gehört dazu. Daraus muss heute kein weiterer Schritt folgen.",
       "choice_labels": [
         {
           "id": "E0046",
@@ -3339,7 +3339,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Für heute darf es reichen",
-      "body": "Dieser Abschluss macht aus einem Vorschlag keine gemeinsame Vereinbarung.\n\nWas tatsächlich beschlossen oder getan wurde, bleibt von der Navigation getrennt. Du kannst die Etappe auch beenden, wenn kein Vorschlag passte. Für den nächsten Einstieg braucht es heute keine Entscheidung.",
+      "body": "Ein Vorschlag ist noch keine gemeinsame Vereinbarung. Entscheidend bleibt, was ihr tatsächlich miteinander beschlossen habt.\n\nDu kannst diese Etappe auch beenden, wenn nichts gepasst hat. Für heute braucht es keine weitere Entscheidung.",
       "choice_labels": [
         {
           "id": "E0060",
@@ -3687,7 +3687,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Sprachnachricht statt Text",
-      "body": "Liviane nimmt eine Sprachnachricht für Quirin auf. Schreiben würde in diesem Moment länger dauern, und mit einer Hand räumt sie noch Nolas Becher vom Tisch.\n\nSie schickt die Aufnahme ab. Damit ist nicht festgelegt, wie dringend sie klingt oder wie Quirin das Format aufnimmt. Für Liviane ist es zunächst die Form, die gerade möglich war.\n\nOb sie später noch etwas ergänzt, bleibt offen. Auch Quirins Antwort ist nicht Teil dieser Szene. Zwischen beiden liegt nun eine Stimme im Telefon – mehr nicht.",
+      "body": "Liviane nimmt eine Sprachnachricht für Quirin auf. Mit einer Hand räumt sie noch Nolas Becher vom Tisch. Warum sie eine Sprachnachricht wählt, bleibt in diesem Moment offen.\n\nSie schickt die Aufnahme ab. Damit ist nicht festgelegt, wie dringend sie klingt oder wie Quirin das Format aufnimmt. Für Liviane ist es zunächst die Form, die sie gewählt hat.\n\nOb sie später noch etwas ergänzt, bleibt offen. Auch Quirins Antwort ist nicht Teil dieser Szene. Zwischen beiden liegt nun eine Stimme im Telefon – mehr nicht.",
       "choice_labels": [
         {
           "id": "E0152",
@@ -4167,7 +4167,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Wer an den Termin denkt",
-      "body": "Quirin fragt Liviane, ob sie an den Termin morgen gedacht hat. Auf dem Tisch liegt der Kalender, daneben einer von Nolas Hausschuhen. Der zweite ist nicht auffindbar.\n\nQuirin hört sich selbst die Frage stellen und weiß nicht, ob sie wie eine Erinnerung oder wie eine Zuständigkeitszuweisung ankommt. Der Termin ist wichtig; wer ihn im Blick behalten sollte, ist nicht eingetragen.\n\nEr kann den praktischen Bedarf sehen, ohne Livianes bisherigen Aufwand zu kennen. Erinnerung, Organisation und tatsächliche Begleitung bleiben drei verschiedene Aufgaben.",
+      "body": "Quirin fragt, ob Liviane an den Termin morgen gedacht hat. Liviane blickt zum Kalender. Dort stehen Uhrzeit und Ort, aber kein Name neben der unsichtbaren Aufgabe, an alles zu denken.\n\nVielleicht hat sie den Termin längst im Blick. Vielleicht war die Zuständigkeit offen. Die Szene legt es nicht fest.\n\nLiviane muss aus der Frage weder einen Vorwurf noch eine harmlose Erinnerung machen. Sie kann zunächst bemerken, dass neben dem Termin auch die Organisationsarbeit geklärt werden müsste. Eine Antwort darauf bleibt Liviane überlassen.",
       "choice_labels": [
         {
           "id": "E0232",
@@ -4191,7 +4191,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Wer an den Termin denkt",
-      "body": "Quirin fragt, ob Liviane an den Termin morgen gedacht hat. Liviane blickt zum Kalender. Dort stehen Uhrzeit und Ort, aber kein Name neben der unsichtbaren Aufgabe, an alles zu denken.\n\nVielleicht hat sie den Termin längst im Blick. Vielleicht war die Zuständigkeit offen. Die Szene legt es nicht fest.\n\nLiviane muss aus der Frage weder einen Vorwurf noch eine harmlose Erinnerung machen. Sie kann zunächst bemerken, dass neben dem Termin auch die Organisationsarbeit geklärt werden müsste.\n\nEine konkrete Bitte wäre leichter zu beantworten als die Hoffnung, verstanden zu werden.",
+      "body": "Quirin fragt Liviane, ob sie an den Termin morgen gedacht hat. Auf dem Tisch liegt der Kalender, daneben einer von Nolas Hausschuhen. Der zweite ist nicht auffindbar.\n\nQuirin hört sich selbst die Frage stellen und weiß nicht, ob sie wie eine Erinnerung oder wie eine Zuständigkeitszuweisung ankommt. Der Termin ist wichtig; wer ihn im Blick behalten sollte, ist nicht eingetragen.\n\nEr kann den praktischen Bedarf sehen, ohne Livianes bisherigen Aufwand zu kennen. Erinnerung, Organisation und tatsächliche Begleitung bleiben drei verschiedene Aufgaben.\n\nEine konkrete Bitte wäre leichter zu beantworten als die Hoffnung, verstanden zu werden.",
       "choice_labels": [
         {
           "id": "E0236",
@@ -4311,7 +4311,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Die Woche ohne Reserven",
-      "body": "Quirin zeigt auf ein freies Feld im Wochenkalender. Dort möchte er an seinem Geschichtenprojekt arbeiten. Liviane tippt auf Nolas Betreuungszeit direkt daneben.\n\nQuirin sieht den freien Platz, aber auch die Aufgabe, die ihn begrenzt. Sein Wunsch nach eigener Projektzeit bleibt wichtig. Gleichzeitig entsteht Betreuung nicht dadurch, dass ein Kalenderfeld leer aussieht.\n\nEr weiß noch nicht, ob irgendwo Entlastung möglich ist oder was Liviane an diesem Tag bereits trägt. Die Woche hat auf dem Papier eine Lücke; im Alltag vielleicht nicht.",
+      "body": "Quirin möchte ein freies Kalenderfeld für sein Geschichtenprojekt nutzen. Liviane weist auf Nolas Betreuungszeit hin. Damit bringt sie eine Aufgabe in den Plan, die vorher im leeren Rechteck nicht zu sehen war.\n\nVielleicht braucht auch Liviane Zeit für Eigenes oder für andere Arbeit. Die Szene benennt das nicht. Sie zeigt nur, dass der freie Zeitraum nicht für beide Anforderungen zugleich reicht.\n\nLiviane kann die fehlende Betreuung sichtbar machen, aber keine zusätzlichen Stunden erzeugen. Eine gemeinsame Entscheidung steht noch aus.\n\nIhre eigene Zeit darf dabei ebenso vorkommen wie die sichtbare Betreuungslücke.",
       "choice_labels": [
         {
           "id": "E0256",
@@ -4335,7 +4335,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Die Woche ohne Reserven",
-      "body": "Quirin möchte ein freies Kalenderfeld für sein Geschichtenprojekt nutzen. Liviane weist auf Nolas Betreuungszeit hin. Damit bringt sie eine Aufgabe in den Plan, die vorher im leeren Rechteck nicht zu sehen war.\n\nVielleicht braucht auch Liviane Zeit für Eigenes oder für andere Arbeit. Die Szene benennt das nicht. Sie zeigt nur, dass der freie Zeitraum nicht für beide Anforderungen zugleich reicht.\n\nLiviane kann die fehlende Betreuung sichtbar machen, aber keine zusätzlichen Stunden erzeugen. Eine gemeinsame Entscheidung steht noch aus.\n\nIhre eigene Zeit darf dabei ebenso vorkommen wie die sichtbare Betreuungslücke.",
+      "body": "Quirin zeigt auf ein freies Feld im Wochenkalender. Dort möchte er an seinem Geschichtenprojekt arbeiten. Liviane tippt auf Nolas Betreuungszeit direkt daneben.\n\nQuirin sieht den freien Platz, aber auch die Aufgabe, die ihn begrenzt. Sein Wunsch nach eigener Projektzeit bleibt wichtig. Gleichzeitig entsteht Betreuung nicht dadurch, dass ein Kalenderfeld leer aussieht.\n\nEr weiß noch nicht, ob irgendwo Entlastung möglich ist oder was Liviane an diesem Tag bereits trägt. Die Woche hat auf dem Papier eine Lücke; im Alltag vielleicht nicht.",
       "choice_labels": [
         {
           "id": "E0260",
@@ -4383,7 +4383,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Zwanzig Minuten später",
-      "body": "Solvian wartet auf den verabredeten Anruf. Als Tavias Name endlich aufleuchtet, ist der Tee kalt und zwanzig Minuten sind vergangen. Solvian muss seine Wartezeit nicht kleinreden. Er weiß nur noch nicht, ob Tavia die Zeit anders verstanden hat oder ob etwas dazwischenkam.\n\nSo eine kleine Verspätung kann erstaunlich viel in Bewegung bringen: Ärger, Sorge, Enttäuschung – oder die alte Frage, wie wichtig man der anderen Person gerade ist. Der Anruf erklärt davon noch nichts.\n\nBeides darf nebeneinanderstehen: Die Freude, die andere Stimme zu hören, und der Wunsch, über Verlässlichkeit zu sprechen.",
+      "body": "Solvian wartet auf den verabredeten Anruf. Als Tavias Name endlich aufleuchtet, ist der Tee kalt und zwanzig Minuten sind vergangen. Solvian muss seine Wartezeit nicht kleinreden. Er weiß nur noch nicht, ob Tavia die Zeit anders verstanden hat oder ob etwas dazwischenkam.\n\nSo eine kleine Verspätung kann erstaunlich viel in Bewegung bringen: Ärger, Sorge, Enttäuschung – oder die alte Frage, wie wichtig man der anderen Person gerade ist. Der Anruf erklärt davon noch nichts.\n\nSolvian kann sich über den Anruf freuen und später ruhig sagen, was das Warten mit ihm gemacht hat.",
       "choice_labels": [
         {
           "id": "E0268",
@@ -4407,7 +4407,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Zwanzig Minuten später",
-      "body": "Solvian wartet auf den verabredeten Anruf. Als Tavias Name endlich aufleuchtet, ist der Tee kalt und zwanzig Minuten sind vergangen. Tavia ruft nun an. Vielleicht hat sie einen Grund, vielleicht hat sie die Wirkung der Verspätung unterschätzt; Solvians stilles Warten kennt sie noch nicht.\n\nSo eine kleine Verspätung kann erstaunlich viel in Bewegung bringen: Ärger, Sorge, Enttäuschung – oder die alte Frage, wie wichtig man der anderen Person gerade ist. Der Anruf erklärt davon noch nichts.\n\nBeides darf nebeneinanderstehen: Die Freude, die andere Stimme zu hören, und der Wunsch, über Verlässlichkeit zu sprechen.",
+      "body": "Solvian wartet auf den verabredeten Anruf. Als Tavias Name endlich aufleuchtet, ist der Tee kalt und zwanzig Minuten sind vergangen. Tavia ruft nun an. Vielleicht hat sie einen Grund, vielleicht hat sie die Wirkung der Verspätung unterschätzt; Solvians stilles Warten kennt sie noch nicht.\n\nSo eine kleine Verspätung kann erstaunlich viel in Bewegung bringen: Ärger, Sorge, Enttäuschung – oder die alte Frage, wie wichtig man der anderen Person gerade ist. Der Anruf erklärt davon noch nichts.\n\nTavia kann erzählen, was geschah, und zugleich hören, wie die zwanzig Minuten bei Solvian ankamen.",
       "choice_labels": [
         {
           "id": "E0272",
@@ -4431,7 +4431,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Zwanzig Minuten später",
-      "body": "Solvian wartet auf den verabredeten Anruf. Als Tavias Name endlich aufleuchtet, ist der Tee kalt und zwanzig Minuten sind vergangen. Von außen sind nur zwei Dinge sicher: eine vereinbarte Uhrzeit und ein später Anruf. Alles Weitere braucht Worte statt Gedankenlesen.\n\nSo eine kleine Verspätung kann erstaunlich viel in Bewegung bringen: Ärger, Sorge, Enttäuschung – oder die alte Frage, wie wichtig man der anderen Person gerade ist. Der Anruf erklärt davon noch nichts.\n\nBeides darf nebeneinanderstehen: Die Freude, die andere Stimme zu hören, und der Wunsch, über Verlässlichkeit zu sprechen.",
+      "body": "Solvian wartet auf den verabredeten Anruf. Als Tavias Name endlich aufleuchtet, ist der Tee kalt und zwanzig Minuten sind vergangen. Sicher sind zunächst nur zwei Dinge: eine vereinbarte Uhrzeit und ein später Anruf. Alles Weitere braucht Worte statt Gedankenlesen.\n\nSo eine kleine Verspätung kann erstaunlich viel in Bewegung bringen: Ärger, Sorge, Enttäuschung – oder die alte Frage, wie wichtig man der anderen Person gerade ist. Der Anruf erklärt davon noch nichts.\n\nDer Tee ist kalt, der Anruf beginnt. Ob sie heute nur ankommen oder auch über Verlässlichkeit sprechen, bleibt offen.",
       "choice_labels": [
         {
           "id": "E0276",
@@ -4455,7 +4455,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Zwei Kalender",
-      "body": "Tavia schlägt ein Treffen am Samstag vor. Bei ihr ist der Nachmittag frei; in Solvians Kalender steht bereits ein anderer Termin. Solvian darf seinen bestehenden Termin ernst nehmen, ohne Tavias Vorschlag als Zumutung zu lesen. Sie kennt seinen Eintrag womöglich schlicht nicht.\n\nKalender sehen ordentlich aus, doch sie zeigen nur einen Teil des Lebens. Hinter einem freien Feld kann Erschöpfung liegen, hinter einem belegten Feld etwas Wichtiges – und ein Vorschlag ist noch keine gemeinsame Zusage.\n\nVielleicht findet sich ein anderes Fenster. Vielleicht nicht sofort. Nähe muss nicht daran gemessen werden, ob dieses eine Kästchen passt.",
+      "body": "Tavia schlägt ein Treffen am Samstag vor. Bei ihr ist der Nachmittag frei; in Solvians Kalender steht bereits ein anderer Termin. Solvian darf seinen bestehenden Termin ernst nehmen, ohne Tavias Vorschlag als Zumutung zu lesen. Sie kennt seinen Eintrag womöglich schlicht nicht.\n\nKalender sehen ordentlich aus, doch sie zeigen nur einen Teil des Lebens. Hinter einem freien Feld kann Erschöpfung liegen, hinter einem belegten Feld etwas Wichtiges – und ein Vorschlag ist noch keine gemeinsame Zusage.\n\nSolvian kann den Samstag ablehnen und, wenn er möchte, einen anderen freien Zeitraum nennen.",
       "choice_labels": [
         {
           "id": "E0280",
@@ -4479,7 +4479,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Zwei Kalender",
-      "body": "Tavia schlägt ein Treffen am Samstag vor. Bei ihr ist der Nachmittag frei; in Solvians Kalender steht bereits ein anderer Termin. Tavia hat eine Möglichkeit angeboten, keine Verfügbarkeit auf Solvians Seite festgestellt. Sein Nein zu diesem Termin wäre nicht automatisch ein Nein zu ihr.\n\nKalender sehen ordentlich aus, doch sie zeigen nur einen Teil des Lebens. Hinter einem freien Feld kann Erschöpfung liegen, hinter einem belegten Feld etwas Wichtiges – und ein Vorschlag ist noch keine gemeinsame Zusage.\n\nVielleicht findet sich ein anderes Fenster. Vielleicht nicht sofort. Nähe muss nicht daran gemessen werden, ob dieses eine Kästchen passt.",
+      "body": "Tavia schlägt ein Treffen am Samstag vor. Bei ihr ist der Nachmittag frei; in Solvians Kalender steht bereits ein anderer Termin. Tavia hat eine Möglichkeit angeboten, keine Verfügbarkeit auf Solvians Seite festgestellt. Sein Nein zu diesem Termin wäre nicht automatisch ein Nein zu ihr.\n\nKalender sehen ordentlich aus, doch sie zeigen nur einen Teil des Lebens. Hinter einem freien Feld kann Erschöpfung liegen, hinter einem belegten Feld etwas Wichtiges – und ein Vorschlag ist noch keine gemeinsame Zusage.\n\nTavias Vorschlag darf ein Vorschlag bleiben. Ein Nein zu diesem Samstag entscheidet noch nichts über den nächsten.",
       "choice_labels": [
         {
           "id": "E0284",
@@ -4503,7 +4503,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Zwei Kalender",
-      "body": "Tavia schlägt ein Treffen am Samstag vor. Bei ihr ist der Nachmittag frei; in Solvians Kalender steht bereits ein anderer Termin. Beide sehen denselben Samstag aus verschiedenen Wohnungen. Ihre Kalender widersprechen sich nicht; sie erzählen nur noch keinen gemeinsamen Plan.\n\nKalender sehen ordentlich aus, doch sie zeigen nur einen Teil des Lebens. Hinter einem freien Feld kann Erschöpfung liegen, hinter einem belegten Feld etwas Wichtiges – und ein Vorschlag ist noch keine gemeinsame Zusage.\n\nVielleicht findet sich ein anderes Fenster. Vielleicht nicht sofort. Nähe muss nicht daran gemessen werden, ob dieses eine Kästchen passt.",
+      "body": "Tavia schlägt ein Treffen am Samstag vor. Bei ihr ist der Nachmittag frei; in Solvians Kalender steht bereits ein anderer Termin. Beide sehen denselben Samstag aus verschiedenen Wohnungen. Ihre Kalender widersprechen sich nicht; sie erzählen nur noch keinen gemeinsamen Plan.\n\nKalender sehen ordentlich aus, doch sie zeigen nur einen Teil des Lebens. Hinter einem freien Feld kann Erschöpfung liegen, hinter einem belegten Feld etwas Wichtiges – und ein Vorschlag ist noch keine gemeinsame Zusage.\n\nZwei Kalender liegen nebeneinander. Ein gemeinsames Fenster ist noch nicht gefunden, aber auch nicht ausgeschlossen.",
       "choice_labels": [
         {
           "id": "E0288",
@@ -4527,7 +4527,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Ein abgesagter Abend",
-      "body": "Auf Solvians Telefon erscheint Tavias kurze Absage. Das Ladekabel für den geplanten Abend liegt schon auf dem Tisch; ein neuer Termin steht nicht dabei. Solvian hat Zeit freigehalten. Er muss daraus weder Gleichgültigkeit ableiten noch so tun, als mache ihm die Änderung nichts aus.\n\nEine knappe Nachricht kann einen ganzen Abend verändern. Solvian darf enttäuscht sein, und Tavia kann trotzdem Gründe haben, die in der Nachricht keinen Platz gefunden haben. Noch ist nur die Absage bekannt.\n\nEin nächster Schritt könnte klein sein: erst ankommen, dann nach dem Grund fragen und später klären, was bei einer Absage hilfreich wäre.",
+      "body": "Auf Solvians Telefon erscheint Tavias kurze Absage. Das Ladekabel für den geplanten Abend liegt schon auf dem Tisch; ein neuer Termin steht nicht dabei. Solvian hat Zeit freigehalten. Er muss daraus weder Gleichgültigkeit ableiten noch so tun, als mache ihm die Änderung nichts aus.\n\nEine knappe Nachricht kann einen ganzen Abend verändern. Solvian darf enttäuscht sein, und Tavia kann trotzdem Gründe haben, die in der Nachricht keinen Platz gefunden haben. Noch ist nur die Absage bekannt.\n\nSolvian darf erst bei seiner Enttäuschung ankommen und später fragen, was hinter der Absage lag.",
       "choice_labels": [
         {
           "id": "E0292",
@@ -4551,7 +4551,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Ein abgesagter Abend",
-      "body": "Auf Solvians Telefon erscheint Tavias kurze Absage. Das Ladekabel für den geplanten Abend liegt schon auf dem Tisch; ein neuer Termin steht nicht dabei. Tavia hat abgesagt. Ob ihr gerade Kraft, Zeit oder Worte fehlen, ist offen – ebenso, ob sie weiß, was Solvian vorbereitet hatte.\n\nEine knappe Nachricht kann einen ganzen Abend verändern. Solvian darf enttäuscht sein, und Tavia kann trotzdem Gründe haben, die in der Nachricht keinen Platz gefunden haben. Noch ist nur die Absage bekannt.\n\nEin nächster Schritt könnte klein sein: erst ankommen, dann nach dem Grund fragen und später klären, was bei einer Absage hilfreich wäre.",
+      "body": "Auf Solvians Telefon erscheint Tavias kurze Absage. Das Ladekabel für den geplanten Abend liegt schon auf dem Tisch; ein neuer Termin steht nicht dabei. Tavia hat abgesagt. Ob ihr gerade Kraft, Zeit oder Worte fehlen, ist offen – ebenso, ob sie weiß, was Solvian vorbereitet hatte.\n\nEine knappe Nachricht kann einen ganzen Abend verändern. Solvian darf enttäuscht sein, und Tavia kann trotzdem Gründe haben, die in der Nachricht keinen Platz gefunden haben. Noch ist nur die Absage bekannt.\n\nTavia kann bei ihrer Absage bleiben und, wenn es möglich ist, sagen, ob oder wann sie neu planen möchte.",
       "choice_labels": [
         {
           "id": "E0296",
@@ -4575,7 +4575,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Ein abgesagter Abend",
-      "body": "Auf Solvians Telefon erscheint Tavias kurze Absage. Das Ladekabel für den geplanten Abend liegt schon auf dem Tisch; ein neuer Termin steht nicht dabei. Von außen bleibt die Beziehung größer als diese Nachricht. Wiederholt sich so etwas, wäre das wichtig; für heute ist diese eine Enttäuschung real.\n\nEine knappe Nachricht kann einen ganzen Abend verändern. Solvian darf enttäuscht sein, und Tavia kann trotzdem Gründe haben, die in der Nachricht keinen Platz gefunden haben. Noch ist nur die Absage bekannt.\n\nEin nächster Schritt könnte klein sein: erst ankommen, dann nach dem Grund fragen und später klären, was bei einer Absage hilfreich wäre.",
+      "body": "Auf Solvians Telefon erscheint Tavias kurze Absage. Das Ladekabel für den geplanten Abend liegt schon auf dem Tisch; ein neuer Termin steht nicht dabei. In dieser Nachricht steht nur die Absage; die Beziehung ist größer als dieser eine Satz. Wiederholt sich so etwas, wäre das wichtig; für heute ist diese eine Enttäuschung real.\n\nEine knappe Nachricht kann einen ganzen Abend verändern. Solvian darf enttäuscht sein, und Tavia kann trotzdem Gründe haben, die in der Nachricht keinen Platz gefunden haben. Noch ist nur die Absage bekannt.\n\nDer Abend ist abgesagt. Ob ein Grund, ein neuer Termin oder einfach Ruhe folgt, gehört nicht mehr zu dieser Szene.",
       "choice_labels": [
         {
           "id": "E0300",
@@ -4599,7 +4599,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Was zugesagt war",
-      "body": "Solvian zeigt auf „Ich halte mir den Abend frei“. Tavia zeigt auf die Zeile darüber: „Wenn die Verbindung klappt.“ Beides steht im selben Verlauf. Solvians freigehaltene Zeit zählt. Zugleich beweist seine Lesart nicht, dass Tavia absichtlich eine Vereinbarung gebrochen hat.\n\nGeschriebene Sätze bleiben sichtbar, ihre damalige Bedeutung leider nicht. Solvian hörte vielleicht eine feste Zusage, Tavia einen Plan mit Vorbehalt. Keiner der beiden Wortlaute löscht das Erleben der anderen Person.\n\nHilfreicher als ein Urteil über damals wäre eine klare Sprache für künftig: Was ist ein Wunsch, was ein Plan, und wann sagen beide wirklich zu?",
+      "body": "Solvian zeigt auf „Ich halte mir den Abend frei“. Tavia zeigt auf die Zeile darüber: „Wenn die Verbindung klappt.“ Beides steht im selben Verlauf. Solvians freigehaltene Zeit zählt. Zugleich beweist seine Lesart nicht, dass Tavia absichtlich eine Vereinbarung gebrochen hat.\n\nGeschriebene Sätze bleiben sichtbar, ihre damalige Bedeutung leider nicht. Solvian hörte vielleicht eine feste Zusage, Tavia einen Plan mit Vorbehalt. Keiner der beiden Wortlaute löscht das Erleben der anderen Person.\n\nSolvian kann beschreiben, welche Zusage er gehört hat, ohne Tavias Absicht schon festzulegen.",
       "choice_labels": [
         {
           "id": "E0304",
@@ -4623,7 +4623,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Was zugesagt war",
-      "body": "Solvian zeigt auf „Ich halte mir den Abend frei“. Tavia zeigt auf die Zeile darüber: „Wenn die Verbindung klappt.“ Beides steht im selben Verlauf. Tavias Hinweis auf die Bedingung ist nachvollziehbar. Er beantwortet aber noch nicht, warum Solvian den Abend als fest verabredet erlebt hat.\n\nGeschriebene Sätze bleiben sichtbar, ihre damalige Bedeutung leider nicht. Solvian hörte vielleicht eine feste Zusage, Tavia einen Plan mit Vorbehalt. Keiner der beiden Wortlaute löscht das Erleben der anderen Person.\n\nHilfreicher als ein Urteil über damals wäre eine klare Sprache für künftig: Was ist ein Wunsch, was ein Plan, und wann sagen beide wirklich zu?",
+      "body": "Solvian zeigt auf „Ich halte mir den Abend frei“. Tavia zeigt auf die Zeile darüber: „Wenn die Verbindung klappt.“ Beides steht im selben Verlauf. Tavias Hinweis auf die Bedingung ist nachvollziehbar. Er beantwortet aber noch nicht, warum Solvian den Abend als fest verabredet erlebt hat.\n\nGeschriebene Sätze bleiben sichtbar, ihre damalige Bedeutung leider nicht. Solvian hörte vielleicht eine feste Zusage, Tavia einen Plan mit Vorbehalt. Keiner der beiden Wortlaute löscht das Erleben der anderen Person.\n\nTavia kann den Vorbehalt erklären und trotzdem anerkennen, dass Solvian mit dem Abend gerechnet hat.",
       "choice_labels": [
         {
           "id": "E0308",
@@ -4647,7 +4647,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Was zugesagt war",
-      "body": "Solvian zeigt auf „Ich halte mir den Abend frei“. Tavia zeigt auf die Zeile darüber: „Wenn die Verbindung klappt.“ Beides steht im selben Verlauf. Von außen lässt sich keine notarielle Wahrheit aus dem Chat holen. Sichtbar ist nur, dass beide verschiedenen Satzteilen mehr Gewicht gaben.\n\nGeschriebene Sätze bleiben sichtbar, ihre damalige Bedeutung leider nicht. Solvian hörte vielleicht eine feste Zusage, Tavia einen Plan mit Vorbehalt. Keiner der beiden Wortlaute löscht das Erleben der anderen Person.\n\nHilfreicher als ein Urteil über damals wäre eine klare Sprache für künftig: Was ist ein Wunsch, was ein Plan, und wann sagen beide wirklich zu?",
+      "body": "Solvian zeigt auf „Ich halte mir den Abend frei“. Tavia zeigt auf die Zeile darüber: „Wenn die Verbindung klappt.“ Beides steht im selben Verlauf. Im Chat ist keine eindeutige Wahrheit über die damalige Bedeutung zu finden. Sichtbar ist nur, dass beide verschiedenen Satzteilen mehr Gewicht gaben.\n\nGeschriebene Sätze bleiben sichtbar, ihre damalige Bedeutung leider nicht. Solvian hörte vielleicht eine feste Zusage, Tavia einen Plan mit Vorbehalt. Keiner der beiden Wortlaute löscht das Erleben der anderen Person.\n\nFür künftig könnten Wunsch, Plan und feste Zusage deutlicher werden. Was beide daraus machen, ist noch offen.",
       "choice_labels": [
         {
           "id": "E0312",
@@ -4671,7 +4671,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Nach Hause kommen",
-      "body": "Jorun kommt nach Hause, stellt die Tasche ab und geht ins andere Zimmer. Mireva sitzt mit zwei Bechern am Küchentisch. Mireva darf den verpassten Moment bedauern. Der zweite Becher war eine Einladung, aber Jorun konnte seine Bedeutung vielleicht nicht erkennen.\n\nManchmal treffen beim Heimkommen zwei ganz verschiedene Wünsche aufeinander: erst einmal durchatmen oder endlich miteinander sein. Keiner davon ist lieblos. Schwierig wird es, wenn beide glauben, der eigene Wunsch sei offensichtlich.\n\nEin leiser Satz könnte die Lücke überbrücken: „Ich würde gern kurz mit dir sitzen – brauchst du vorher zehn Minuten für dich?“",
+      "body": "Jorun kommt nach Hause, stellt die Tasche ab und geht ins andere Zimmer. Mireva sitzt mit zwei Bechern am Küchentisch. Mireva darf den verpassten Moment bedauern. Der zweite Becher könnte eine Einladung gewesen sein; was Mireva damit verband, hat sie noch nicht gesagt.\n\nManchmal treffen beim Heimkommen zwei ganz verschiedene Wünsche aufeinander: erst einmal durchatmen oder endlich miteinander sein. Keiner davon ist lieblos. Schwierig wird es, wenn beide glauben, der eigene Wunsch sei offensichtlich.\n\nMireva kann ihren Wunsch hörbar machen: „Ich würde gern kurz mit dir sitzen – passt das heute?“",
       "choice_labels": [
         {
           "id": "E0316",
@@ -4695,7 +4695,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Nach Hause kommen",
-      "body": "Jorun kommt nach Hause, stellt die Tasche ab und geht ins andere Zimmer. Mireva sitzt mit zwei Bechern am Küchentisch. Jorun darf zunächst Ruhe brauchen. Noch weiß Jorun womöglich nicht, dass Mireva gerade auf ein gemeinsames Ankommen gehofft hat.\n\nManchmal treffen beim Heimkommen zwei ganz verschiedene Wünsche aufeinander: erst einmal durchatmen oder endlich miteinander sein. Keiner davon ist lieblos. Schwierig wird es, wenn beide glauben, der eigene Wunsch sei offensichtlich.\n\nEin leiser Satz könnte die Lücke überbrücken: „Ich würde gern kurz mit dir sitzen – brauchst du vorher zehn Minuten für dich?“",
+      "body": "Jorun kommt nach Hause, stellt die Tasche ab und geht ins andere Zimmer. Mireva sitzt mit zwei Bechern am Küchentisch. Jorun darf zunächst Ruhe brauchen. Noch weiß Jorun nicht, was Mireva mit dem zweiten Becher verbunden hat.\n\nManchmal treffen beim Heimkommen zwei ganz verschiedene Wünsche aufeinander: erst einmal durchatmen oder endlich miteinander sein. Keiner davon ist lieblos. Schwierig wird es, wenn beide glauben, der eigene Wunsch sei offensichtlich.\n\nJorun kann erst ankommen und danach fragen, ob Mireva sich für den Abend etwas gewünscht hatte.",
       "choice_labels": [
         {
           "id": "E0320",
@@ -4719,7 +4719,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Nach Hause kommen",
-      "body": "Jorun kommt nach Hause, stellt die Tasche ab und geht ins andere Zimmer. Mireva sitzt mit zwei Bechern am Küchentisch. Von außen sind nur eine abgestellte Tasche, ein Weg ins Zimmer und zwei Becher zu sehen. Eine Absicht steht auf keinem davon.\n\nManchmal treffen beim Heimkommen zwei ganz verschiedene Wünsche aufeinander: erst einmal durchatmen oder endlich miteinander sein. Keiner davon ist lieblos. Schwierig wird es, wenn beide glauben, der eigene Wunsch sei offensichtlich.\n\nEin leiser Satz könnte die Lücke überbrücken: „Ich würde gern kurz mit dir sitzen – brauchst du vorher zehn Minuten für dich?“",
+      "body": "Jorun kommt nach Hause, stellt die Tasche ab und geht ins andere Zimmer. Mireva sitzt mit zwei Bechern am Küchentisch. Am Küchentisch bleiben eine abgestellte Tasche, ein Weg ins Zimmer und zwei Becher zurück. Eine Absicht steht auf keinem davon.\n\nManchmal treffen beim Heimkommen zwei ganz verschiedene Wünsche aufeinander: erst einmal durchatmen oder endlich miteinander sein. Keiner davon ist lieblos. Schwierig wird es, wenn beide glauben, der eigene Wunsch sei offensichtlich.\n\nZwei Becher und eine geschlossene Tür erzählen noch keine gemeinsame Absicht. Ein Satz könnte sie erst sichtbar machen.",
       "choice_labels": [
         {
           "id": "E0324",
@@ -4743,7 +4743,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Ein freier Sonntag",
-      "body": "Mireva legt einen Ausflugsprospekt auf den Tisch. Neben Joruns Sessel wartet schon ein Buch; gemeinsam geplant ist der Sonntag noch nicht. Jorun darf sich nach einem ruhigen Lesetag sehnen. Mirevas Prospekt muss deshalb weder Forderung noch fertiger Plan sein.\n\nFreie Zeit kann sich wie kostbarer gemeinsamer Raum anfühlen – oder wie die erste Gelegenheit seit Tagen, allein zu sein. Ein Prospekt und ein Buch sind Wünsche, keine stillschweigenden Verträge.\n\nNicht jeder Unterschied braucht einen perfekten Kompromiss. Oft genügt es, beide Wünsche freundlich und rechtzeitig hörbar zu machen.",
+      "body": "Mireva legt einen Ausflugsprospekt auf den Tisch. Neben Joruns Sessel wartet schon ein Buch; gemeinsam geplant ist der Sonntag noch nicht. Jorun darf sich nach einem ruhigen Lesetag sehnen. Mirevas Prospekt muss deshalb weder Forderung noch fertiger Plan sein.\n\nFreie Zeit kann sich wie kostbarer gemeinsamer Raum anfühlen – oder wie die erste Gelegenheit seit Tagen, allein zu sein. Ein Prospekt und ein Buch sind Wünsche, keine stillschweigenden Verträge.\n\nJorun kann den ruhigen Sonntag benennen, ohne Mirevas Ausflugsidee kleinzumachen. Beides darf zunächst nebeneinanderstehen.",
       "choice_labels": [
         {
           "id": "E0328",
@@ -4767,7 +4767,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Ein freier Sonntag",
-      "body": "Mireva legt einen Ausflugsprospekt auf den Tisch. Neben Joruns Sessel wartet schon ein Buch; gemeinsam geplant ist der Sonntag noch nicht. Mireva darf sich auf einen Ausflug freuen. Joruns Buch sagt noch nicht, dass für Gemeinsamkeit überhaupt kein Platz ist.\n\nFreie Zeit kann sich wie kostbarer gemeinsamer Raum anfühlen – oder wie die erste Gelegenheit seit Tagen, allein zu sein. Ein Prospekt und ein Buch sind Wünsche, keine stillschweigenden Verträge.\n\nNicht jeder Unterschied braucht einen perfekten Kompromiss. Oft genügt es, beide Wünsche freundlich und rechtzeitig hörbar zu machen.",
+      "body": "Mireva legt einen Ausflugsprospekt auf den Tisch. Neben Joruns Sessel wartet schon ein Buch; gemeinsam geplant ist der Sonntag noch nicht. Mireva darf sich auf einen Ausflug freuen. Joruns Buch sagt noch nicht, dass für Gemeinsamkeit überhaupt kein Platz ist.\n\nFreie Zeit kann sich wie kostbarer gemeinsamer Raum anfühlen – oder wie die erste Gelegenheit seit Tagen, allein zu sein. Ein Prospekt und ein Buch sind Wünsche, keine stillschweigenden Verträge.\n\nMireva kann den Prospekt als Einladung zeigen und offenlassen, ob heute ein gemeinsamer Plan daraus wird.",
       "choice_labels": [
         {
           "id": "E0332",
@@ -4791,7 +4791,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Ein freier Sonntag",
-      "body": "Mireva legt einen Ausflugsprospekt auf den Tisch. Neben Joruns Sessel wartet schon ein Buch; gemeinsam geplant ist der Sonntag noch nicht. Von außen liegen zwei gute Möglichkeiten nebeneinander. Vielleicht passen beide in den Tag, vielleicht muss eine von ihnen heute Vorrang haben.\n\nFreie Zeit kann sich wie kostbarer gemeinsamer Raum anfühlen – oder wie die erste Gelegenheit seit Tagen, allein zu sein. Ein Prospekt und ein Buch sind Wünsche, keine stillschweigenden Verträge.\n\nNicht jeder Unterschied braucht einen perfekten Kompromiss. Oft genügt es, beide Wünsche freundlich und rechtzeitig hörbar zu machen.",
+      "body": "Mireva legt einen Ausflugsprospekt auf den Tisch. Neben Joruns Sessel wartet schon ein Buch; gemeinsam geplant ist der Sonntag noch nicht. Auf dem Tisch warten zwei gute Möglichkeiten nebeneinander. Vielleicht passen beide in den Tag, vielleicht muss eine von ihnen heute Vorrang haben.\n\nFreie Zeit kann sich wie kostbarer gemeinsamer Raum anfühlen – oder wie die erste Gelegenheit seit Tagen, allein zu sein. Ein Prospekt und ein Buch sind Wünsche, keine stillschweigenden Verträge.\n\nBuch und Prospekt warten auf dem Tisch. Vielleicht passt beides, vielleicht nur eines – entschieden ist noch nichts.",
       "choice_labels": [
         {
           "id": "E0336",
@@ -4815,7 +4815,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Tür zu und Gedanken offen",
-      "body": "Mitten in einem Austausch zieht Jorun die Zimmertür zu. Mireva bleibt im Flur; wann es weitergeht, hat niemand gesagt. Mireva muss nicht vor der Tür warten und die Stille freundlich erklären. Sie darf einen verlässlichen Zeitpunkt für die Fortsetzung brauchen.\n\nEine Pause kann schützen, bevor Worte zu scharf werden. Ohne ein Zeichen für Rückkehr kann dieselbe Pause sich jedoch wie Verlassenwerden anfühlen. Beides verdient Beachtung.\n\nEin einziger Satz könnte viel tragen: „Ich brauche eine halbe Stunde. Danach komme ich zurück und wir sprechen weiter.“",
+      "body": "Mitten in einem Austausch zieht Jorun die Zimmertür zu. Mireva bleibt im Flur; wann es weitergeht, hat niemand gesagt. Mireva muss nicht vor der Tür warten und die Stille freundlich erklären. Sie darf einen verlässlichen Zeitpunkt für die Fortsetzung brauchen.\n\nEine Pause kann schützen, bevor Worte zu scharf werden. Ohne ein Zeichen für Rückkehr kann dieselbe Pause sich jedoch wie Verlassenwerden anfühlen. Beides verdient Beachtung.\n\nMireva darf vom Flur weggehen und später fragen, ob Jorun einen Zeitpunkt für ein neues Gespräch anbieten möchte.",
       "choice_labels": [
         {
           "id": "E0340",
@@ -4839,7 +4839,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Tür zu und Gedanken offen",
-      "body": "Mitten in einem Austausch zieht Jorun die Zimmertür zu. Mireva bleibt im Flur; wann es weitergeht, hat niemand gesagt. Jorun darf Abstand benötigen. Aus einem Rückzug wird aber erst dann eine gemeinsame Pause, wenn Mireva ungefähr weiß, woran sie ist.\n\nEine Pause kann schützen, bevor Worte zu scharf werden. Ohne ein Zeichen für Rückkehr kann dieselbe Pause sich jedoch wie Verlassenwerden anfühlen. Beides verdient Beachtung.\n\nEin einziger Satz könnte viel tragen: „Ich brauche eine halbe Stunde. Danach komme ich zurück und wir sprechen weiter.“",
+      "body": "Mitten in einem Austausch zieht Jorun die Zimmertür zu. Mireva bleibt im Flur; wann es weitergeht, hat niemand gesagt. Jorun darf Abstand benötigen. Jorun kann den eigenen Rückzug verständlicher machen, indem sie einen möglichen Rückkehrpunkt anbietet. Ob daraus eine gemeinsame Pause wird, entscheiden beide.\n\nEine Pause kann schützen, bevor Worte zu scharf werden. Ohne ein Zeichen für Rückkehr kann dieselbe Pause sich jedoch wie Verlassenwerden anfühlen. Beides verdient Beachtung.\n\nJorun kann sagen: „Ich brauche eine halbe Stunde. Danach kann ich dir sagen, ob ich weiterreden kann.“",
       "choice_labels": [
         {
           "id": "E0344",
@@ -4863,7 +4863,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Tür zu und Gedanken offen",
-      "body": "Mitten in einem Austausch zieht Jorun die Zimmertür zu. Mireva bleibt im Flur; wann es weitergeht, hat niemand gesagt. Von außen ist die Tür geschlossen, nicht die Bedeutung geklärt. Weder Ablehnung noch Erholung lässt sich sicher ablesen.\n\nEine Pause kann schützen, bevor Worte zu scharf werden. Ohne ein Zeichen für Rückkehr kann dieselbe Pause sich jedoch wie Verlassenwerden anfühlen. Beides verdient Beachtung.\n\nEin einziger Satz könnte viel tragen: „Ich brauche eine halbe Stunde. Danach komme ich zurück und wir sprechen weiter.“",
+      "body": "Mitten in einem Austausch zieht Jorun die Zimmertür zu. Mireva bleibt im Flur; wann es weitergeht, hat niemand gesagt. Im Flur bleibt die Tür geschlossen; ihre Bedeutung ist nicht geklärt. Weder Ablehnung noch Erholung lässt sich sicher ablesen.\n\nEine Pause kann schützen, bevor Worte zu scharf werden. Ohne ein Zeichen für Rückkehr kann dieselbe Pause sich jedoch wie Verlassenwerden anfühlen. Beides verdient Beachtung.\n\nDie Tür ist zu. Eine eigene Pause besteht bereits; eine gemeinsame Rückkehr braucht noch zwei Stimmen. Auch ein späteres Nein bleibt möglich.",
       "choice_labels": [
         {
           "id": "E0348",
@@ -4887,7 +4887,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Zusammen im selben Raum",
-      "body": "Mireva liest am Tisch, Jorun sitzt mit Kopfhörern daneben. Als Mireva etwas sagt, zeigt Jorun kurz auf einen Ohrhörer. Mireva darf sich eine Antwort wünschen. Joruns Geste sagt zunächst nur: Der Satz ist nicht angekommen – nicht, dass Mireva stört.\n\nIm selben Raum zu sein kann sich für eine Person nach gemeinsamer Zeit anfühlen und für die andere nach angenehmem Nebeneinander. Nähe, Ansprechbarkeit und ein Gespräch sind nicht immer dasselbe.\n\nEine kleine Verabredung kann Wärme schaffen: erst zehn Minuten für sich, danach eine Tasse und volle Aufmerksamkeit.",
+      "body": "Mireva liest am Tisch, Jorun sitzt mit Kopfhörern daneben. Als Mireva etwas sagt, zeigt Jorun kurz auf einen Ohrhörer. Mireva darf sich eine Antwort wünschen. Joruns Geste lässt offen, ob der Satz nicht ankam, gerade nicht passt oder nur einen Moment warten soll.\n\nIm selben Raum zu sein kann sich für eine Person nach gemeinsamer Zeit anfühlen und für die andere nach angenehmem Nebeneinander. Nähe, Ansprechbarkeit und ein Gespräch sind nicht immer dasselbe.\n\nMireva kann warten, bis Jorun ansprechbar ist, oder ihren Gesprächswunsch für später klar benennen.",
       "choice_labels": [
         {
           "id": "E0352",
@@ -4911,7 +4911,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Zusammen im selben Raum",
-      "body": "Mireva liest am Tisch, Jorun sitzt mit Kopfhörern daneben. Als Mireva etwas sagt, zeigt Jorun kurz auf einen Ohrhörer. Jorun darf vertieft sein und trotzdem gern mit Mireva zusammen sein. Ob Mireva gerade Kontakt braucht, ist noch nicht ausgesprochen.\n\nIm selben Raum zu sein kann sich für eine Person nach gemeinsamer Zeit anfühlen und für die andere nach angenehmem Nebeneinander. Nähe, Ansprechbarkeit und ein Gespräch sind nicht immer dasselbe.\n\nEine kleine Verabredung kann Wärme schaffen: erst zehn Minuten für sich, danach eine Tasse und volle Aufmerksamkeit.",
+      "body": "Mireva liest am Tisch, Jorun sitzt mit Kopfhörern daneben. Als Mireva etwas sagt, zeigt Jorun kurz auf einen Ohrhörer. Jorun darf vertieft sein und trotzdem gern mit Mireva zusammen sein. Ob Mireva gerade Kontakt braucht, ist noch nicht ausgesprochen.\n\nIm selben Raum zu sein kann sich für eine Person nach gemeinsamer Zeit anfühlen und für die andere nach angenehmem Nebeneinander. Nähe, Ansprechbarkeit und ein Gespräch sind nicht immer dasselbe.\n\nJorun kann zeigen, ob gerade nur der Ohrhörer stört oder ob sie wirklich noch Zeit für sich braucht.",
       "choice_labels": [
         {
           "id": "E0356",
@@ -4935,7 +4935,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Zusammen im selben Raum",
-      "body": "Mireva liest am Tisch, Jorun sitzt mit Kopfhörern daneben. Als Mireva etwas sagt, zeigt Jorun kurz auf einen Ohrhörer. Von außen bleibt offen, ob hier ein technisches Hindernis oder ein Unterschied im Nähebedürfnis sichtbar wird. Vielleicht ist es auch beides.\n\nIm selben Raum zu sein kann sich für eine Person nach gemeinsamer Zeit anfühlen und für die andere nach angenehmem Nebeneinander. Nähe, Ansprechbarkeit und ein Gespräch sind nicht immer dasselbe.\n\nEine kleine Verabredung kann Wärme schaffen: erst zehn Minuten für sich, danach eine Tasse und volle Aufmerksamkeit.",
+      "body": "Mireva liest am Tisch, Jorun sitzt mit Kopfhörern daneben. Als Mireva etwas sagt, zeigt Jorun kurz auf einen Ohrhörer. Im selben Raum bleibt offen, ob hier ein technisches Hindernis oder ein Unterschied im Nähebedürfnis sichtbar wird. Vielleicht ist es auch beides.\n\nIm selben Raum zu sein kann sich für eine Person nach gemeinsamer Zeit anfühlen und für die andere nach angenehmem Nebeneinander. Nähe, Ansprechbarkeit und ein Gespräch sind nicht immer dasselbe.\n\nSie teilen einen Raum, noch keine Verabredung über Aufmerksamkeit. Ein nächster Satz könnte das ändern.",
       "choice_labels": [
         {
           "id": "E0360",
@@ -4959,7 +4959,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Der dritte Anlauf",
-      "body": "Quirin beginnt zum dritten Mal: „Wegen morgen …“ Liviane legt den Löffel ab. Zweimal ist das Thema heute schon zwischen anderen Aufgaben verschwunden. Quirin darf eine Antwort brauchen. Ein dritter Versuch wird leichter, wenn er auch fragt, ob jetzt überhaupt ein guter Moment ist.\n\nEin wiederholter Anlauf kann nach Beharrlichkeit, Druck oder dringender Klärung klingen. Oft hängt das weniger am Satz als daran, wie viel Kraft beide gerade noch haben.\n\nVielleicht reicht zunächst eine kleine Vereinbarung: jetzt fünf Minuten – oder eine genaue Uhrzeit, zu der das Thema wirklich Platz bekommt.",
+      "body": "Quirin beginnt zum dritten Mal: „Wegen morgen …“ Liviane legt den Löffel ab. Zweimal ist das Thema heute schon zwischen anderen Aufgaben verschwunden. Liviane darf müde von dem Thema sein. Den Löffel abzulegen sagt jedoch noch nicht, ob sie zuhören, vertagen oder eine Grenze setzen möchte.\n\nEin wiederholter Anlauf kann nach Beharrlichkeit, Druck oder dringender Klärung klingen. Oft hängt das weniger am Satz als daran, wie viel Kraft beide gerade noch haben.\n\nLiviane darf sagen, ob jetzt fünf Minuten möglich sind oder wann sie selbst wieder auf das Thema schauen kann.",
       "choice_labels": [
         {
           "id": "E0364",
@@ -4983,7 +4983,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Der dritte Anlauf",
-      "body": "Quirin beginnt zum dritten Mal: „Wegen morgen …“ Liviane legt den Löffel ab. Zweimal ist das Thema heute schon zwischen anderen Aufgaben verschwunden. Liviane darf müde von dem Thema sein. Den Löffel abzulegen sagt jedoch noch nicht, ob sie zuhören, vertagen oder eine Grenze setzen möchte.\n\nEin wiederholter Anlauf kann nach Beharrlichkeit, Druck oder dringender Klärung klingen. Oft hängt das weniger am Satz als daran, wie viel Kraft beide gerade noch haben.\n\nVielleicht reicht zunächst eine kleine Vereinbarung: jetzt fünf Minuten – oder eine genaue Uhrzeit, zu der das Thema wirklich Platz bekommt.",
+      "body": "Quirin beginnt zum dritten Mal: „Wegen morgen …“ Liviane legt den Löffel ab. Zweimal ist das Thema heute schon zwischen anderen Aufgaben verschwunden. Quirin darf eine Antwort brauchen. Ein dritter Versuch wird leichter, wenn er auch fragt, ob jetzt überhaupt ein guter Moment ist.\n\nEin wiederholter Anlauf kann nach Beharrlichkeit, Druck oder dringender Klärung klingen. Oft hängt das weniger am Satz als daran, wie viel Kraft beide gerade noch haben.\n\nQuirin kann um Zeit für das Thema bitten, ohne Livianes Bereitschaft oder Zeitpunkt vorauszusetzen.",
       "choice_labels": [
         {
           "id": "E0368",
@@ -5007,7 +5007,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Der dritte Anlauf",
-      "body": "Quirin beginnt zum dritten Mal: „Wegen morgen …“ Liviane legt den Löffel ab. Zweimal ist das Thema heute schon zwischen anderen Aufgaben verschwunden. Von außen sind drei Anläufe und ein stiller Moment zu sehen. Was vorher gestört hat und wie dringend morgen ist, bleibt offen.\n\nEin wiederholter Anlauf kann nach Beharrlichkeit, Druck oder dringender Klärung klingen. Oft hängt das weniger am Satz als daran, wie viel Kraft beide gerade noch haben.\n\nVielleicht reicht zunächst eine kleine Vereinbarung: jetzt fünf Minuten – oder eine genaue Uhrzeit, zu der das Thema wirklich Platz bekommt.",
+      "body": "Quirin beginnt zum dritten Mal: „Wegen morgen …“ Liviane legt den Löffel ab. Zweimal ist das Thema heute schon zwischen anderen Aufgaben verschwunden. Im Raum hörbar sind drei Anläufe; danach folgt ein stiller Moment. Was vorher gestört hat und wie dringend morgen ist, bleibt offen.\n\nEin wiederholter Anlauf kann nach Beharrlichkeit, Druck oder dringender Klärung klingen. Oft hängt das weniger am Satz als daran, wie viel Kraft beide gerade noch haben.\n\nDer dritte Anfang ist ausgesprochen. Ob daraus jetzt ein Gespräch oder ein genauer späterer Termin wird, bleibt offen.",
       "choice_labels": [
         {
           "id": "E0372",
@@ -5031,7 +5031,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Worte werden schneller",
-      "body": "Liviane beginnt einen Satz, während Quirin noch spricht. Quirin setzt erneut an; die Worte werden schneller, ein leerer Joghurtbecher kippt um. Quirin darf seinen Satz beenden wollen. Lauter oder schneller zu werden hilft meist weniger als sichtbar um eine ununterbrochene Minute zu bitten.\n\nWenn beide gehört werden möchten, kann ein Gespräch überraschend rasch ohne Zuhörer dastehen. Das bedeutet nicht automatisch mangelnden Respekt – aber es ist ein Zeichen, das Tempo zu senken.\n\nEine kurze Pause ist kein Scheitern. Ein Atemzug, dann eine Person, dann die andere – so schlicht darf Reparatur manchmal sein.",
+      "body": "Liviane beginnt einen Satz, während Quirin noch spricht. Quirin setzt erneut an; die Worte werden schneller, ein leerer Joghurtbecher kippt um. Quirin darf seinen Satz beenden wollen. Lauter oder schneller zu werden hilft meist weniger als sichtbar um eine ununterbrochene Minute zu bitten.\n\nWenn beide gehört werden möchten, kann ein Gespräch überraschend rasch ohne Zuhörer dastehen. Das bedeutet nicht automatisch mangelnden Respekt – aber es ist ein Zeichen, das Tempo zu senken.\n\nQuirin kann um einen ununterbrochenen Satz bitten, statt gegen Livianes Stimme anzureden.",
       "choice_labels": [
         {
           "id": "E0376",
@@ -5055,7 +5055,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Worte werden schneller",
-      "body": "Liviane beginnt einen Satz, während Quirin noch spricht. Quirin setzt erneut an; die Worte werden schneller, ein leerer Joghurtbecher kippt um. Liviane hat offenbar etwas Dringendes im Kopf. Dazwischenzugehen kann trotzdem bewirken, dass Quirin sich nicht mehr erreicht fühlt.\n\nWenn beide gehört werden möchten, kann ein Gespräch überraschend rasch ohne Zuhörer dastehen. Das bedeutet nicht automatisch mangelnden Respekt – aber es ist ein Zeichen, das Tempo zu senken.\n\nEine kurze Pause ist kein Scheitern. Ein Atemzug, dann eine Person, dann die andere – so schlicht darf Reparatur manchmal sein.",
+      "body": "Liviane beginnt einen Satz, während Quirin noch spricht. Quirin setzt erneut an; die Worte werden schneller, ein leerer Joghurtbecher kippt um. Liviane setzt mitten im Satz an; was sie dazu bringt, bleibt offen. Dazwischenzugehen kann trotzdem bewirken, dass Quirin sich nicht mehr erreicht fühlt.\n\nWenn beide gehört werden möchten, kann ein Gespräch überraschend rasch ohne Zuhörer dastehen. Das bedeutet nicht automatisch mangelnden Respekt – aber es ist ein Zeichen, das Tempo zu senken.\n\nLiviane kann kurz stoppen und sagen, was sie einwerfen wollte; Quirins Reaktion darauf bleibt seine.",
       "choice_labels": [
         {
           "id": "E0380",
@@ -5079,7 +5079,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Worte werden schneller",
-      "body": "Liviane beginnt einen Satz, während Quirin noch spricht. Quirin setzt erneut an; die Worte werden schneller, ein leerer Joghurtbecher kippt um. Von außen lässt sich kein Sieger bestimmen. Beide reden, beide verlieren gerade Information, und selbst der Joghurtbecher hat den Überblick aufgegeben.\n\nWenn beide gehört werden möchten, kann ein Gespräch überraschend rasch ohne Zuhörer dastehen. Das bedeutet nicht automatisch mangelnden Respekt – aber es ist ein Zeichen, das Tempo zu senken.\n\nEine kurze Pause ist kein Scheitern. Ein Atemzug, dann eine Person, dann die andere – so schlicht darf Reparatur manchmal sein.",
+      "body": "Liviane beginnt einen Satz, während Quirin noch spricht. Quirin setzt erneut an; die Worte werden schneller, ein leerer Joghurtbecher kippt um. Gerade lässt sich kein Sieger bestimmen. Beide reden, beide verlieren gerade Information, und selbst der Joghurtbecher hat den Überblick aufgegeben.\n\nWenn beide gehört werden möchten, kann ein Gespräch überraschend rasch ohne Zuhörer dastehen. Das bedeutet nicht automatisch mangelnden Respekt – aber es ist ein Zeichen, das Tempo zu senken.\n\nDer Joghurtbecher liegt umgekippt. Wer zuerst weiterredet, ist noch nicht entschieden.",
       "choice_labels": [
         {
           "id": "E0384",
@@ -5103,7 +5103,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Erst morgen reden",
-      "body": "Liviane sagt: „Erst morgen.“ Quirin hält noch den Stuhl, von dem er aufstehen wollte. Eine Uhrzeit nennt sie nicht. Quirin muss heute keine Lösung erzwingen. Er darf aber fragen, wann morgen und wie lange beide dafür ungefähr brauchen.\n\nVertagen kann vernünftig sein, wenn heute nichts Gutes mehr entsteht. Ohne Rückkehrpunkt bleibt die andere Person jedoch leicht mit dem ganzen Thema allein.\n\nEin tragfähiger Satz wäre: „Nicht mehr heute. Morgen nach dem Essen nehmen wir uns zwanzig Minuten dafür.“\n\nSo bleibt Quirin mit seinem Anliegen nicht bis auf Weiteres in der Luft.",
+      "body": "Liviane sagt: „Erst morgen.“ Quirin hält noch den Stuhl, von dem er aufstehen wollte. Eine Uhrzeit nennt sie nicht. Quirin muss heute keine Lösung erzwingen. Er darf aber fragen, wann morgen und wie lange beide dafür ungefähr brauchen.\n\nVertagen kann vernünftig sein, wenn heute nichts Gutes mehr entsteht. Ohne Rückkehrpunkt bleibt die andere Person jedoch leicht mit dem ganzen Thema allein.\n\nQuirin kann fragen: „Wann wäre morgen ein möglicher Zeitpunkt?“ Eine gemeinsame Zusage entsteht erst aus Livianes Antwort. Eine Antwort darauf bleibt Liviane überlassen.",
       "choice_labels": [
         {
           "id": "E0388",
@@ -5127,7 +5127,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Erst morgen reden",
-      "body": "Liviane sagt: „Erst morgen.“ Quirin hält noch den Stuhl, von dem er aufstehen wollte. Eine Uhrzeit nennt sie nicht. Liviane darf für heute aufhören. Ein konkreter Zeitpunkt würde aus ihrem Rückzug eine verlässliche Pause statt eines offenen Endes machen.\n\nVertagen kann vernünftig sein, wenn heute nichts Gutes mehr entsteht. Ohne Rückkehrpunkt bleibt die andere Person jedoch leicht mit dem ganzen Thema allein.\n\nEin tragfähiger Satz wäre: „Nicht mehr heute. Morgen nach dem Essen nehmen wir uns zwanzig Minuten dafür.“\n\nDas schützt ihre Grenze und zugleich ein Stück Verlässlichkeit zwischen beiden.",
+      "body": "Liviane sagt: „Erst morgen.“ Quirin hält noch den Stuhl, von dem er aufstehen wollte. Eine Uhrzeit nennt sie nicht. Liviane darf für heute aufhören. Ein konkreter Zeitpunkt würde aus ihrem Rückzug eine verlässliche Pause statt eines offenen Endes machen.\n\nVertagen kann vernünftig sein, wenn heute nichts Gutes mehr entsteht. Ohne Rückkehrpunkt bleibt die andere Person jedoch leicht mit dem ganzen Thema allein.\n\nLiviane kann für heute aufhören und einen Zeitpunkt vorschlagen, ohne Quirins Zustimmung vorwegzunehmen. Quirin darf diesen Vorschlag annehmen oder ablehnen.",
       "choice_labels": [
         {
           "id": "E0392",
@@ -5151,7 +5151,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Erst morgen reden",
-      "body": "Liviane sagt: „Erst morgen.“ Quirin hält noch den Stuhl, von dem er aufstehen wollte. Eine Uhrzeit nennt sie nicht. Von außen ist nur klar, dass heute nicht weitergesprochen werden soll. Ob morgen früh, abends oder irgendwann gemeint ist, weiß niemand.\n\nVertagen kann vernünftig sein, wenn heute nichts Gutes mehr entsteht. Ohne Rückkehrpunkt bleibt die andere Person jedoch leicht mit dem ganzen Thema allein.\n\nEin tragfähiger Satz wäre: „Nicht mehr heute. Morgen nach dem Essen nehmen wir uns zwanzig Minuten dafür.“",
+      "body": "Liviane sagt: „Erst morgen.“ Quirin hält noch den Stuhl, von dem er aufstehen wollte. Eine Uhrzeit nennt sie nicht. Für heute steht nur fest, dass heute nicht weitergesprochen werden soll. Ob morgen früh, abends oder irgendwann gemeint ist, weiß niemand.\n\nVertagen kann vernünftig sein, wenn heute nichts Gutes mehr entsteht. Ohne Rückkehrpunkt bleibt die andere Person jedoch leicht mit dem ganzen Thema allein.\n\nHeute endet das Gespräch. Ob morgen ein gemeinsamer Zeitpunkt entsteht, bleibt zwischen beiden offen. Auch morgen darf eine Person noch Nein sagen.",
       "choice_labels": [
         {
           "id": "E0396",
@@ -5175,7 +5175,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Ein Thema wird zu fünf",
-      "body": "Es beginnt mit einer nicht erledigten Besorgung. Bald kommen Kalender, Anruf und zwei ältere Punkte dazu. Mumpitz trägt einen Schuh vorbei und enthält sich der Debatte. Quirin darf Zusammenhänge sehen. Für Liviane wird es leichter, wenn er einen Punkt auswählt und die übrigen sichtbar für später notiert.\n\nWenn Verletzungen sich sammeln, sucht jede gern noch schnell einen Platz im aktuellen Gespräch. Dann wächst die Beweislast, während die Chance auf echte Klärung schrumpft.\n\nEs darf klein werden: Welcher eine Punkt braucht heute eine Entscheidung – und welche vier dürfen verlässlich warten?",
+      "body": "Es beginnt mit einer nicht erledigten Besorgung. Bald kommen Kalender, Anruf und zwei ältere Punkte dazu. Mumpitz trägt einen Schuh vorbei und enthält sich der Debatte. Liviane darf an etwas erinnert werden, das für sie dazugehört. Trotzdem muss nicht jede offene Rechnung heute auf denselben Tisch.\n\nWenn Verletzungen sich sammeln, sucht jede gern noch schnell einen Platz im aktuellen Gespräch. Dann wächst die Beweislast, während die Chance auf echte Klärung schrumpft.\n\nLiviane kann benennen, welcher Punkt für sie heute wirklich zählt und welche Themen warten dürfen.",
       "choice_labels": [
         {
           "id": "E0400",
@@ -5199,7 +5199,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Ein Thema wird zu fünf",
-      "body": "Es beginnt mit einer nicht erledigten Besorgung. Bald kommen Kalender, Anruf und zwei ältere Punkte dazu. Mumpitz trägt einen Schuh vorbei und enthält sich der Debatte. Liviane darf an etwas erinnert werden, das für sie dazugehört. Trotzdem muss nicht jede offene Rechnung heute auf denselben Tisch.\n\nWenn Verletzungen sich sammeln, sucht jede gern noch schnell einen Platz im aktuellen Gespräch. Dann wächst die Beweislast, während die Chance auf echte Klärung schrumpft.\n\nEs darf klein werden: Welcher eine Punkt braucht heute eine Entscheidung – und welche vier dürfen verlässlich warten?",
+      "body": "Es beginnt mit einer nicht erledigten Besorgung. Bald kommen Kalender, Anruf und zwei ältere Punkte dazu. Mumpitz trägt einen Schuh vorbei und enthält sich der Debatte. Quirin darf Zusammenhänge sehen. Quirin kann einen Punkt auswählen und die übrigen sichtbar für später notieren; wie Liviane das aufnimmt, bleibt bei ihr.\n\nWenn Verletzungen sich sammeln, sucht jede gern noch schnell einen Platz im aktuellen Gespräch. Dann wächst die Beweislast, während die Chance auf echte Klärung schrumpft.\n\nQuirin kann einen Punkt auswählen und die übrigen notieren; Liviane entscheidet selbst, ob diese Reihenfolge für sie passt.",
       "choice_labels": [
         {
           "id": "E0404",
@@ -5223,7 +5223,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Ein Thema wird zu fünf",
-      "body": "Es beginnt mit einer nicht erledigten Besorgung. Bald kommen Kalender, Anruf und zwei ältere Punkte dazu. Mumpitz trägt einen Schuh vorbei und enthält sich der Debatte. Von außen sind mehrere berechtigte Themen und wenig gemeinsamer Raum zu erkennen. Ihre Reihenfolge ist noch keine Aussage über ihre Wichtigkeit.\n\nWenn Verletzungen sich sammeln, sucht jede gern noch schnell einen Platz im aktuellen Gespräch. Dann wächst die Beweislast, während die Chance auf echte Klärung schrumpft.\n\nEs darf klein werden: Welcher eine Punkt braucht heute eine Entscheidung – und welche vier dürfen verlässlich warten?",
+      "body": "Es beginnt mit einer nicht erledigten Besorgung. Bald kommen Kalender, Anruf und zwei ältere Punkte dazu. Mumpitz trägt einen Schuh vorbei und enthält sich der Debatte. Auf dem Tisch liegen mehrere Themen; der gemeinsame Raum dafür ist klein. Ihre Reihenfolge ist noch keine Aussage über ihre Wichtigkeit.\n\nWenn Verletzungen sich sammeln, sucht jede gern noch schnell einen Platz im aktuellen Gespräch. Dann wächst die Beweislast, während die Chance auf echte Klärung schrumpft.\n\nFünf Themen liegen auf dem Tisch. Für heute braucht höchstens eines davon eine gemeinsame Entscheidung.",
       "choice_labels": [
         {
           "id": "E0408",
@@ -5247,7 +5247,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Ein Nein am Abend",
-      "body": "Mireva rückt am Abend näher. Jorun sagt: „Heute nicht.“ Mireva hält inne. Mireva darf enttäuscht sein und muss Joruns Nein trotzdem nicht verhandeln. Ihre eigene Unsicherheit kann später in Worte gefasst werden.\n\nEin Nein zu Nähe kann wehtun, ohne ein Nein zur Beziehung zu sein. Zugleich braucht niemand einen besseren Grund, um körperliche Nähe abzulehnen. Beides darf gleichzeitig wahr sein.\n\nWärme entsteht hier nicht durch Überreden, sondern durch Respekt: „Danke, dass du es sagst. Möchtest du trotzdem noch bei mir sitzen?“",
+      "body": "Mireva rückt am Abend näher. Jorun sagt: „Heute nicht.“ Mireva hält inne. Mireva darf enttäuscht sein und muss Joruns Nein trotzdem nicht verhandeln. Ihre eigene Unsicherheit kann später in Worte gefasst werden.\n\nEin Nein zu Nähe kann wehtun, ohne ein Nein zur Beziehung zu sein. Zugleich braucht niemand einen besseren Grund, um körperliche Nähe abzulehnen. Beides darf gleichzeitig wahr sein.\n\nMireva kann enttäuscht sein und Joruns Nein stehenlassen. Nähe in anderer Form darf sie anbieten, nicht erwarten. Ihre Enttäuschung darf trotzdem einen eigenen Platz haben.",
       "choice_labels": [
         {
           "id": "E0412",
@@ -5271,7 +5271,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Ein Nein am Abend",
-      "body": "Mireva rückt am Abend näher. Jorun sagt: „Heute nicht.“ Mireva hält inne. Joruns Grenze gilt. Wenn es sich stimmig anfühlt, kann Jorun zusätzlich sagen, welche andere Form von Verbundenheit heute möglich ist.\n\nEin Nein zu Nähe kann wehtun, ohne ein Nein zur Beziehung zu sein. Zugleich braucht niemand einen besseren Grund, um körperliche Nähe abzulehnen. Beides darf gleichzeitig wahr sein.\n\nWärme entsteht hier nicht durch Überreden, sondern durch Respekt: „Danke, dass du es sagst. Möchtest du trotzdem noch bei mir sitzen?“",
+      "body": "Mireva rückt am Abend näher. Jorun sagt: „Heute nicht.“ Mireva hält inne. Joruns Grenze gilt. Wenn es sich stimmig anfühlt, kann Jorun zusätzlich sagen, welche andere Form von Verbundenheit heute möglich ist.\n\nEin Nein zu Nähe kann wehtun, ohne ein Nein zur Beziehung zu sein. Zugleich braucht niemand einen besseren Grund, um körperliche Nähe abzulehnen. Beides darf gleichzeitig wahr sein.\n\nJoruns Nein genügt. Nur wenn sie möchte, kann sie sagen, ob eine andere Art von Nähe heute angenehm wäre. Ein Nein braucht keine Ersatzgeste.",
       "choice_labels": [
         {
           "id": "E0416",
@@ -5295,7 +5295,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Ein Nein am Abend",
-      "body": "Mireva rückt am Abend näher. Jorun sagt: „Heute nicht.“ Mireva hält inne. Von außen ist ein Annähern und ein klares Nein zu sehen. Gründe, Gefühle und Wünsche für später sind noch nicht bekannt.\n\nEin Nein zu Nähe kann wehtun, ohne ein Nein zur Beziehung zu sein. Zugleich braucht niemand einen besseren Grund, um körperliche Nähe abzulehnen. Beides darf gleichzeitig wahr sein.\n\nWärme entsteht hier nicht durch Überreden, sondern durch Respekt: „Danke, dass du es sagst. Möchtest du trotzdem noch bei mir sitzen?“",
+      "body": "Mireva rückt am Abend näher. Jorun sagt: „Heute nicht.“ Mireva hält inne. Zu sehen sind ein Annähern und ein klares Nein. Gründe, Gefühle und Wünsche für später sind noch nicht bekannt.\n\nEin Nein zu Nähe kann wehtun, ohne ein Nein zur Beziehung zu sein. Zugleich braucht niemand einen besseren Grund, um körperliche Nähe abzulehnen. Beides darf gleichzeitig wahr sein.\n\nEin Annähern und ein Nein sind sichtbar. Was beide danach brauchen, ist noch nicht ausgesprochen. Auch Stille wäre eine mögliche Antwort. Beide Antworten dürfen verschieden sein.",
       "choice_labels": [
         {
           "id": "E0420",
@@ -5319,7 +5319,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Andere Zeichen von Nähe",
-      "body": "Jorun stellt Mireva ein Glas Wasser hin und setzt sich wieder an den Tisch. Mireva zeigt auf den freien Platz neben sich. Mireva darf sich wünschen, dass Jorun sich dazusetzt. Das Wasser kann liebevoll gemeint sein und trotzdem nicht das treffen, was sie gerade braucht.\n\nMenschen zeigen Zuneigung nicht immer in derselben Sprache. Für eine Person ist Fürsorge ein bereitgestelltes Glas, für die andere ein Körper in erreichbarer Nähe. Keine Geste ist deshalb falsch.\n\nEin freundlicher Satz übersetzt besser als Raten: „Das Wasser tut gut – und ich hätte dich gerade auch gern kurz neben mir.“",
+      "body": "Jorun stellt Mireva ein Glas Wasser hin und setzt sich wieder an den Tisch. Mireva zeigt auf den freien Platz neben sich. Mireva darf sich wünschen, dass Jorun sich dazusetzt. Das Wasser kann liebevoll gemeint sein und trotzdem nicht das treffen, was sie gerade braucht.\n\nEin Glas Wasser kann Fürsorge ausdrücken, ein freier Platz den Wunsch nach Nähe. Welche Bedeutung beide Gesten heute für Mireva und Jorun haben, ist noch nicht ausgesprochen.\n\nMireva kann das Wasser annehmen und trotzdem fragen: „Magst du dich kurz zu mir setzen?“",
       "choice_labels": [
         {
           "id": "E0424",
@@ -5343,7 +5343,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Andere Zeichen von Nähe",
-      "body": "Jorun stellt Mireva ein Glas Wasser hin und setzt sich wieder an den Tisch. Mireva zeigt auf den freien Platz neben sich. Jorun hat sich gekümmert. Mirevas Einladung bedeutet nicht, dass diese Geste wertlos war, sondern vielleicht nur, dass noch ein anderer Wunsch da ist.\n\nMenschen zeigen Zuneigung nicht immer in derselben Sprache. Für eine Person ist Fürsorge ein bereitgestelltes Glas, für die andere ein Körper in erreichbarer Nähe. Keine Geste ist deshalb falsch.\n\nEin freundlicher Satz übersetzt besser als Raten: „Das Wasser tut gut – und ich hätte dich gerade auch gern kurz neben mir.“",
+      "body": "Jorun stellt Mireva ein Glas Wasser hin und setzt sich wieder an den Tisch. Mireva zeigt auf den freien Platz neben sich. Jorun hat sich gekümmert. Mirevas Einladung bedeutet nicht, dass diese Geste wertlos war, sondern vielleicht nur, dass noch ein anderer Wunsch da ist.\n\nEin Glas Wasser kann Fürsorge ausdrücken, ein freier Platz den Wunsch nach Nähe. Welche Bedeutung beide Gesten heute für Mireva und Jorun haben, ist noch nicht ausgesprochen.\n\nJorun kann bei ihrer Geste bleiben und offen hören, ob Mireva gerade noch etwas anderes braucht.",
       "choice_labels": [
         {
           "id": "E0428",
@@ -5367,7 +5367,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Andere Zeichen von Nähe",
-      "body": "Jorun stellt Mireva ein Glas Wasser hin und setzt sich wieder an den Tisch. Mireva zeigt auf den freien Platz neben sich. Von außen begegnen sich zwei kleine Angebote ohne Gebrauchsanleitung. Ob sie zusammenpassen, können nur die beiden klären.\n\nMenschen zeigen Zuneigung nicht immer in derselben Sprache. Für eine Person ist Fürsorge ein bereitgestelltes Glas, für die andere ein Körper in erreichbarer Nähe. Keine Geste ist deshalb falsch.\n\nEin freundlicher Satz übersetzt besser als Raten: „Das Wasser tut gut – und ich hätte dich gerade auch gern kurz neben mir.“",
+      "body": "Jorun stellt Mireva ein Glas Wasser hin und setzt sich wieder an den Tisch. Mireva zeigt auf den freien Platz neben sich. Zwischen beiden begegnen sich zwei kleine Angebote ohne Gebrauchsanleitung. Ob sie zusammenpassen, können nur die beiden klären.\n\nEin Glas Wasser kann Fürsorge ausdrücken, ein freier Platz den Wunsch nach Nähe. Welche Bedeutung beide Gesten heute für Mireva und Jorun haben, ist noch nicht ausgesprochen.\n\nGlas und freier Stuhl sind zwei Angebote. Erst eine Antwort zeigt, ob sie heute zusammenpassen.",
       "choice_labels": [
         {
           "id": "E0432",
@@ -5391,7 +5391,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Ein Wunsch bleibt offen",
-      "body": "Mireva wünscht sich öfter einen gemeinsamen Abend. Jorun dreht die Tasse in den Händen und antwortet zunächst nicht. Mireva hat etwas Verletzliches ausgesprochen. Joruns Schweigen muss keine Ablehnung sein, doch sie darf eine erkennbare Antwort brauchen.\n\nDas Wort „öfter“ kann Sehnsucht tragen und zugleich schwer zu beantworten sein. Es sagt noch nicht, welcher Abend, wie lang oder was gemeinsam bedeuten soll.\n\nVielleicht wird aus „öfter“ eine prüfbare Bitte: „Wäre ein gemeinsamer Abend in den nächsten sieben Tagen für dich möglich?“",
+      "body": "Mireva wünscht sich öfter einen gemeinsamen Abend. Jorun dreht die Tasse in den Händen und antwortet zunächst nicht. Jorun darf Zeit zum Nachdenken brauchen. Eine kleine Rückmeldung könnte Mireva zeigen, dass ihr Wunsch angekommen ist.\n\nDas Wort „öfter“ kann Sehnsucht tragen und zugleich schwer zu beantworten sein. Es sagt noch nicht, welcher Abend, wie lang oder was gemeinsam bedeuten soll.\n\nJorun darf nachfragen, was „öfter“ für Mireva bedeutet, und sich Zeit für eine ehrliche Antwort nehmen.\n\nEin kurzes „Ich denke darüber nach“ könnte den stillen Zwischenraum freundlicher machen.",
       "choice_labels": [
         {
           "id": "E0436",
@@ -5415,7 +5415,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Ein Wunsch bleibt offen",
-      "body": "Mireva wünscht sich öfter einen gemeinsamen Abend. Jorun dreht die Tasse in den Händen und antwortet zunächst nicht. Jorun darf Zeit zum Nachdenken brauchen. Eine kleine Rückmeldung könnte Mireva zeigen, dass ihr Wunsch angekommen ist.\n\nDas Wort „öfter“ kann Sehnsucht tragen und zugleich schwer zu beantworten sein. Es sagt noch nicht, welcher Abend, wie lang oder was gemeinsam bedeuten soll.\n\nVielleicht wird aus „öfter“ eine prüfbare Bitte: „Wäre ein gemeinsamer Abend in den nächsten sieben Tagen für dich möglich?“\n\nEin kurzes „Ich denke darüber nach“ könnte den stillen Zwischenraum freundlicher machen.",
+      "body": "Mireva wünscht sich öfter einen gemeinsamen Abend. Jorun dreht die Tasse in den Händen und antwortet zunächst nicht. Mireva hat etwas Verletzliches ausgesprochen. Joruns Schweigen muss keine Ablehnung sein, doch sie darf eine erkennbare Antwort brauchen.\n\nDas Wort „öfter“ kann Sehnsucht tragen und zugleich schwer zu beantworten sein. Es sagt noch nicht, welcher Abend, wie lang oder was gemeinsam bedeuten soll.\n\nMireva kann ihren Wunsch genauer machen, ohne Joruns Zustimmung schon darin mitzuerzählen. Eine genaue Bitte bleibt leichter beantwortbar als eine Erwartung.",
       "choice_labels": [
         {
           "id": "E0440",
@@ -5439,7 +5439,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Ein Wunsch bleibt offen",
-      "body": "Mireva wünscht sich öfter einen gemeinsamen Abend. Jorun dreht die Tasse in den Händen und antwortet zunächst nicht. Von außen stehen ein Wunsch, eine bewegte Tasse und Stille im Raum. Zustimmung, Sorge oder Überforderung lassen sich daraus nicht sicher lesen.\n\nDas Wort „öfter“ kann Sehnsucht tragen und zugleich schwer zu beantworten sein. Es sagt noch nicht, welcher Abend, wie lang oder was gemeinsam bedeuten soll.\n\nVielleicht wird aus „öfter“ eine prüfbare Bitte: „Wäre ein gemeinsamer Abend in den nächsten sieben Tagen für dich möglich?“",
+      "body": "Mireva wünscht sich öfter einen gemeinsamen Abend. Jorun dreht die Tasse in den Händen und antwortet zunächst nicht. Im Raum bleiben ein Wunsch, eine bewegte Tasse und Stille. Zustimmung, Sorge oder Überforderung lassen sich daraus nicht sicher lesen.\n\nDas Wort „öfter“ kann Sehnsucht tragen und zugleich schwer zu beantworten sein. Es sagt noch nicht, welcher Abend, wie lang oder was gemeinsam bedeuten soll.\n\nEin Wunsch liegt zwischen ihnen. Häufigkeit, Form und Bereitschaft sind noch nicht gemeinsam geklärt. Auch ein Nein wäre eine klare Antwort.",
       "choice_labels": [
         {
           "id": "E0444",
@@ -5463,7 +5463,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Zärtlichkeit ohne Erwartung",
-      "body": "Jorun berührt kurz Mirevas Hand und zieht die eigene dann zurück. Mireva sieht auf. Mireva darf die Berührung mögen und sich mehr wünschen. Sie muss aus dem Zurückziehen aber keine Botschaft über ihren Wert machen.\n\nEine zärtliche Geste darf einfach eine Geste sein. Sie muss weder ein Versprechen auf mehr noch eine Prüfung der Beziehung werden. Trotzdem können beide sie verschieden erleben.\n\nWenn Unsicherheit bleibt, darf die Frage leicht sein: „War das gerade einfach schön für dich – oder möchtest du etwas dazu sagen?“",
+      "body": "Jorun berührt kurz Mirevas Hand und zieht die eigene dann zurück. Mireva sieht auf. Mireva darf die Berührung mögen und sich mehr wünschen. Sie muss aus dem Zurückziehen aber keine Botschaft über ihren Wert machen.\n\nEine zärtliche Geste darf einfach eine Geste sein. Sie muss weder ein Versprechen auf mehr noch eine Prüfung der Beziehung werden. Trotzdem können beide sie verschieden erleben.\n\nMireva kann die Berührung annehmen, ohne aus ihrem Ende eine Botschaft über sich zu machen. Ihr Wunsch nach mehr darf trotzdem bestehen.",
       "choice_labels": [
         {
           "id": "E0448",
@@ -5487,7 +5487,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Zärtlichkeit ohne Erwartung",
-      "body": "Jorun berührt kurz Mirevas Hand und zieht die eigene dann zurück. Mireva sieht auf. Jorun darf Nähe anbieten und wieder beenden, ohne dafür eine große Erklärung liefern zu müssen. Mirevas Reaktion kennt Jorun noch nicht.\n\nEine zärtliche Geste darf einfach eine Geste sein. Sie muss weder ein Versprechen auf mehr noch eine Prüfung der Beziehung werden. Trotzdem können beide sie verschieden erleben.\n\nWenn Unsicherheit bleibt, darf die Frage leicht sein: „War das gerade einfach schön für dich – oder möchtest du etwas dazu sagen?“",
+      "body": "Jorun berührt kurz Mirevas Hand und zieht die eigene dann zurück. Mireva sieht auf. Jorun darf Nähe anbieten und wieder beenden, ohne dafür eine große Erklärung liefern zu müssen. Mirevas Reaktion kennt Jorun noch nicht.\n\nEine zärtliche Geste darf einfach eine Geste sein. Sie muss weder ein Versprechen auf mehr noch eine Prüfung der Beziehung werden. Trotzdem können beide sie verschieden erleben.\n\nJorun darf die Hand zurückziehen. Wenn sie sprechen möchte, kann sie sagen, was die kurze Geste für sie war.",
       "choice_labels": [
         {
           "id": "E0452",
@@ -5511,7 +5511,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Zärtlichkeit ohne Erwartung",
-      "body": "Jorun berührt kurz Mirevas Hand und zieht die eigene dann zurück. Mireva sieht auf. Von außen war die Berührung kurz. Was sie bedeutet, lässt sich nicht an ihrer Dauer messen – die drei Nüsse in der Schale helfen dabei ebenfalls nicht.\n\nEine zärtliche Geste darf einfach eine Geste sein. Sie muss weder ein Versprechen auf mehr noch eine Prüfung der Beziehung werden. Trotzdem können beide sie verschieden erleben.\n\nWenn Unsicherheit bleibt, darf die Frage leicht sein: „War das gerade einfach schön für dich – oder möchtest du etwas dazu sagen?“",
+      "body": "Jorun berührt kurz Mirevas Hand und zieht die eigene dann zurück. Mireva sieht auf. Der sichtbare Moment enthält eine kurze Berührung. Was sie bedeutet, lässt sich nicht an ihrer Dauer messen – die drei Nüsse in der Schale helfen dabei ebenfalls nicht.\n\nEine zärtliche Geste darf einfach eine Geste sein. Sie muss weder ein Versprechen auf mehr noch eine Prüfung der Beziehung werden. Trotzdem können beide sie verschieden erleben.\n\nDie Hände haben sich kurz berührt. Mehr Bedeutung muss dieser Moment noch nicht tragen.",
       "choice_labels": [
         {
           "id": "E0456",
@@ -5535,7 +5535,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Die gemeinsame Ausgabe",
-      "body": "Tavia schickt Solvian den Betrag für eine geplante Fahrt. Die Zahl ist höher als die bisherige Schätzung. Solvian darf erschrecken oder nachfragen, bevor er zusagt. Das macht ihn nicht kleinlich und sagt noch nichts über seine Freude auf die Fahrt.\n\nGeld kann sehr schnell nach Vertrauen, Freiheit oder Rücksicht klingen, obwohl zunächst nur eine Rechnung vorliegt. Die höhere Summe ist real; ihre Entstehung und ihre Bedeutung sind noch offen.\n\nEine sachliche Frage kann Nähe schützen: „Wie kam die Summe zustande, und welcher Betrag wäre für uns beide noch in Ordnung?“",
+      "body": "Tavia schickt Solvian den Betrag für eine geplante Fahrt. Die Zahl ist höher als die bisherige Schätzung. Solvian darf erschrecken oder nachfragen, bevor er zusagt. Das macht ihn nicht kleinlich und sagt noch nichts über seine Freude auf die Fahrt.\n\nGeld kann sehr schnell nach Vertrauen, Freiheit oder Rücksicht klingen, obwohl zunächst nur eine Rechnung vorliegt. Die höhere Summe ist real; ihre Entstehung und ihre Bedeutung sind noch offen.\n\nSolvian kann nach der Summe fragen und sagen, welcher Anteil für ihn tragbar wäre.",
       "choice_labels": [
         {
           "id": "E0460",
@@ -5559,7 +5559,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Die gemeinsame Ausgabe",
-      "body": "Tavia schickt Solvian den Betrag für eine geplante Fahrt. Die Zahl ist höher als die bisherige Schätzung. Tavia hat den neuen Betrag weitergegeben. Ob sie ihn selbst gut tragen kann oder für selbstverständlich hält, weiß Solvian noch nicht.\n\nGeld kann sehr schnell nach Vertrauen, Freiheit oder Rücksicht klingen, obwohl zunächst nur eine Rechnung vorliegt. Die höhere Summe ist real; ihre Entstehung und ihre Bedeutung sind noch offen.\n\nEine sachliche Frage kann Nähe schützen: „Wie kam die Summe zustande, und welcher Betrag wäre für uns beide noch in Ordnung?“",
+      "body": "Tavia schickt Solvian den Betrag für eine geplante Fahrt. Die Zahl ist höher als die bisherige Schätzung. Tavia hat den neuen Betrag weitergegeben. Ob sie ihn selbst gut tragen kann oder für selbstverständlich hält, weiß Solvian noch nicht.\n\nGeld kann sehr schnell nach Vertrauen, Freiheit oder Rücksicht klingen, obwohl zunächst nur eine Rechnung vorliegt. Die höhere Summe ist real; ihre Entstehung und ihre Bedeutung sind noch offen.\n\nTavia kann erklären, wie der Betrag entstand, ohne Solvians Zustimmung zu seinem Anteil anzunehmen.",
       "choice_labels": [
         {
           "id": "E0464",
@@ -5583,7 +5583,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Die gemeinsame Ausgabe",
-      "body": "Tavia schickt Solvian den Betrag für eine geplante Fahrt. Die Zahl ist höher als die bisherige Schätzung. Von außen ist nur der Unterschied zwischen Schätzung und Preis sichtbar. Wer welchen Anteil übernimmt, wurde damit nicht automatisch entschieden.\n\nGeld kann sehr schnell nach Vertrauen, Freiheit oder Rücksicht klingen, obwohl zunächst nur eine Rechnung vorliegt. Die höhere Summe ist real; ihre Entstehung und ihre Bedeutung sind noch offen.\n\nEine sachliche Frage kann Nähe schützen: „Wie kam die Summe zustande, und welcher Betrag wäre für uns beide noch in Ordnung?“",
+      "body": "Tavia schickt Solvian den Betrag für eine geplante Fahrt. Die Zahl ist höher als die bisherige Schätzung. Auf der Rechnung steht ein höherer Preis als zuvor geschätzt. Wer welchen Anteil übernimmt, wurde damit nicht automatisch entschieden.\n\nGeld kann sehr schnell nach Vertrauen, Freiheit oder Rücksicht klingen, obwohl zunächst nur eine Rechnung vorliegt. Die höhere Summe ist real; ihre Entstehung und ihre Bedeutung sind noch offen.\n\nDer neue Preis liegt vor. Wer welchen Teil tragen kann und will, ist noch nicht vereinbart.",
       "choice_labels": [
         {
           "id": "E0468",
@@ -5607,7 +5607,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Eine berufliche Veränderung",
-      "body": "Solvian schickt Tavia mögliche neue Arbeitszeiten. Zwei davon fallen in bisher freie Fenster für ihre Besuche; daneben stehen noch Fragezeichen. Solvian teilt Möglichkeiten, noch keinen fertigen Plan. Er darf berufliche Bedürfnisse haben und sollte Tavias praktische Folgen trotzdem mit ansehen.\n\nVeränderungen im Beruf greifen manchmal genau in die Zeiten, die einer Beziehung Halt geben. Das kann traurig oder beunruhigend sein, bevor überhaupt eine Entscheidung gefallen ist.\n\nStatt Beziehung gegen Arbeit zu stellen, könnten beide sammeln: Was ist unveränderlich, was verhandelbar, und welche neue Form von Nähe wäre möglich?",
+      "body": "Solvian schickt Tavia mögliche neue Arbeitszeiten. Zwei davon fallen in bisher freie Fenster für ihre Besuche; daneben stehen noch Fragezeichen. Tavia darf um gemeinsame Zeit fürchten. Die Fragezeichen bedeuten aber auch, dass noch nicht alles feststeht und ihr Blick gefragt sein kann.\n\nVeränderungen im Beruf greifen manchmal genau in die Zeiten, die einer Beziehung Halt geben. Das kann traurig oder beunruhigend sein, bevor überhaupt eine Entscheidung gefallen ist.\n\nTavia kann die Folgen für ihre Besuchszeit benennen, ohne Solvians berufliche Entscheidung für ihn zu treffen.",
       "choice_labels": [
         {
           "id": "E0472",
@@ -5631,7 +5631,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Eine berufliche Veränderung",
-      "body": "Solvian schickt Tavia mögliche neue Arbeitszeiten. Zwei davon fallen in bisher freie Fenster für ihre Besuche; daneben stehen noch Fragezeichen. Tavia darf um gemeinsame Zeit fürchten. Die Fragezeichen bedeuten aber auch, dass noch nicht alles feststeht und ihr Blick gefragt sein kann.\n\nVeränderungen im Beruf greifen manchmal genau in die Zeiten, die einer Beziehung Halt geben. Das kann traurig oder beunruhigend sein, bevor überhaupt eine Entscheidung gefallen ist.\n\nStatt Beziehung gegen Arbeit zu stellen, könnten beide sammeln: Was ist unveränderlich, was verhandelbar, und welche neue Form von Nähe wäre möglich?",
+      "body": "Solvian schickt Tavia mögliche neue Arbeitszeiten. Zwei davon fallen in bisher freie Fenster für ihre Besuche; daneben stehen noch Fragezeichen. Solvian teilt Möglichkeiten, noch keinen fertigen Plan. Er darf berufliche Bedürfnisse haben und sollte Tavias praktische Folgen trotzdem mit ansehen.\n\nVeränderungen im Beruf greifen manchmal genau in die Zeiten, die einer Beziehung Halt geben. Das kann traurig oder beunruhigend sein, bevor überhaupt eine Entscheidung gefallen ist.\n\nSolvian kann seine Möglichkeiten erklären und Tavias Blick einholen, bevor aus Fragezeichen ein Plan wird.",
       "choice_labels": [
         {
           "id": "E0476",
@@ -5655,7 +5655,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Eine berufliche Veränderung",
-      "body": "Solvian schickt Tavia mögliche neue Arbeitszeiten. Zwei davon fallen in bisher freie Fenster für ihre Besuche; daneben stehen noch Fragezeichen. Von außen kollidieren mögliche Arbeitszeiten mit bisherigen Besuchsfenstern. Prioritäten oder Absichten sind daraus nicht abzulesen.\n\nVeränderungen im Beruf greifen manchmal genau in die Zeiten, die einer Beziehung Halt geben. Das kann traurig oder beunruhigend sein, bevor überhaupt eine Entscheidung gefallen ist.\n\nStatt Beziehung gegen Arbeit zu stellen, könnten beide sammeln: Was ist unveränderlich, was verhandelbar, und welche neue Form von Nähe wäre möglich?",
+      "body": "Solvian schickt Tavia mögliche neue Arbeitszeiten. Zwei davon fallen in bisher freie Fenster für ihre Besuche; daneben stehen noch Fragezeichen. Im Kalender berühren sich mögliche Arbeitszeiten und bisherige Besuchsfenster. Prioritäten oder Absichten sind daraus nicht abzulesen.\n\nVeränderungen im Beruf greifen manchmal genau in die Zeiten, die einer Beziehung Halt geben. Das kann traurig oder beunruhigend sein, bevor überhaupt eine Entscheidung gefallen ist.\n\nArbeitszeiten und Besuchsfenster berühren sich. Welche Teile beweglich sind, wissen beide noch nicht. Noch ist nichts zugesagt oder verloren.",
       "choice_labels": [
         {
           "id": "E0480",
@@ -5679,7 +5679,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Unterschiedliche Sparziele",
-      "body": "Tavia möchte eine Rücklage bilden. Solvian zeigt auf den Preis einer längeren gemeinsamen Reise. Auf beiden Zetteln steht derselbe verfügbare Betrag. Solvian darf sich nach der Reise sehnen. Tavias Rücklage muss deshalb keine Entscheidung gegen Gemeinsamkeit sein.\n\nHinter Geldzielen stecken oft gute, aber verschiedene Bedürfnisse: Sicherheit, Erleben, Zukunft oder gemeinsame Erinnerung. Zahlen allein können diese Gründe nicht gegeneinander abwägen.\n\nVielleicht beginnt die Einigung nicht bei der Summe, sondern bei der Frage: „Was soll dieses Geld für jeden von uns ermöglichen oder schützen?“",
+      "body": "Tavia möchte eine Rücklage bilden. Solvian zeigt auf den Preis einer längeren gemeinsamen Reise. Auf beiden Zetteln steht derselbe verfügbare Betrag. Solvian darf sich nach der Reise sehnen. Tavias Rücklage muss deshalb keine Entscheidung gegen Gemeinsamkeit sein.\n\nHinter Geldzielen stecken oft gute, aber verschiedene Bedürfnisse: Sicherheit, Erleben, Zukunft oder gemeinsame Erinnerung. Zahlen allein können diese Gründe nicht gegeneinander abwägen.\n\nSolvian kann sagen, was ihm an der Reise wichtig ist, ohne Tavias Rücklage dafür verfügbar zu erklären. Sein Reisewunsch darf trotzdem wichtig bleiben.",
       "choice_labels": [
         {
           "id": "E0484",
@@ -5703,7 +5703,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Unterschiedliche Sparziele",
-      "body": "Tavia möchte eine Rücklage bilden. Solvian zeigt auf den Preis einer längeren gemeinsamen Reise. Auf beiden Zetteln steht derselbe verfügbare Betrag. Tavia darf Sicherheit wichtig finden. Solvians Reisewunsch ist nicht automatisch verantwortungslos oder ein Anspruch auf ihr Geld.\n\nHinter Geldzielen stecken oft gute, aber verschiedene Bedürfnisse: Sicherheit, Erleben, Zukunft oder gemeinsame Erinnerung. Zahlen allein können diese Gründe nicht gegeneinander abwägen.\n\nVielleicht beginnt die Einigung nicht bei der Summe, sondern bei der Frage: „Was soll dieses Geld für jeden von uns ermöglichen oder schützen?“",
+      "body": "Tavia möchte eine Rücklage bilden. Solvian zeigt auf den Preis einer längeren gemeinsamen Reise. Auf beiden Zetteln steht derselbe verfügbare Betrag. Tavia darf Sicherheit wichtig finden. Solvians Reisewunsch ist nicht automatisch verantwortungslos oder ein Anspruch auf ihr Geld.\n\nHinter Geldzielen stecken oft gute, aber verschiedene Bedürfnisse: Sicherheit, Erleben, Zukunft oder gemeinsame Erinnerung. Zahlen allein können diese Gründe nicht gegeneinander abwägen.\n\nTavia kann ihr Sparziel schützen und zugleich fragen, ob eine kleinere gemeinsame Reise denkbar wäre. Ihr Sicherheitsbedürfnis braucht keine Rechtfertigung.",
       "choice_labels": [
         {
           "id": "E0488",
@@ -5727,7 +5727,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Unterschiedliche Sparziele",
-      "body": "Tavia möchte eine Rücklage bilden. Solvian zeigt auf den Preis einer längeren gemeinsamen Reise. Auf beiden Zetteln steht derselbe verfügbare Betrag. Von außen gibt es einen Betrag und zwei Verwendungen. Noch ist weder geklärt, wem welches Geld gehört, noch ob ein Teilweg möglich wäre.\n\nHinter Geldzielen stecken oft gute, aber verschiedene Bedürfnisse: Sicherheit, Erleben, Zukunft oder gemeinsame Erinnerung. Zahlen allein können diese Gründe nicht gegeneinander abwägen.\n\nVielleicht beginnt die Einigung nicht bei der Summe, sondern bei der Frage: „Was soll dieses Geld für jeden von uns ermöglichen oder schützen?“",
+      "body": "Tavia möchte eine Rücklage bilden. Solvian zeigt auf den Preis einer längeren gemeinsamen Reise. Auf beiden Zetteln steht derselbe verfügbare Betrag. Auf den Zetteln stehen ein Betrag und zwei Verwendungen. Noch ist weder geklärt, wem welches Geld gehört, noch ob ein Teilweg möglich wäre.\n\nHinter Geldzielen stecken oft gute, aber verschiedene Bedürfnisse: Sicherheit, Erleben, Zukunft oder gemeinsame Erinnerung. Zahlen allein können diese Gründe nicht gegeneinander abwägen.\n\nEin Betrag, zwei Wünsche: Eigentum, Prioritäten und mögliche Teilwege sind noch offen. Auch getrennte Lösungen bleiben möglich.",
       "choice_labels": [
         {
           "id": "E0492",
@@ -5751,7 +5751,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Ein Plan mit fehlender Zeit",
-      "body": "Solvian schickt einen Besuchsplan mit Anreise, Ausflug und Essen. Tavia markiert die Wegezeiten; plötzlich passt nicht mehr alles in den Nachmittag. Solvian hat sich Gedanken gemacht. Dass der Plan zu groß ist, macht seine Mühe nicht wertlos; vielleicht braucht sie nur weniger Programmpunkte.\n\nEin voller Plan kann Vorfreude ausdrücken und zugleich Druck machen. Wer selten Zeit miteinander hat, möchte leicht jedes schöne Vorhaben in wenige Stunden packen.\n\nEin schöner Besuch muss nicht alles enthalten. Beide könnten wählen, welcher eine Teil ihnen wichtig ist – und Raum lassen, einfach beieinander zu sein.",
+      "body": "Solvian schickt einen Besuchsplan mit Anreise, Ausflug und Essen. Tavia markiert die Wegezeiten; plötzlich passt nicht mehr alles in den Nachmittag. Tavia sieht die Grenzen des Nachmittags. Ihre Markierungen können Fürsorge für einen realistischen Besuch sein, nicht mangelnde Begeisterung.\n\nEin voller Plan kann Vorfreude ausdrücken und zugleich Druck machen. Wer selten Zeit miteinander hat, möchte leicht jedes schöne Vorhaben in wenige Stunden packen.\n\nTavia kann zeigen, was zeitlich nicht aufgeht, und sagen, welcher Teil des Besuchs ihr wichtig wäre. Ihre Zeitgrenze bleibt dabei real.",
       "choice_labels": [
         {
           "id": "E0496",
@@ -5775,7 +5775,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Ein Plan mit fehlender Zeit",
-      "body": "Solvian schickt einen Besuchsplan mit Anreise, Ausflug und Essen. Tavia markiert die Wegezeiten; plötzlich passt nicht mehr alles in den Nachmittag. Tavia sieht die Grenzen des Nachmittags. Ihre Markierungen können Fürsorge für einen realistischen Besuch sein, nicht mangelnde Begeisterung.\n\nEin voller Plan kann Vorfreude ausdrücken und zugleich Druck machen. Wer selten Zeit miteinander hat, möchte leicht jedes schöne Vorhaben in wenige Stunden packen.\n\nEin schöner Besuch muss nicht alles enthalten. Beide könnten wählen, welcher eine Teil ihnen wichtig ist – und Raum lassen, einfach beieinander zu sein.",
+      "body": "Solvian schickt einen Besuchsplan mit Anreise, Ausflug und Essen. Tavia markiert die Wegezeiten; plötzlich passt nicht mehr alles in den Nachmittag. Solvian hat sich Gedanken gemacht. Dass der Plan zu groß ist, macht seine Mühe nicht wertlos; vielleicht braucht sie nur weniger Programmpunkte.\n\nEin voller Plan kann Vorfreude ausdrücken und zugleich Druck machen. Wer selten Zeit miteinander hat, möchte leicht jedes schöne Vorhaben in wenige Stunden packen.\n\nSolvian kann seinen Plan verkleinern, ohne Tavias Begeisterung aus ihren Markierungen abzulesen. Seine Vorfreude darf trotzdem sichtbar bleiben.",
       "choice_labels": [
         {
           "id": "E0500",
@@ -5799,7 +5799,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Ein Plan mit fehlender Zeit",
-      "body": "Solvian schickt einen Besuchsplan mit Anreise, Ausflug und Essen. Tavia markiert die Wegezeiten; plötzlich passt nicht mehr alles in den Nachmittag. Von außen fehlen Stunden, nicht notwendig Zuneigung. Wegezeit lässt sich leider auch mit sehr guter Stimmung nicht wegverhandeln.\n\nEin voller Plan kann Vorfreude ausdrücken und zugleich Druck machen. Wer selten Zeit miteinander hat, möchte leicht jedes schöne Vorhaben in wenige Stunden packen.\n\nEin schöner Besuch muss nicht alles enthalten. Beide könnten wählen, welcher eine Teil ihnen wichtig ist – und Raum lassen, einfach beieinander zu sein.",
+      "body": "Solvian schickt einen Besuchsplan mit Anreise, Ausflug und Essen. Tavia markiert die Wegezeiten; plötzlich passt nicht mehr alles in den Nachmittag. Dem Nachmittag fehlen Stunden, nicht notwendig Zuneigung. Wegezeit lässt sich leider auch mit sehr guter Stimmung nicht wegverhandeln.\n\nEin voller Plan kann Vorfreude ausdrücken und zugleich Druck machen. Wer selten Zeit miteinander hat, möchte leicht jedes schöne Vorhaben in wenige Stunden packen.\n\nDer Nachmittag ist kürzer als der Plan. Welcher Teil bleiben soll, haben beide noch nicht gewählt. Auch Ruhe kann Teil des Besuchs sein.",
       "choice_labels": [
         {
           "id": "E0504",
@@ -5823,7 +5823,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Wer heute abholt",
-      "body": "Liviane fragt: „Wer holt Nola heute ab?“ Im Kalender steht nur die Uhrzeit. Quirin hält gerade einen Ausdruck seines Geschichtenprojekts. Quirin darf sein Projekt wichtig nehmen. Jetzt braucht es zusätzlich eine klare Antwort darauf, ob er die Abholung übernimmt oder wer sonst gefragt wird.\n\nWenn Verantwortung nicht sichtbar zugeordnet ist, wird eine kurze Frage schnell schwer. Hinter ihr können Zeitdruck, alte Ungleichgewichte oder einfach eine vergessene Absprache stehen.\n\nZuerst darf der heutige Weg gesichert werden. Später können beide den Kalender so ergänzen, dass Verantwortung nicht wieder zwischen zwei Namen verschwindet.",
+      "body": "Liviane fragt: „Wer holt Nola heute ab?“ Im Kalender steht nur die Uhrzeit. Quirin hält gerade einen Ausdruck seines Geschichtenprojekts. Quirin darf sein Projekt wichtig nehmen. Jetzt braucht es zusätzlich eine klare Antwort darauf, ob er die Abholung übernimmt oder wer sonst gefragt wird.\n\nWenn Verantwortung nicht sichtbar zugeordnet ist, wird eine kurze Frage schnell schwer. Hinter ihr können Zeitdruck, alte Ungleichgewichte oder einfach eine vergessene Absprache stehen.\n\nQuirin kann jetzt klar sagen, ob er Nola abholt oder welche andere Lösung er anfragen kann.",
       "choice_labels": [
         {
           "id": "E0508",
@@ -5847,7 +5847,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Wer heute abholt",
-      "body": "Liviane fragt: „Wer holt Nola heute ab?“ Im Kalender steht nur die Uhrzeit. Quirin hält gerade einen Ausdruck seines Geschichtenprojekts. Liviane darf Verlässlichkeit brauchen. Ihre Frage sagt noch nicht, dass Quirin allein zuständig war; der namenlose Eintrag lässt genau das offen.\n\nWenn Verantwortung nicht sichtbar zugeordnet ist, wird eine kurze Frage schnell schwer. Hinter ihr können Zeitdruck, alte Ungleichgewichte oder einfach eine vergessene Absprache stehen.\n\nZuerst darf der heutige Weg gesichert werden. Später können beide den Kalender so ergänzen, dass Verantwortung nicht wieder zwischen zwei Namen verschwindet.",
+      "body": "Liviane fragt: „Wer holt Nola heute ab?“ Im Kalender steht nur die Uhrzeit. Quirin hält gerade einen Ausdruck seines Geschichtenprojekts. Liviane darf Verlässlichkeit brauchen. Ihre Frage sagt noch nicht, dass Quirin allein zuständig war; der namenlose Eintrag lässt genau das offen.\n\nWenn Verantwortung nicht sichtbar zugeordnet ist, wird eine kurze Frage schnell schwer. Hinter ihr können Zeitdruck, alte Ungleichgewichte oder einfach eine vergessene Absprache stehen.\n\nLiviane kann eine verlässliche Antwort brauchen, ohne Quirins Zuständigkeit aus dem leeren Kalenderfeld abzuleiten. Ihre eigene Zeit gehört ebenfalls in diese Antwort.",
       "choice_labels": [
         {
           "id": "E0512",
@@ -5871,7 +5871,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Wer heute abholt",
-      "body": "Liviane fragt: „Wer holt Nola heute ab?“ Im Kalender steht nur die Uhrzeit. Quirin hält gerade einen Ausdruck seines Geschichtenprojekts. Von außen gibt es eine feste Uhrzeit und keine feste Person. Schuld lässt sich daraus nicht ableiten, Handlungsbedarf schon.\n\nWenn Verantwortung nicht sichtbar zugeordnet ist, wird eine kurze Frage schnell schwer. Hinter ihr können Zeitdruck, alte Ungleichgewichte oder einfach eine vergessene Absprache stehen.\n\nZuerst darf der heutige Weg gesichert werden. Später können beide den Kalender so ergänzen, dass Verantwortung nicht wieder zwischen zwei Namen verschwindet.",
+      "body": "Liviane fragt: „Wer holt Nola heute ab?“ Im Kalender steht nur die Uhrzeit. Quirin hält gerade einen Ausdruck seines Geschichtenprojekts. Im Kalender steht eine feste Uhrzeit, aber keine feste Person. Schuld lässt sich daraus nicht ableiten, Handlungsbedarf schon.\n\nWenn Verantwortung nicht sichtbar zugeordnet ist, wird eine kurze Frage schnell schwer. Hinter ihr können Zeitdruck, alte Ungleichgewichte oder einfach eine vergessene Absprache stehen.\n\nDie Uhrzeit steht fest, der Name fehlt. Zuerst braucht der heutige Weg eine wirkliche Person. Nola braucht heute dennoch eine verlässliche Abholung.",
       "choice_labels": [
         {
           "id": "E0516",
@@ -5895,7 +5895,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Ein Anruf aus der Pflege",
-      "body": "Quirins Telefon klingelt wegen einer Pflegeaufgabe, die heute zusätzliche Organisation braucht. Danach legt er es neben den Tagesplan; Liviane sieht auf die notierte Uhrzeit. Quirin darf von dem Anruf beansprucht sein. Er muss die neue Aufgabe nicht allein tragen, sollte aber sagen können, was sich dadurch heute verändert.\n\nPflege lässt sich selten ordentlich in einen Kalender falten. Wenn etwas Dringendes dazukommt, geraten eigene Pläne und gemeinsame Aufgaben schnell unter Druck.\n\nBevor beide alles lösen, könnte eine kleine Bestandsaufnahme helfen: Was ist heute wirklich dringend, wer hat welche Kraft, und wen können sie zusätzlich fragen?",
+      "body": "Quirins Telefon klingelt wegen einer Pflegeaufgabe, die heute zusätzliche Organisation braucht. Danach legt er es neben den Tagesplan; Liviane sieht auf die notierte Uhrzeit. Liviane darf auf die Folgen für ihren Tag schauen. Das ist keine Herzlosigkeit gegenüber der Pflegeaufgabe, sondern Teil der gemeinsamen Wirklichkeit.\n\nPflege lässt sich selten ordentlich in einen Kalender falten. Wenn etwas Dringendes dazukommt, geraten eigene Pläne und gemeinsame Aufgaben schnell unter Druck.\n\nLiviane kann nach den Folgen für ihren Tag fragen und ihre eigene verfügbare Kraft ehrlich benennen.",
       "choice_labels": [
         {
           "id": "E0520",
@@ -5919,7 +5919,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Ein Anruf aus der Pflege",
-      "body": "Quirins Telefon klingelt wegen einer Pflegeaufgabe, die heute zusätzliche Organisation braucht. Danach legt er es neben den Tagesplan; Liviane sieht auf die notierte Uhrzeit. Liviane darf auf die Folgen für ihren Tag schauen. Das ist keine Herzlosigkeit gegenüber der Pflegeaufgabe, sondern Teil der gemeinsamen Wirklichkeit.\n\nPflege lässt sich selten ordentlich in einen Kalender falten. Wenn etwas Dringendes dazukommt, geraten eigene Pläne und gemeinsame Aufgaben schnell unter Druck.\n\nBevor beide alles lösen, könnte eine kleine Bestandsaufnahme helfen: Was ist heute wirklich dringend, wer hat welche Kraft, und wen können sie zusätzlich fragen?",
+      "body": "Quirins Telefon klingelt wegen einer Pflegeaufgabe, die heute zusätzliche Organisation braucht. Danach legt er es neben den Tagesplan; Liviane sieht auf die notierte Uhrzeit. Quirin darf von dem Anruf beansprucht sein. Er muss die neue Aufgabe nicht allein tragen, sollte aber sagen können, was sich dadurch heute verändert.\n\nPflege lässt sich selten ordentlich in einen Kalender falten. Wenn etwas Dringendes dazukommt, geraten eigene Pläne und gemeinsame Aufgaben schnell unter Druck.\n\nQuirin kann sagen, was der Anruf verändert hat, ohne Livianes Übernahme weiterer Aufgaben vorauszusetzen.",
       "choice_labels": [
         {
           "id": "E0524",
@@ -5943,7 +5943,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Ein Anruf aus der Pflege",
-      "body": "Quirins Telefon klingelt wegen einer Pflegeaufgabe, die heute zusätzliche Organisation braucht. Danach legt er es neben den Tagesplan; Liviane sieht auf die notierte Uhrzeit. Von außen sind ein zusätzlicher Bedarf und ein bestehender Plan zu sehen. Wer was übernehmen kann, ist noch nicht geklärt.\n\nPflege lässt sich selten ordentlich in einen Kalender falten. Wenn etwas Dringendes dazukommt, geraten eigene Pläne und gemeinsame Aufgaben schnell unter Druck.\n\nBevor beide alles lösen, könnte eine kleine Bestandsaufnahme helfen: Was ist heute wirklich dringend, wer hat welche Kraft, und wen können sie zusätzlich fragen?",
+      "body": "Quirins Telefon klingelt wegen einer Pflegeaufgabe, die heute zusätzliche Organisation braucht. Danach legt er es neben den Tagesplan; Liviane sieht auf die notierte Uhrzeit. Nebeneinander liegen ein zusätzlicher Bedarf und ein bestehender Plan. Wer was übernehmen kann, ist noch nicht geklärt.\n\nPflege lässt sich selten ordentlich in einen Kalender falten. Wenn etwas Dringendes dazukommt, geraten eigene Pläne und gemeinsame Aufgaben schnell unter Druck.\n\nPflegebedarf und Tagesplan liegen nebeneinander. Dringlichkeit, Kraft und zusätzliche Hilfe sind noch zu sortieren. Niemand ist dadurch automatisch für alles zuständig.",
       "choice_labels": [
         {
           "id": "E0528",
@@ -5967,7 +5967,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Besuch am Wochenende",
-      "body": "Liviane nennt einen möglichen Besuch am Wochenende. Quirin zeigt auf einen vollen Samstag. Nola schiebt einen Bauklotz auf den Kalender. Quirin darf die Belastung des Samstags ernst nehmen. Vielleicht kann er zugleich sagen, welcher Teil des Besuchs für ihn noch vorstellbar wäre.\n\nFamilienzeit, Besuch und Erholung konkurrieren leicht miteinander, obwohl alle drei wichtig sein können. Ein voller Tag ist nicht automatisch eine Ablehnung der Menschen, die kommen möchten.\n\nVielleicht lautet die passende Frage nicht „Besuch oder nicht?“, sondern: Welche Dauer, welcher Tag und welche Unterstützung würden ihn für alle tragbar machen?",
+      "body": "Liviane nennt einen möglichen Besuch am Wochenende. Quirin zeigt auf einen vollen Samstag. Nola schiebt einen Bauklotz auf den Kalender. Quirin darf die Belastung des Samstags ernst nehmen. Vielleicht kann er zugleich sagen, welcher Teil des Besuchs für ihn noch vorstellbar wäre.\n\nFamilienzeit, Besuch und Erholung konkurrieren leicht miteinander, obwohl alle drei wichtig sein können. Ein voller Tag ist nicht automatisch eine Ablehnung der Menschen, die kommen möchten.\n\nQuirin kann die Enge des Samstags beschreiben und sagen, welcher Besuchsrahmen für ihn noch denkbar ist.",
       "choice_labels": [
         {
           "id": "E0532",
@@ -5991,7 +5991,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Besuch am Wochenende",
-      "body": "Liviane nennt einen möglichen Besuch am Wochenende. Quirin zeigt auf einen vollen Samstag. Nola schiebt einen Bauklotz auf den Kalender. Liviane darf sich den Besuch wünschen. Bevor daraus eine gemeinsame Zusage wird, braucht sie Quirins tatsächliche Kapazität – und ihre eigene.\n\nFamilienzeit, Besuch und Erholung konkurrieren leicht miteinander, obwohl alle drei wichtig sein können. Ein voller Tag ist nicht automatisch eine Ablehnung der Menschen, die kommen möchten.\n\nVielleicht lautet die passende Frage nicht „Besuch oder nicht?“, sondern: Welche Dauer, welcher Tag und welche Unterstützung würden ihn für alle tragbar machen?",
+      "body": "Liviane nennt einen möglichen Besuch am Wochenende. Quirin zeigt auf einen vollen Samstag. Nola schiebt einen Bauklotz auf den Kalender. Liviane darf sich den Besuch wünschen. Bevor daraus eine gemeinsame Zusage wird, braucht sie Quirins tatsächliche Kapazität – und ihre eigene.\n\nFamilienzeit, Besuch und Erholung konkurrieren leicht miteinander, obwohl alle drei wichtig sein können. Ein voller Tag ist nicht automatisch eine Ablehnung der Menschen, die kommen möchten.\n\nLiviane kann ihren Wunsch als offenen Vorschlag stehenlassen und Quirins tatsächliche Kapazität abwarten.",
       "choice_labels": [
         {
           "id": "E0536",
@@ -6015,7 +6015,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Besuch am Wochenende",
-      "body": "Liviane nennt einen möglichen Besuch am Wochenende. Quirin zeigt auf einen vollen Samstag. Nola schiebt einen Bauklotz auf den Kalender. Von außen stehen ein Wunsch, mehrere Termine und ein Bauklotz beieinander. Der Bauklotz stimmt übrigens für keine Seite.\n\nFamilienzeit, Besuch und Erholung konkurrieren leicht miteinander, obwohl alle drei wichtig sein können. Ein voller Tag ist nicht automatisch eine Ablehnung der Menschen, die kommen möchten.\n\nVielleicht lautet die passende Frage nicht „Besuch oder nicht?“, sondern: Welche Dauer, welcher Tag und welche Unterstützung würden ihn für alle tragbar machen?",
+      "body": "Liviane nennt einen möglichen Besuch am Wochenende. Quirin zeigt auf einen vollen Samstag. Nola schiebt einen Bauklotz auf den Kalender. An diesem Samstag treffen ein Besuchswunsch und mehrere Termine aufeinander; Nolas Bauklotz liegt mitten im Plan. Der Bauklotz stimmt übrigens für keine Seite.\n\nFamilienzeit, Besuch und Erholung konkurrieren leicht miteinander, obwohl alle drei wichtig sein können. Ein voller Tag ist nicht automatisch eine Ablehnung der Menschen, die kommen möchten.\n\nBesuch, Termine und Familienzeit teilen denselben Samstag. Ein gemeinsamer Plan ist daraus noch nicht geworden. Nolas Bedürfnisse gehören ebenfalls in den Plan.",
       "choice_labels": [
         {
           "id": "E0540",
@@ -6039,7 +6039,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Die Verantwortung zwischen Terminen",
-      "body": "Quirin setzt einen zusätzlichen Termin zwischen zwei Einträge. Liviane zeigt auf den Weg dazwischen und auf Nolas Betreuungsende. Quirin darf den Termin wichtig finden. Damit er realistisch wird, muss sichtbar werden, wer den Weg und Nolas Betreuung tatsächlich übernimmt.\n\nAuf Papier passen Termine oft näher zusammen als im Leben. Wege, Übergaben und ein müdes Kind brauchen Zeit, auch wenn im Kalender noch zwei Zentimeter frei sind.\n\nEin belastbarer Plan nennt nicht nur Uhrzeiten, sondern auch Namen, Wege und Puffer. Wenn das nicht aufgeht, darf ein Termin verschoben werden.",
+      "body": "Quirin setzt einen zusätzlichen Termin zwischen zwei Einträge. Liviane zeigt auf den Weg dazwischen und auf Nolas Betreuungsende. Liviane sieht eine praktische Lücke. Sie darf sie benennen, ohne schon automatisch für deren Schließung zuständig zu sein.\n\nAuf Papier passen Termine oft näher zusammen als im Leben. Wege, Übergaben und ein müdes Kind brauchen Zeit, auch wenn im Kalender noch zwei Zentimeter frei sind.\n\nLiviane kann die Lücke benennen, ohne sie selbst schließen zu müssen. Ihre eigene verfügbare Zeit zählt dabei mit.",
       "choice_labels": [
         {
           "id": "E0544",
@@ -6063,7 +6063,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Die Verantwortung zwischen Terminen",
-      "body": "Quirin setzt einen zusätzlichen Termin zwischen zwei Einträge. Liviane zeigt auf den Weg dazwischen und auf Nolas Betreuungsende. Liviane sieht eine praktische Lücke. Sie darf sie benennen, ohne schon automatisch für deren Schließung zuständig zu sein.\n\nAuf Papier passen Termine oft näher zusammen als im Leben. Wege, Übergaben und ein müdes Kind brauchen Zeit, auch wenn im Kalender noch zwei Zentimeter frei sind.\n\nEin belastbarer Plan nennt nicht nur Uhrzeiten, sondern auch Namen, Wege und Puffer. Wenn das nicht aufgeht, darf ein Termin verschoben werden.",
+      "body": "Quirin setzt einen zusätzlichen Termin zwischen zwei Einträge. Liviane zeigt auf den Weg dazwischen und auf Nolas Betreuungsende. Quirin darf den Termin wichtig finden. Damit er realistisch wird, muss sichtbar werden, wer den Weg und Nolas Betreuung tatsächlich übernimmt.\n\nAuf Papier passen Termine oft näher zusammen als im Leben. Wege, Übergaben und ein müdes Kind brauchen Zeit, auch wenn im Kalender noch zwei Zentimeter frei sind.\n\nQuirin kann den Termin erst dann fest eintragen, wenn Wege und Betreuung wirklich geklärt sind.",
       "choice_labels": [
         {
           "id": "E0548",
@@ -6087,7 +6087,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Die Verantwortung zwischen Terminen",
-      "body": "Quirin setzt einen zusätzlichen Termin zwischen zwei Einträge. Liviane zeigt auf den Weg dazwischen und auf Nolas Betreuungsende. Von außen ist der Plan rechnerisch eng und organisatorisch offen. Gute Absicht ersetzt weder Fahrzeit noch eine konkrete Person.\n\nAuf Papier passen Termine oft näher zusammen als im Leben. Wege, Übergaben und ein müdes Kind brauchen Zeit, auch wenn im Kalender noch zwei Zentimeter frei sind.\n\nEin belastbarer Plan nennt nicht nur Uhrzeiten, sondern auch Namen, Wege und Puffer. Wenn das nicht aufgeht, darf ein Termin verschoben werden.",
+      "body": "Quirin setzt einen zusätzlichen Termin zwischen zwei Einträge. Liviane zeigt auf den Weg dazwischen und auf Nolas Betreuungsende. Im Plan fehlen Zeit und eine geklärte Zuständigkeit. Gute Absicht ersetzt weder Fahrzeit noch eine konkrete Person.\n\nAuf Papier passen Termine oft näher zusammen als im Leben. Wege, Übergaben und ein müdes Kind brauchen Zeit, auch wenn im Kalender noch zwei Zentimeter frei sind.\n\nZwischen zwei Einträgen fehlen nicht nur Minuten, sondern Zuständigkeit. Beides ist noch offen. Ein leerer Kalenderraum löst beides nicht.",
       "choice_labels": [
         {
           "id": "E0552",
@@ -6111,7 +6111,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Der eigene Abend",
-      "body": "Tavia schreibt Solvian, sie wolle den Abend für sich nutzen. Gemeinsame Zeit war für heute noch nicht bestätigt; beide sind in ihren Wohnungen. Solvian darf einen kleinen Stich spüren. Weil kein gemeinsamer Abend vereinbart war, muss er daraus aber keine Zurückweisung machen.\n\nDer Wunsch nach Zeit allein kann in einer Beziehung völlig gesund sein und sich auf der anderen Seite trotzdem wie Abstand anfühlen. Das Gefühl erklärt noch nicht die Absicht.\n\nBeides kann Platz haben: „Hab einen ruhigen Abend“ – und später die Frage, wann beide wieder bewusst Zeit füreinander möchten.",
+      "body": "Tavia schreibt Solvian, sie wolle den Abend für sich nutzen. Gemeinsame Zeit war für heute noch nicht bestätigt; beide sind in ihren Wohnungen. Solvian darf einen kleinen Stich spüren. Weil kein gemeinsamer Abend vereinbart war, muss er daraus aber keine Zurückweisung machen.\n\nDer Wunsch nach Zeit allein kann in einer Beziehung völlig gesund sein und sich auf der anderen Seite trotzdem wie Abstand anfühlen. Das Gefühl erklärt noch nicht die Absicht.\n\nSolvian kann Tavias Eigenzeit respektieren und seinen Wunsch nach einem nächsten gemeinsamen Abend später aussprechen.",
       "choice_labels": [
         {
           "id": "E0556",
@@ -6135,7 +6135,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Der eigene Abend",
-      "body": "Tavia schreibt Solvian, sie wolle den Abend für sich nutzen. Gemeinsame Zeit war für heute noch nicht bestätigt; beide sind in ihren Wohnungen. Tavia darf ihren Abend für sich wählen. Ein warmer Zusatz kann helfen, ohne dass sie ihre Grenze rechtfertigen muss.\n\nDer Wunsch nach Zeit allein kann in einer Beziehung völlig gesund sein und sich auf der anderen Seite trotzdem wie Abstand anfühlen. Das Gefühl erklärt noch nicht die Absicht.\n\nBeides kann Platz haben: „Hab einen ruhigen Abend“ – und später die Frage, wann beide wieder bewusst Zeit füreinander möchten.",
+      "body": "Tavia schreibt Solvian, sie wolle den Abend für sich nutzen. Gemeinsame Zeit war für heute noch nicht bestätigt; beide sind in ihren Wohnungen. Tavia darf ihren Abend für sich wählen. Ein warmer Zusatz kann helfen, ohne dass sie ihre Grenze rechtfertigen muss.\n\nDer Wunsch nach Zeit allein kann in einer Beziehung völlig gesund sein und sich auf der anderen Seite trotzdem wie Abstand anfühlen. Das Gefühl erklärt noch nicht die Absicht.\n\nTavia kann ihren Abend für sich wählen; ein warmer Zusatz ist ein Angebot, keine Pflicht zur Rechtfertigung.",
       "choice_labels": [
         {
           "id": "E0560",
@@ -6159,7 +6159,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Der eigene Abend",
-      "body": "Tavia schreibt Solvian, sie wolle den Abend für sich nutzen. Gemeinsame Zeit war für heute noch nicht bestätigt; beide sind in ihren Wohnungen. Von außen ist eine klare Bitte um Eigenzeit zu sehen. Ob Solvian mit gemeinsamer Zeit gerechnet hat, war bisher nicht ausgesprochen.\n\nDer Wunsch nach Zeit allein kann in einer Beziehung völlig gesund sein und sich auf der anderen Seite trotzdem wie Abstand anfühlen. Das Gefühl erklärt noch nicht die Absicht.\n\nBeides kann Platz haben: „Hab einen ruhigen Abend“ – und später die Frage, wann beide wieder bewusst Zeit füreinander möchten.",
+      "body": "Tavia schreibt Solvian, sie wolle den Abend für sich nutzen. Gemeinsame Zeit war für heute noch nicht bestätigt; beide sind in ihren Wohnungen. In der Nachricht steht eine klare Bitte um Eigenzeit. Ob Solvian mit gemeinsamer Zeit gerechnet hat, war bisher nicht ausgesprochen.\n\nDer Wunsch nach Zeit allein kann in einer Beziehung völlig gesund sein und sich auf der anderen Seite trotzdem wie Abstand anfühlen. Das Gefühl erklärt noch nicht die Absicht.\n\nFür heute war keine gemeinsame Zeit bestätigt. Wann beide sich wiedersehen möchten, bleibt offen.",
       "choice_labels": [
         {
           "id": "E0564",
@@ -6183,7 +6183,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Ein Blick auf das Display",
-      "body": "Während eines Besuchs leuchtet Tavias Telefon auf. Solvian blickt auf das Display; Tavia dreht das Gerät um. Solvian darf bemerken, dass ihn der Moment verunsichert. Er hat jedoch keinen Anspruch auf den Inhalt und kann über sein Gefühl sprechen, ohne Kontrolle zu verlangen.\n\nEin kurzer Blick kann aus Neugier entstehen und trotzdem eine Grenze berühren. Das Umdrehen kann Privatsphäre schützen, ohne ein Geheimnis zu beweisen.\n\nEine gute Klärung bleibt bei sich: „Ich möchte nicht, dass du mitliest“ oder „Ich merke, dass mich der Moment gerade unsicher macht.“",
+      "body": "Während eines Besuchs leuchtet Tavias Telefon auf. Solvian blickt auf das Display; Tavia dreht das Gerät um. Tavia darf ihr Display schützen. Wenn Solvians Blick unangenehm war, kann sie genau diese Grenze benennen, statt seine Motive zu erraten.\n\nEin kurzer Blick kann aus Neugier entstehen und trotzdem eine Grenze berühren. Das Umdrehen kann Privatsphäre schützen, ohne ein Geheimnis zu beweisen.\n\nTavia kann ihre Grenze klar benennen: „Ich möchte nicht, dass du auf meinem Display mitliest.“ Ihre Privatsphäre braucht dafür keine weitere Begründung.",
       "choice_labels": [
         {
           "id": "E0568",
@@ -6207,7 +6207,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Ein Blick auf das Display",
-      "body": "Während eines Besuchs leuchtet Tavias Telefon auf. Solvian blickt auf das Display; Tavia dreht das Gerät um. Tavia darf ihr Display schützen. Wenn Solvians Blick unangenehm war, kann sie genau diese Grenze benennen, statt seine Motive zu erraten.\n\nEin kurzer Blick kann aus Neugier entstehen und trotzdem eine Grenze berühren. Das Umdrehen kann Privatsphäre schützen, ohne ein Geheimnis zu beweisen.\n\nEine gute Klärung bleibt bei sich: „Ich möchte nicht, dass du mitliest“ oder „Ich merke, dass mich der Moment gerade unsicher macht.“",
+      "body": "Während eines Besuchs leuchtet Tavias Telefon auf. Solvian blickt auf das Display; Tavia dreht das Gerät um. Solvian darf bemerken, dass ihn der Moment verunsichert. Er hat jedoch keinen Anspruch auf den Inhalt und kann über sein Gefühl sprechen, ohne Kontrolle zu verlangen.\n\nEin kurzer Blick kann aus Neugier entstehen und trotzdem eine Grenze berühren. Das Umdrehen kann Privatsphäre schützen, ohne ein Geheimnis zu beweisen.\n\nSolvian kann seine Unsicherheit aussprechen, ohne daraus einen Anspruch auf Tavias Nachrichten zu machen. Tavias Grenze bleibt dabei vollständig gültig.",
       "choice_labels": [
         {
           "id": "E0572",
@@ -6231,7 +6231,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Ein Blick auf das Display",
-      "body": "Während eines Besuchs leuchtet Tavias Telefon auf. Solvian blickt auf das Display; Tavia dreht das Gerät um. Von außen sind Licht, Blick und eine Handbewegung sichtbar. Misstrauen oder Täuschung lassen sich daraus nicht zuverlässig erkennen.\n\nEin kurzer Blick kann aus Neugier entstehen und trotzdem eine Grenze berühren. Das Umdrehen kann Privatsphäre schützen, ohne ein Geheimnis zu beweisen.\n\nEine gute Klärung bleibt bei sich: „Ich möchte nicht, dass du mitliest“ oder „Ich merke, dass mich der Moment gerade unsicher macht.“\n\nPrivatsphäre und Vertrauen können gleichzeitig wichtig sein, ohne sich gegenseitig auszuschließen.",
+      "body": "Während eines Besuchs leuchtet Tavias Telefon auf. Solvian blickt auf das Display; Tavia dreht das Gerät um. Der kurze Moment zeigt Licht, einen Blick und eine Handbewegung. Misstrauen oder Täuschung lassen sich daraus nicht zuverlässig erkennen.\n\nEin kurzer Blick kann aus Neugier entstehen und trotzdem eine Grenze berühren. Das Umdrehen kann Privatsphäre schützen, ohne ein Geheimnis zu beweisen.\n\nPrivatsphäre und Vertrauen stehen nicht automatisch gegeneinander. Der kurze Moment entscheidet darüber noch nichts.\n\nPrivatsphäre und Vertrauen können gleichzeitig wichtig sein, ohne sich gegenseitig auszuschließen.",
       "choice_labels": [
         {
           "id": "E0576",
@@ -6255,7 +6255,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Verschiedene Freundeskreise",
-      "body": "Solvian erzählt von einer Einladung seines Freundeskreises. Tavia nennt ein eigenes Treffen am selben Abend; beide finden an verschiedenen Orten statt. Solvian darf seinen Freundeskreis sehen wollen. Tavias eigener Plan ist nicht automatisch ein Zeichen, dass sie seinen Menschen ausweicht.\n\nEine Beziehung muss nicht jeden freien Abend gemeinsam verbringen. Gleichzeitig können getrennte Pläne Fragen auslösen: War Gemeinsamkeit erwartet, fehlt Interesse am Umfeld des anderen oder ist es einfach ein voller Kalender?\n\nVielleicht müssen sie nichts lösen. Falls doch etwas fehlt, hilft eine konkrete Bitte mehr als eine Loyalitätsprüfung.",
+      "body": "Solvian erzählt von einer Einladung seines Freundeskreises. Tavia nennt ein eigenes Treffen am selben Abend; beide finden an verschiedenen Orten statt. Tavia darf ihre Freundschaften pflegen. Solvians Einladung könnte trotzdem ein Wunsch sein, sie einmal dabeizuhaben – das muss er nur aussprechen.\n\nEine Beziehung muss nicht jeden freien Abend gemeinsam verbringen. Gleichzeitig können getrennte Pläne Fragen auslösen: War Gemeinsamkeit erwartet, fehlt Interesse am Umfeld des anderen oder ist es einfach ein voller Kalender?\n\nTavia kann bei ihrem eigenen Treffen bleiben und nachfragen, ob Solvians Erwähnung auch eine Einladung war.",
       "choice_labels": [
         {
           "id": "E0580",
@@ -6279,7 +6279,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Verschiedene Freundeskreise",
-      "body": "Solvian erzählt von einer Einladung seines Freundeskreises. Tavia nennt ein eigenes Treffen am selben Abend; beide finden an verschiedenen Orten statt. Tavia darf ihre Freundschaften pflegen. Solvians Einladung könnte trotzdem ein Wunsch sein, sie einmal dabeizuhaben – das muss er nur aussprechen.\n\nEine Beziehung muss nicht jeden freien Abend gemeinsam verbringen. Gleichzeitig können getrennte Pläne Fragen auslösen: War Gemeinsamkeit erwartet, fehlt Interesse am Umfeld des anderen oder ist es einfach ein voller Kalender?\n\nVielleicht müssen sie nichts lösen. Falls doch etwas fehlt, hilft eine konkrete Bitte mehr als eine Loyalitätsprüfung.",
+      "body": "Solvian erzählt von einer Einladung seines Freundeskreises. Tavia nennt ein eigenes Treffen am selben Abend; beide finden an verschiedenen Orten statt. Solvian darf seinen Freundeskreis sehen wollen. Tavias eigener Plan ist nicht automatisch ein Zeichen, dass sie seinen Menschen ausweicht.\n\nEine Beziehung muss nicht jeden freien Abend gemeinsam verbringen. Gleichzeitig können getrennte Pläne Fragen auslösen: War Gemeinsamkeit erwartet, fehlt Interesse am Umfeld des anderen oder ist es einfach ein voller Kalender?\n\nSolvian kann seinen Wunsch nach gemeinsamer Teilnahme direkt aussprechen, statt Tavias Plan zu deuten.",
       "choice_labels": [
         {
           "id": "E0584",
@@ -6303,7 +6303,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Verschiedene Freundeskreise",
-      "body": "Solvian erzählt von einer Einladung seines Freundeskreises. Tavia nennt ein eigenes Treffen am selben Abend; beide finden an verschiedenen Orten statt. Von außen gibt es zwei Einladungen und einen Abend. Ob jemand verletzt ist oder beide zufrieden getrennt gehen, ist noch offen.\n\nEine Beziehung muss nicht jeden freien Abend gemeinsam verbringen. Gleichzeitig können getrennte Pläne Fragen auslösen: War Gemeinsamkeit erwartet, fehlt Interesse am Umfeld des anderen oder ist es einfach ein voller Kalender?\n\nVielleicht müssen sie nichts lösen. Falls doch etwas fehlt, hilft eine konkrete Bitte mehr als eine Loyalitätsprüfung.",
+      "body": "Solvian erzählt von einer Einladung seines Freundeskreises. Tavia nennt ein eigenes Treffen am selben Abend; beide finden an verschiedenen Orten statt. Für denselben Abend gibt es zwei Einladungen. Ob jemand verletzt ist oder beide zufrieden getrennt gehen, ist noch offen.\n\nEine Beziehung muss nicht jeden freien Abend gemeinsam verbringen. Gleichzeitig können getrennte Pläne Fragen auslösen: War Gemeinsamkeit erwartet, fehlt Interesse am Umfeld des anderen oder ist es einfach ein voller Kalender?\n\nZwei Einladungen teilen einen Abend. Vielleicht fehlt nichts; vielleicht wartet nur eine konkrete Bitte.",
       "choice_labels": [
         {
           "id": "E0588",
@@ -6327,7 +6327,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Die unbeantwortete Nachfrage",
-      "body": "Solvian fragt per Nachricht, wann Tavia ungefähr Zeit für einen Anruf hat. Eine Antwort steht noch aus; er liest seine eigene Frage erneut. Solvian darf unruhig werden und trotzdem zunächst bei den Fakten bleiben: Er hat gefragt, Tavia hat noch nicht geantwortet.\n\nWarten lässt eine harmlose Nachricht schnell größer werden. Jede Minute bietet Raum für Geschichten, obwohl sie keine neue Information bringt.\n\nSolvian kann seinen Abend weiterleben und später einmal freundlich nachfassen. Eine Antwort ist leichter zu empfangen, wenn sie nicht schon vorab gedeutet wurde.",
+      "body": "Solvian fragt per Nachricht, wann Tavia ungefähr Zeit für einen Anruf hat. Eine Antwort steht noch aus; er liest seine eigene Frage erneut. Solvian darf unruhig werden und trotzdem zunächst bei den Fakten bleiben: Er hat gefragt, Tavia hat noch nicht geantwortet.\n\nWarten lässt eine harmlose Nachricht schnell größer werden. Jede Minute bietet Raum für Geschichten, obwohl sie keine neue Information bringt.\n\nSolvian kann den offenen Abend weiterleben und später einmal freundlich nachfassen. Seine Frage darf bis dahin klein bleiben.",
       "choice_labels": [
         {
           "id": "E0592",
@@ -6351,7 +6351,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Die unbeantwortete Nachfrage",
-      "body": "Solvian fragt per Nachricht, wann Tavia ungefähr Zeit für einen Anruf hat. Eine Antwort steht noch aus; er liest seine eigene Frage erneut. Tavia kennt die Frage vielleicht schon oder noch gar nicht. Ihr Schweigen verrät weder Priorität noch Absicht; ihr Tag bleibt unsichtbar.\n\nWarten lässt eine harmlose Nachricht schnell größer werden. Jede Minute bietet Raum für Geschichten, obwohl sie keine neue Information bringt.\n\nSolvian kann seinen Abend weiterleben und später einmal freundlich nachfassen. Eine Antwort ist leichter zu empfangen, wenn sie nicht schon vorab gedeutet wurde.",
+      "body": "Solvian fragt per Nachricht, wann Tavia ungefähr Zeit für einen Anruf hat. Eine Antwort steht noch aus; er liest seine eigene Frage erneut. Tavia kennt die Frage vielleicht schon oder noch gar nicht. Ihr Schweigen verrät weder Priorität noch Absicht; ihr Tag bleibt unsichtbar.\n\nWarten lässt eine harmlose Nachricht schnell größer werden. Jede Minute bietet Raum für Geschichten, obwohl sie keine neue Information bringt.\n\nTavia kann antworten, wenn sie die Nachricht sieht und Zeit hat; Solvians Warten kennt sie vielleicht noch nicht.",
       "choice_labels": [
         {
           "id": "E0596",
@@ -6375,7 +6375,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Die unbeantwortete Nachfrage",
-      "body": "Solvian fragt per Nachricht, wann Tavia ungefähr Zeit für einen Anruf hat. Eine Antwort steht noch aus; er liest seine eigene Frage erneut. Von außen gibt es eine offene Nachricht. Wie lange sie schon wartet und was beide sonst vereinbart haben, wäre für die Einordnung wichtig.\n\nWarten lässt eine harmlose Nachricht schnell größer werden. Jede Minute bietet Raum für Geschichten, obwohl sie keine neue Information bringt.\n\nSolvian kann seinen Abend weiterleben und später einmal freundlich nachfassen. Eine Antwort ist leichter zu empfangen, wenn sie nicht schon vorab gedeutet wurde.",
+      "body": "Solvian fragt per Nachricht, wann Tavia ungefähr Zeit für einen Anruf hat. Eine Antwort steht noch aus; er liest seine eigene Frage erneut. Auf dem Display bleibt eine offene Nachricht. Wie lange sie schon wartet und was beide sonst vereinbart haben, wäre für die Einordnung wichtig.\n\nWarten lässt eine harmlose Nachricht schnell größer werden. Jede Minute bietet Raum für Geschichten, obwohl sie keine neue Information bringt.\n\nEine Frage ist gesendet, eine Antwort fehlt. Die Minuten dazwischen liefern keine neue Erklärung.",
       "choice_labels": [
         {
           "id": "E0600",
@@ -6399,7 +6399,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Ein Anruf über Distanz",
-      "body": "Im Anruf zwischen zwei Wohnungen entstehen Pausen. Tavia setzt an, während Solvian noch redet; danach schweigen beide. Solvian darf seinen Gedanken zu Ende bringen wollen. Tavias Einsetzen muss nicht bedeuten, dass sie ihm nicht zuhört.\n\nÜber eine Verbindung fehlen Blicke, kleine Gesten und das sichere Gefühl, wann ein Satz zu Ende ist. Eine Überschneidung kann technische Verzögerung, Eile oder Aufregung sein.\n\nEin kleines Reparatursignal reicht oft: „Du zuerst“ – und danach eine Sekunde länger warten, als sich natürlich anfühlt.\n\nSolvian kann kurz prüfen, ob Tavia ihn akustisch oder inhaltlich unterbrochen hat.",
+      "body": "Im Anruf zwischen zwei Wohnungen entstehen Pausen. Tavia setzt an, während Solvian noch redet; danach schweigen beide. Solvian darf seinen Gedanken zu Ende bringen wollen. Tavias Einsetzen muss nicht bedeuten, dass sie ihm nicht zuhört.\n\nÜber eine Verbindung fehlen Blicke, kleine Gesten und das sichere Gefühl, wann ein Satz zu Ende ist. Eine Überschneidung kann technische Verzögerung, Eile oder Aufregung sein.\n\nSolvian kann kurz prüfen, ob Tavia ihn akustisch oder inhaltlich unterbrochen hat, bevor er weiterredet.\n\nSolvian kann kurz prüfen, ob Tavia ihn akustisch oder inhaltlich unterbrochen hat.",
       "choice_labels": [
         {
           "id": "E0604",
@@ -6423,7 +6423,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Ein Anruf über Distanz",
-      "body": "Im Anruf zwischen zwei Wohnungen entstehen Pausen. Tavia setzt an, während Solvian noch redet; danach schweigen beide. Tavia darf erneut ansetzen. Vielleicht hilft es, kurz zu sagen, ob sie ergänzen wollte oder nur dachte, der Satz sei beendet.\n\nÜber eine Verbindung fehlen Blicke, kleine Gesten und das sichere Gefühl, wann ein Satz zu Ende ist. Eine Überschneidung kann technische Verzögerung, Eile oder Aufregung sein.\n\nEin kleines Reparatursignal reicht oft: „Du zuerst“ – und danach eine Sekunde länger warten, als sich natürlich anfühlt.",
+      "body": "Im Anruf zwischen zwei Wohnungen entstehen Pausen. Tavia setzt an, während Solvian noch redet; danach schweigen beide. Tavia darf erneut ansetzen. Vielleicht hilft es, kurz zu sagen, ob sie ergänzen wollte oder nur dachte, der Satz sei beendet.\n\nÜber eine Verbindung fehlen Blicke, kleine Gesten und das sichere Gefühl, wann ein Satz zu Ende ist. Eine Überschneidung kann technische Verzögerung, Eile oder Aufregung sein.\n\nTavia kann sagen, ob sie ergänzen wollte oder das Ende des Satzes vermutete. Solvian darf darauf anders antworten, als sie hofft.",
       "choice_labels": [
         {
           "id": "E0608",
@@ -6447,7 +6447,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Ein Anruf über Distanz",
-      "body": "Im Anruf zwischen zwei Wohnungen entstehen Pausen. Tavia setzt an, während Solvian noch redet; danach schweigen beide. Von außen hören wir zwei Stimmen und dann Stille. Das Verbindungssymbol wirkt zuverlässig; für die Verständigung übernimmt es leider keine Verantwortung.\n\nÜber eine Verbindung fehlen Blicke, kleine Gesten und das sichere Gefühl, wann ein Satz zu Ende ist. Eine Überschneidung kann technische Verzögerung, Eile oder Aufregung sein.\n\nEin kleines Reparatursignal reicht oft: „Du zuerst“ – und danach eine Sekunde länger warten, als sich natürlich anfühlt.",
+      "body": "Im Anruf zwischen zwei Wohnungen entstehen Pausen. Tavia setzt an, während Solvian noch redet; danach schweigen beide. Im Anruf treffen zwei Stimmen aufeinander; danach folgt Stille. Das Verbindungssymbol wirkt zuverlässig; für die Verständigung übernimmt es leider keine Verantwortung.\n\nÜber eine Verbindung fehlen Blicke, kleine Gesten und das sichere Gefühl, wann ein Satz zu Ende ist. Eine Überschneidung kann technische Verzögerung, Eile oder Aufregung sein.\n\nIm Anruf treffen Verzögerung und zwei Stimmen aufeinander. Ein kurzes „Du zuerst“ könnte genügen. Keiner muss dabei sofort nachgeben.",
       "choice_labels": [
         {
           "id": "E0612",
@@ -6471,7 +6471,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Schriftlich ist es leichter",
-      "body": "Solvian liest Tavias Nachricht: „Schriftlich ist es leichter.“ Zwischen den Wohnungen liegen viele Kilometer. Solvian darf sich nach ihrer Stimme sehnen. Tavias Wunsch nach Schriftlichkeit ist trotzdem keine automatische Ablehnung von Nähe.\n\nSchreiben kann Zeit zum Sortieren geben; ein Gespräch kann Wärme, Tonfall und unmittelbare Rückfragen bieten. Die leichtere Form für eine Person muss nicht für beide reichen.\n\nVielleicht entsteht eine Mischform: erst schriftlich sortieren, dann zehn Minuten sprechen – mit dem Text als ruhigem Geländer.\n\nEr kann seinen Wunsch äußern, ohne Tavias leichteren Weg dadurch abzuwerten.",
+      "body": "Solvian liest Tavias Nachricht: „Schriftlich ist es leichter.“ Zwischen den Wohnungen liegen viele Kilometer. Solvian darf sich nach ihrer Stimme sehnen. Tavias Wunsch nach Schriftlichkeit ist trotzdem keine automatische Ablehnung von Nähe.\n\nSchreiben kann Zeit zum Sortieren geben; ein Gespräch kann Wärme, Tonfall und unmittelbare Rückfragen bieten. Die leichtere Form für eine Person muss nicht für beide reichen.\n\nSolvian kann seinen Wunsch nach ihrer Stimme äußern, ohne Tavias leichteren Weg abzuwerten.\n\nEr kann seinen Wunsch äußern, ohne Tavias leichteren Weg dadurch abzuwerten.",
       "choice_labels": [
         {
           "id": "E0616",
@@ -6495,7 +6495,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Schriftlich ist es leichter",
-      "body": "Solvian liest Tavias Nachricht: „Schriftlich ist es leichter.“ Zwischen den Wohnungen liegen viele Kilometer. Tavia darf eine Form wählen, in der sie Worte findet. Sie weiß noch nicht, ob Solvian für wichtige Punkte zusätzlich ein Gespräch braucht.\n\nSchreiben kann Zeit zum Sortieren geben; ein Gespräch kann Wärme, Tonfall und unmittelbare Rückfragen bieten. Die leichtere Form für eine Person muss nicht für beide reichen.\n\nVielleicht entsteht eine Mischform: erst schriftlich sortieren, dann zehn Minuten sprechen – mit dem Text als ruhigem Geländer.",
+      "body": "Solvian liest Tavias Nachricht: „Schriftlich ist es leichter.“ Zwischen den Wohnungen liegen viele Kilometer. Tavia darf eine Form wählen, in der sie Worte findet. Sie weiß noch nicht, ob Solvian für wichtige Punkte zusätzlich ein Gespräch braucht.\n\nSchreiben kann Zeit zum Sortieren geben; ein Gespräch kann Wärme, Tonfall und unmittelbare Rückfragen bieten. Die leichtere Form für eine Person muss nicht für beide reichen.\n\nTavia kann schriftlich beginnen und offenlassen, ob später zusätzlich ein Gespräch möglich ist. Solvian darf dazu einen eigenen Wunsch haben.",
       "choice_labels": [
         {
           "id": "E0620",
@@ -6519,7 +6519,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Schriftlich ist es leichter",
-      "body": "Solvian liest Tavias Nachricht: „Schriftlich ist es leichter.“ Zwischen den Wohnungen liegen viele Kilometer. Von außen ist nur eine bevorzugte Kommunikationsform benannt. Für welches Thema und für wie lange sie gelten soll, bleibt offen.\n\nSchreiben kann Zeit zum Sortieren geben; ein Gespräch kann Wärme, Tonfall und unmittelbare Rückfragen bieten. Die leichtere Form für eine Person muss nicht für beide reichen.\n\nVielleicht entsteht eine Mischform: erst schriftlich sortieren, dann zehn Minuten sprechen – mit dem Text als ruhigem Geländer.\n\nBeide Formen dürfen einander ergänzen, statt um den ersten Platz zu kämpfen.",
+      "body": "Solvian liest Tavias Nachricht: „Schriftlich ist es leichter.“ Zwischen den Wohnungen liegen viele Kilometer. Tavia hat eine bevorzugte Kommunikationsform benannt. Für welches Thema und für wie lange sie gelten soll, bleibt offen.\n\nSchreiben kann Zeit zum Sortieren geben; ein Gespräch kann Wärme, Tonfall und unmittelbare Rückfragen bieten. Die leichtere Form für eine Person muss nicht für beide reichen.\n\nText und Stimme müssen nicht gegeneinander gewinnen. Welche Mischung passt, entscheiden beide erst noch.\n\nBeide Formen dürfen einander ergänzen, statt um den ersten Platz zu kämpfen.",
       "choice_labels": [
         {
           "id": "E0624",
@@ -6543,7 +6543,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Andere Tagesrhythmen",
-      "body": "Tavia schlägt einen frühen Anruf vor. Solvian kann erst später; ihre freien Zeitfenster überschneiden sich heute kaum. Solvian darf seine spätere Zeit schützen. Er kann zugleich eine konkrete Alternative nennen, damit aus dem Nein kein leerer Raum wird.\n\nUnterschiedliche Rhythmen können sich persönlich anfühlen, obwohl sie oft aus Arbeit, Schlaf oder Verpflichtungen entstehen. Ein unpassender Zeitpunkt ist noch kein unpassender Mensch.\n\nVielleicht braucht es heute nur eine Sprachnachricht – und für ein richtiges Gespräch einen Termin, der beiden etwas Luft lässt.",
+      "body": "Tavia schlägt einen frühen Anruf vor. Solvian kann erst später; ihre freien Zeitfenster überschneiden sich heute kaum. Solvian darf seine spätere Zeit schützen. Er kann zugleich eine konkrete Alternative nennen, damit aus dem Nein kein leerer Raum wird.\n\nUnterschiedliche Rhythmen können sich persönlich anfühlen, obwohl sie oft aus Arbeit, Schlaf oder Verpflichtungen entstehen. Ein unpassender Zeitpunkt ist noch kein unpassender Mensch.\n\nSolvian kann eine konkrete spätere Zeit anbieten, statt nur das frühe Fenster abzulehnen. Tavia darf diesen Vorschlag trotzdem ablehnen.",
       "choice_labels": [
         {
           "id": "E0628",
@@ -6567,7 +6567,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Andere Tagesrhythmen",
-      "body": "Tavia schlägt einen frühen Anruf vor. Solvian kann erst später; ihre freien Zeitfenster überschneiden sich heute kaum. Tavia darf früh besser erreichbar sein. Dass Solvian dann nicht kann, muss ihre Mühe um Kontakt nicht entwerten.\n\nUnterschiedliche Rhythmen können sich persönlich anfühlen, obwohl sie oft aus Arbeit, Schlaf oder Verpflichtungen entstehen. Ein unpassender Zeitpunkt ist noch kein unpassender Mensch.\n\nVielleicht braucht es heute nur eine Sprachnachricht – und für ein richtiges Gespräch einen Termin, der beiden etwas Luft lässt.\n\nIhre frühe Verfügbarkeit ist ein Angebot, kein Beweis für fehlende Flexibilität.",
+      "body": "Tavia schlägt einen frühen Anruf vor. Solvian kann erst später; ihre freien Zeitfenster überschneiden sich heute kaum. Tavia darf früh besser erreichbar sein. Dass Solvian dann nicht kann, muss ihre Mühe um Kontakt nicht entwerten.\n\nUnterschiedliche Rhythmen können sich persönlich anfühlen, obwohl sie oft aus Arbeit, Schlaf oder Verpflichtungen entstehen. Ein unpassender Zeitpunkt ist noch kein unpassender Mensch.\n\nTavias frühe Verfügbarkeit ist ein Angebot. Sie darf prüfen, ob Solvians Gegenvorschlag für sie passt.\n\nIhre frühe Verfügbarkeit ist ein Angebot, kein Beweis für fehlende Flexibilität.",
       "choice_labels": [
         {
           "id": "E0632",
@@ -6591,7 +6591,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Andere Tagesrhythmen",
-      "body": "Tavia schlägt einen frühen Anruf vor. Solvian kann erst später; ihre freien Zeitfenster überschneiden sich heute kaum. Von außen passen zwei Zeitfenster heute fast nicht zusammen. Wie häufig das geschieht und wer sonst schon nachgegeben hat, wäre wichtig.\n\nUnterschiedliche Rhythmen können sich persönlich anfühlen, obwohl sie oft aus Arbeit, Schlaf oder Verpflichtungen entstehen. Ein unpassender Zeitpunkt ist noch kein unpassender Mensch.\n\nVielleicht braucht es heute nur eine Sprachnachricht – und für ein richtiges Gespräch einen Termin, der beiden etwas Luft lässt.",
+      "body": "Tavia schlägt einen frühen Anruf vor. Solvian kann erst später; ihre freien Zeitfenster überschneiden sich heute kaum. Die beiden freien Zeitfenster überschneiden sich kaum. Wie häufig das geschieht und wer sonst schon nachgegeben hat, wäre wichtig.\n\nUnterschiedliche Rhythmen können sich persönlich anfühlen, obwohl sie oft aus Arbeit, Schlaf oder Verpflichtungen entstehen. Ein unpassender Zeitpunkt ist noch kein unpassender Mensch.\n\nDie freien Fenster überlappen heute kaum. Eine Nachricht kann reichen, bis ein ruhigerer Zeitpunkt entsteht. Heute muss daraus kein Gespräch mehr werden.",
       "choice_labels": [
         {
           "id": "E0636",
@@ -6615,7 +6615,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Pläne mit begrenzter Energie",
-      "body": "Solvian schlägt für den Besuch zwei Unternehmungen vor. Tavia antwortet: „Eine könnte gehen, für die zweite reicht meine Energie vielleicht nicht.“ Solvian darf bedauern, dass nicht alles klappt. Er kann Tavia glauben und mit ihr auswählen, was ihnen beiden am wichtigsten ist.\n\nBegrenzte Energie ist keine begrenzte Zuneigung. Gleichzeitig kann Solvians Vorfreude echt sein und einen Moment lang enttäuscht werden.\n\nEin langsamerer Besuch kann sehr nah sein. Vielleicht bleibt nach einer Unternehmung sogar Raum für das, was in keinem Plan steht.",
+      "body": "Solvian schlägt für den Besuch zwei Unternehmungen vor. Tavia antwortet: „Eine könnte gehen, für die zweite reicht meine Energie vielleicht nicht.“ Solvian darf bedauern, dass nicht alles klappt. Er kann Tavia glauben und mit ihr auswählen, was ihnen beiden am wichtigsten ist.\n\nBegrenzte Energie ist keine begrenzte Zuneigung. Gleichzeitig kann Solvians Vorfreude echt sein und einen Moment lang enttäuscht werden.\n\nSolvian kann bedauern, dass nicht alles klappt, und Tavia glauben, wie viel Energie sie hat. Seine Enttäuschung darf daneben bestehen.",
       "choice_labels": [
         {
           "id": "E0640",
@@ -6639,7 +6639,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Pläne mit begrenzter Energie",
-      "body": "Solvian schlägt für den Besuch zwei Unternehmungen vor. Tavia antwortet: „Eine könnte gehen, für die zweite reicht meine Energie vielleicht nicht.“ Tavia hat ihre Grenze früh benannt. Sie muss sich nicht erst erschöpfen, um zu beweisen, dass der Besuch ihr etwas bedeutet.\n\nBegrenzte Energie ist keine begrenzte Zuneigung. Gleichzeitig kann Solvians Vorfreude echt sein und einen Moment lang enttäuscht werden.\n\nEin langsamerer Besuch kann sehr nah sein. Vielleicht bleibt nach einer Unternehmung sogar Raum für das, was in keinem Plan steht.",
+      "body": "Solvian schlägt für den Besuch zwei Unternehmungen vor. Tavia antwortet: „Eine könnte gehen, für die zweite reicht meine Energie vielleicht nicht.“ Tavia hat ihre Grenze früh benannt. Sie muss sich nicht erst erschöpfen, um zu beweisen, dass der Besuch ihr etwas bedeutet.\n\nBegrenzte Energie ist keine begrenzte Zuneigung. Gleichzeitig kann Solvians Vorfreude echt sein und einen Moment lang enttäuscht werden.\n\nTavia darf eine Unternehmung wählen oder beide ablehnen, ohne den Besuch damit abzuwerten. Solvian darf darüber enttäuscht sein, ohne ihre Grenze anzuzweifeln.",
       "choice_labels": [
         {
           "id": "E0644",
@@ -6663,7 +6663,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Pläne mit begrenzter Energie",
-      "body": "Solvian schlägt für den Besuch zwei Unternehmungen vor. Tavia antwortet: „Eine könnte gehen, für die zweite reicht meine Energie vielleicht nicht.“ Von außen sind zwei Ideen und Kraft für vielleicht eine zu sehen. Welche gewählt wird und ob Ruhe dazukommt, ist noch offen.\n\nBegrenzte Energie ist keine begrenzte Zuneigung. Gleichzeitig kann Solvians Vorfreude echt sein und einen Moment lang enttäuscht werden.\n\nEin langsamerer Besuch kann sehr nah sein. Vielleicht bleibt nach einer Unternehmung sogar Raum für das, was in keinem Plan steht.",
+      "body": "Solvian schlägt für den Besuch zwei Unternehmungen vor. Tavia antwortet: „Eine könnte gehen, für die zweite reicht meine Energie vielleicht nicht.“ Im Besuchsplan stehen zwei Ideen; die Kraft reicht vielleicht für eine. Welche gewählt wird und ob Ruhe dazukommt, ist noch offen.\n\nBegrenzte Energie ist keine begrenzte Zuneigung. Gleichzeitig kann Solvians Vorfreude echt sein und einen Moment lang enttäuscht werden.\n\nZwei Vorhaben passen nicht in jede Kraft. Wie langsam der Besuch werden darf, ist noch offen. Auch ein ruhiger Nachmittag kann Nähe tragen.",
       "choice_labels": [
         {
           "id": "E0648",
@@ -6687,7 +6687,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Schon wieder derselbe Punkt",
-      "body": "Mireva sagt: „Darüber haben wir schon gesprochen.“ Jorun schaut auf die Aufgabe, die erneut liegen geblieben ist. Mireva darf müde davon sein, das Thema wieder aufzunehmen. Hilfreicher als „immer“ wäre nun, die konkrete heutige Folge zu benennen.\n\nWiederholungen sind zermürbend: Die eine Person hört vielleicht denselben Vorwurf, die andere erlebt dasselbe ungelöste Problem. Ein früheres Gespräch ist noch keine verlässliche Veränderung.\n\nVielleicht braucht es weniger Versprechen und mehr Passung: Wer übernimmt was, bis wann – und woran merken beide früh, dass es diesmal nicht klappt?",
+      "body": "Mireva sagt: „Darüber haben wir schon gesprochen.“ Jorun schaut auf die Aufgabe, die erneut liegen geblieben ist. Jorun darf sich beschämt oder unter Druck fühlen. Entscheidend ist trotzdem, ob eine realistische Vereinbarung fehlt oder nicht eingehalten wurde.\n\nWiederholungen sind zermürbend: Die eine Person hört vielleicht denselben Vorwurf, die andere erlebt dasselbe ungelöste Problem. Ein früheres Gespräch ist noch keine verlässliche Veränderung.\n\nJorun kann ansehen, was heute liegen blieb, und sagen, was eine realistische Vereinbarung bräuchte. Beschämung allein verteilt die Aufgabe noch nicht.",
       "choice_labels": [
         {
           "id": "E0652",
@@ -6711,7 +6711,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Schon wieder derselbe Punkt",
-      "body": "Mireva sagt: „Darüber haben wir schon gesprochen.“ Jorun schaut auf die Aufgabe, die erneut liegen geblieben ist. Jorun darf sich beschämt oder unter Druck fühlen. Entscheidend ist trotzdem, ob eine realistische Vereinbarung fehlt oder nicht eingehalten wurde.\n\nWiederholungen sind zermürbend: Die eine Person hört vielleicht denselben Vorwurf, die andere erlebt dasselbe ungelöste Problem. Ein früheres Gespräch ist noch keine verlässliche Veränderung.\n\nVielleicht braucht es weniger Versprechen und mehr Passung: Wer übernimmt was, bis wann – und woran merken beide früh, dass es diesmal nicht klappt?",
+      "body": "Mireva sagt: „Darüber haben wir schon gesprochen.“ Jorun schaut auf die Aufgabe, die erneut liegen geblieben ist. Mireva darf müde davon sein, das Thema wieder aufzunehmen. Hilfreicher als „immer“ wäre nun, die konkrete heutige Folge zu benennen.\n\nWiederholungen sind zermürbend: Die eine Person hört vielleicht denselben Vorwurf, die andere erlebt dasselbe ungelöste Problem. Ein früheres Gespräch ist noch keine verlässliche Veränderung.\n\nMireva kann die heutige Folge benennen, ohne Joruns Reaktion oder künftige Verlässlichkeit vorwegzunehmen. Eine neue Zusage ist damit noch nicht gemacht.",
       "choice_labels": [
         {
           "id": "E0656",
@@ -6735,7 +6735,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Schon wieder derselbe Punkt",
-      "body": "Mireva sagt: „Darüber haben wir schon gesprochen.“ Jorun schaut auf die Aufgabe, die erneut liegen geblieben ist. Von außen sehen wir eine bekannte Aufgabe und einen bekannten Satz. Wie oft es geschah und was vereinbart war, bleibt noch offen.\n\nWiederholungen sind zermürbend: Die eine Person hört vielleicht denselben Vorwurf, die andere erlebt dasselbe ungelöste Problem. Ein früheres Gespräch ist noch keine verlässliche Veränderung.\n\nVielleicht braucht es weniger Versprechen und mehr Passung: Wer übernimmt was, bis wann – und woran merken beide früh, dass es diesmal nicht klappt?",
+      "body": "Mireva sagt: „Darüber haben wir schon gesprochen.“ Jorun schaut auf die Aufgabe, die erneut liegen geblieben ist. Eine bekannte Aufgabe und ein bekannter Satz sind wieder da. Wie oft es geschah und was vereinbart war, bleibt noch offen.\n\nWiederholungen sind zermürbend: Die eine Person hört vielleicht denselben Vorwurf, die andere erlebt dasselbe ungelöste Problem. Ein früheres Gespräch ist noch keine verlässliche Veränderung.\n\nDas Thema ist bekannt, der heutige Ausgang nicht. Erst eine passende Vereinbarung könnte etwas verändern. Beide müssen ihr freiwillig zustimmen können.",
       "choice_labels": [
         {
           "id": "E0660",
@@ -6759,7 +6759,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Eine Entschuldigung ohne Ende",
-      "body": "Jorun sagt: „Das tut mir leid.“ Mireva antwortet noch nicht. Der Gegenstand, an dem der Streit begann, liegt weiterhin auf dem Tisch. Mireva muss die Entschuldigung nicht sofort annehmen. Sie darf erst herausfinden, was ihr für eine Reparatur fehlt.\n\nEine Entschuldigung kann ehrlich sein und trotzdem noch nicht reichen. Manchmal braucht die verletzte Person Zeit, eine konkrete Veränderung oder das Gefühl, wirklich verstanden worden zu sein.\n\nEine tragfähige Ergänzung könnte lauten: „Ich sehe, was das für dich bedeutet hat. Ich möchte es beim nächsten Mal so anders machen …“",
+      "body": "Jorun sagt: „Das tut mir leid.“ Mireva antwortet noch nicht. Der Gegenstand, an dem der Streit begann, liegt weiterhin auf dem Tisch. Mireva muss die Entschuldigung nicht sofort annehmen. Sie darf erst herausfinden, was ihr für eine Reparatur fehlt.\n\nEine Entschuldigung kann ehrlich sein und trotzdem noch nicht reichen. Manchmal braucht die verletzte Person Zeit, eine konkrete Veränderung oder das Gefühl, wirklich verstanden worden zu sein.\n\nMireva darf Zeit brauchen und später sagen, was die Entschuldigung für sie noch nicht erreicht.",
       "choice_labels": [
         {
           "id": "E0664",
@@ -6783,7 +6783,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Eine Entschuldigung ohne Ende",
-      "body": "Jorun sagt: „Das tut mir leid.“ Mireva antwortet noch nicht. Der Gegenstand, an dem der Streit begann, liegt weiterhin auf dem Tisch. Jorun hat einen Anfang gemacht. Statt eine schnelle Beruhigung zu erwarten, kann Jorun fragen, welche Wirkung angekommen ist und was jetzt helfen würde.\n\nEine Entschuldigung kann ehrlich sein und trotzdem noch nicht reichen. Manchmal braucht die verletzte Person Zeit, eine konkrete Veränderung oder das Gefühl, wirklich verstanden worden zu sein.\n\nEine tragfähige Ergänzung könnte lauten: „Ich sehe, was das für dich bedeutet hat. Ich möchte es beim nächsten Mal so anders machen …“",
+      "body": "Jorun sagt: „Das tut mir leid.“ Mireva antwortet noch nicht. Der Gegenstand, an dem der Streit begann, liegt weiterhin auf dem Tisch. Jorun hat einen Anfang gemacht. Statt eine schnelle Beruhigung zu erwarten, kann Jorun fragen, welche Wirkung angekommen ist und was jetzt helfen würde.\n\nEine Entschuldigung kann ehrlich sein und trotzdem noch nicht reichen. Manchmal braucht die verletzte Person Zeit, eine konkrete Veränderung oder das Gefühl, wirklich verstanden worden zu sein.\n\nJorun kann bei ihrer Entschuldigung bleiben, nach der Wirkung fragen und Mirevas Antwort offenlassen.",
       "choice_labels": [
         {
           "id": "E0668",
@@ -6807,7 +6807,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Eine Entschuldigung ohne Ende",
-      "body": "Jorun sagt: „Das tut mir leid.“ Mireva antwortet noch nicht. Der Gegenstand, an dem der Streit begann, liegt weiterhin auf dem Tisch. Von außen hören wir Bedauern und sehen eine offene Situation. Ob Verantwortung übernommen oder nur Frieden gesucht wird, zeigt der nächste Schritt.\n\nEine Entschuldigung kann ehrlich sein und trotzdem noch nicht reichen. Manchmal braucht die verletzte Person Zeit, eine konkrete Veränderung oder das Gefühl, wirklich verstanden worden zu sein.\n\nEine tragfähige Ergänzung könnte lauten: „Ich sehe, was das für dich bedeutet hat. Ich möchte es beim nächsten Mal so anders machen …“",
+      "body": "Jorun sagt: „Das tut mir leid.“ Mireva antwortet noch nicht. Der Gegenstand, an dem der Streit begann, liegt weiterhin auf dem Tisch. Neben dem Gegenstand stehen Bedauern und eine noch offene Antwort. Ob Verantwortung übernommen oder nur Frieden gesucht wird, zeigt der nächste Schritt.\n\nEine Entschuldigung kann ehrlich sein und trotzdem noch nicht reichen. Manchmal braucht die verletzte Person Zeit, eine konkrete Veränderung oder das Gefühl, wirklich verstanden worden zu sein.\n\nEine Entschuldigung ist ausgesprochen. Annahme, Reparatur und der nächste Schritt sind damit noch nicht entschieden.",
       "choice_labels": [
         {
           "id": "E0672",
@@ -6831,7 +6831,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Ein Wunsch passt nicht mehr",
-      "body": "Jorun sagt, dass ein früher besprochener gemeinsamer Plan so nicht mehr passt. Mireva hat die alte Notiz vor sich. Mireva darf um den Plan trauern und nach den Folgen fragen. Die alte Notiz gibt ihr jedoch keinen Anspruch auf Joruns unveränderte Zustimmung.\n\nMenschen dürfen ihre Meinung ändern. Für die andere Person kann dabei trotzdem ein Stück Zukunft wegbrechen, das schon vertraut wirkte. Freiheit und Verlässlichkeit geraten dann schmerzhaft nah aneinander.\n\nVielleicht geht es zunächst nicht um Ersatz. Erst darf verstanden werden, was sich verändert hat und was dieser Plan jedem von beiden bedeutete.",
+      "body": "Jorun sagt, dass ein früher besprochener gemeinsamer Plan so nicht mehr passt. Mireva hat die alte Notiz vor sich. Mireva darf um den Plan trauern und nach den Folgen fragen. Die alte Notiz gibt ihr jedoch keinen Anspruch auf Joruns unveränderte Zustimmung.\n\nMenschen dürfen ihre Meinung ändern. Für die andere Person kann dabei trotzdem ein Stück Zukunft wegbrechen, das schon vertraut wirkte. Freiheit und Verlässlichkeit geraten dann schmerzhaft nah aneinander.\n\nMireva kann um den alten Plan trauern und nach den praktischen Folgen der Veränderung fragen.",
       "choice_labels": [
         {
           "id": "E0676",
@@ -6855,7 +6855,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Ein Wunsch passt nicht mehr",
-      "body": "Jorun sagt, dass ein früher besprochener gemeinsamer Plan so nicht mehr passt. Mireva hat die alte Notiz vor sich. Jorun darf eine frühere Zusage neu betrachten. Dabei gehört zur Fairness, Mirevas Verlust nicht als bloßes Missverständnis abzutun.\n\nMenschen dürfen ihre Meinung ändern. Für die andere Person kann dabei trotzdem ein Stück Zukunft wegbrechen, das schon vertraut wirkte. Freiheit und Verlässlichkeit geraten dann schmerzhaft nah aneinander.\n\nVielleicht geht es zunächst nicht um Ersatz. Erst darf verstanden werden, was sich verändert hat und was dieser Plan jedem von beiden bedeutete.",
+      "body": "Jorun sagt, dass ein früher besprochener gemeinsamer Plan so nicht mehr passt. Mireva hat die alte Notiz vor sich. Jorun darf eine frühere Zusage neu betrachten. Dabei gehört zur Fairness, Mirevas Verlust nicht als bloßes Missverständnis abzutun.\n\nMenschen dürfen ihre Meinung ändern. Für die andere Person kann dabei trotzdem ein Stück Zukunft wegbrechen, das schon vertraut wirkte. Freiheit und Verlässlichkeit geraten dann schmerzhaft nah aneinander.\n\nJorun kann die frühere Zusage neu betrachten und zugleich zuhören, was Mireva dadurch verliert. Eine neue Zusage schuldet sie damit noch nicht.",
       "choice_labels": [
         {
           "id": "E0680",
@@ -6879,7 +6879,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Ein Wunsch passt nicht mehr",
-      "body": "Jorun sagt, dass ein früher besprochener gemeinsamer Plan so nicht mehr passt. Mireva hat die alte Notiz vor sich. Von außen gibt es einen alten Plan und ein neues Nein. Gründe, Spielräume und praktische Folgen sind noch nicht besprochen.\n\nMenschen dürfen ihre Meinung ändern. Für die andere Person kann dabei trotzdem ein Stück Zukunft wegbrechen, das schon vertraut wirkte. Freiheit und Verlässlichkeit geraten dann schmerzhaft nah aneinander.\n\nVielleicht geht es zunächst nicht um Ersatz. Erst darf verstanden werden, was sich verändert hat und was dieser Plan jedem von beiden bedeutete.",
+      "body": "Jorun sagt, dass ein früher besprochener gemeinsamer Plan so nicht mehr passt. Mireva hat die alte Notiz vor sich. Jetzt stehen ein alter Plan und ein neues Nein nebeneinander. Gründe, Spielräume und praktische Folgen sind noch nicht besprochen.\n\nMenschen dürfen ihre Meinung ändern. Für die andere Person kann dabei trotzdem ein Stück Zukunft wegbrechen, das schon vertraut wirkte. Freiheit und Verlässlichkeit geraten dann schmerzhaft nah aneinander.\n\nDer alte Plan gilt nicht unverändert weiter. Gründe, Folgen und mögliche neue Wege sind noch offen.",
       "choice_labels": [
         {
           "id": "E0684",
@@ -6903,7 +6903,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Heute keine Entscheidung",
-      "body": "Mireva sagt: „Heute entscheide ich das nicht.“ Jorun legt den Stift neben das Blatt mit den Möglichkeiten. Jorun darf Planungssicherheit brauchen. Er kann Mirevas Pause respektieren und trotzdem nach einem realistischen Rückkehrpunkt fragen.\n\nEine vertagte Entscheidung kann fürsorglich sein, wenn gerade Klarheit fehlt. Ohne nächsten Zeitpunkt kann sie für die wartende Person jedoch zur endlosen Schwebe werden.\n\nEin Rahmen nimmt Druck heraus: „Heute nicht. Lass uns am Donnerstag nach dem Essen wieder auf das Blatt schauen.“\n\nEin vereinbarter Zeitpunkt kann ihm helfen, die offene Frage für heute abzulegen.",
+      "body": "Mireva sagt: „Heute entscheide ich das nicht.“ Jorun legt den Stift neben das Blatt mit den Möglichkeiten. Jorun darf Planungssicherheit brauchen. Sie kann Mirevas Pause respektieren und trotzdem nach einem realistischen Rückkehrpunkt fragen.\n\nEine vertagte Entscheidung kann fürsorglich sein, wenn gerade Klarheit fehlt. Ohne nächsten Zeitpunkt kann sie für die wartende Person jedoch zur endlosen Schwebe werden.\n\nJorun kann nach einem möglichen Rückkehrpunkt fragen. Mireva entscheidet, ob sie heute einen anbieten kann.\n\nEin vereinbarter Zeitpunkt kann ihr helfen, die offene Frage für heute abzulegen.",
       "choice_labels": [
         {
           "id": "E0688",
@@ -6927,7 +6927,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Heute keine Entscheidung",
-      "body": "Mireva sagt: „Heute entscheide ich das nicht.“ Jorun legt den Stift neben das Blatt mit den Möglichkeiten. Mireva darf heute nicht entscheiden. Wenn möglich, kann sie sagen, welche Information oder Ruhe ihr fehlt und wann sie neu hinschauen möchte.\n\nEine vertagte Entscheidung kann fürsorglich sein, wenn gerade Klarheit fehlt. Ohne nächsten Zeitpunkt kann sie für die wartende Person jedoch zur endlosen Schwebe werden.\n\nEin Rahmen nimmt Druck heraus: „Heute nicht. Lass uns am Donnerstag nach dem Essen wieder auf das Blatt schauen.“",
+      "body": "Mireva sagt: „Heute entscheide ich das nicht.“ Jorun legt den Stift neben das Blatt mit den Möglichkeiten. Mireva darf heute nicht entscheiden. Wenn möglich, kann sie sagen, welche Information oder Ruhe ihr fehlt und wann sie neu hinschauen möchte.\n\nEine vertagte Entscheidung kann fürsorglich sein, wenn gerade Klarheit fehlt. Ohne nächsten Zeitpunkt kann sie für die wartende Person jedoch zur endlosen Schwebe werden.\n\nMireva kann für heute bei ihrem Nein zur Entscheidung bleiben und, wenn möglich, einen neuen Zeitpunkt vorschlagen.",
       "choice_labels": [
         {
           "id": "E0692",
@@ -6951,7 +6951,7 @@
       "editing_status": "individually_rewritten",
       "review_status": "candidate_checks_passed_final_review_pending",
       "title": "Heute keine Entscheidung",
-      "body": "Mireva sagt: „Heute entscheide ich das nicht.“ Jorun legt den Stift neben das Blatt mit den Möglichkeiten. Von außen ist die Entscheidung offen, nicht verweigert. Wie dringend sie ist und welche Folgen das Warten hat, bleibt noch zu klären.\n\nEine vertagte Entscheidung kann fürsorglich sein, wenn gerade Klarheit fehlt. Ohne nächsten Zeitpunkt kann sie für die wartende Person jedoch zur endlosen Schwebe werden.\n\nEin Rahmen nimmt Druck heraus: „Heute nicht. Lass uns am Donnerstag nach dem Essen wieder auf das Blatt schauen.“",
+      "body": "Mireva sagt: „Heute entscheide ich das nicht.“ Jorun legt den Stift neben das Blatt mit den Möglichkeiten. Für heute bleibt die Entscheidung offen; sie ist nicht verweigert. Wie dringend sie ist und welche Folgen das Warten hat, bleibt noch zu klären.\n\nEine vertagte Entscheidung kann fürsorglich sein, wenn gerade Klarheit fehlt. Ohne nächsten Zeitpunkt kann sie für die wartende Person jedoch zur endlosen Schwebe werden.\n\nDie Entscheidung ruht für heute. Ein gemeinsamer nächster Zeitpunkt ist noch nicht vereinbart. Auch Offenlassen bleibt eine mögliche gemeinsame Entscheidung.",
       "choice_labels": [
         {
           "id": "E0696",

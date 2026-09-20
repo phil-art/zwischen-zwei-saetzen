@@ -629,6 +629,7 @@ export function initialFlow() {
     selectedPractice: null,
     pendingPractice: null,
     visitedKnowledge: [],
+    seenKnowledgeIds: [],
     seenSceneFamilies: [],
     seenSceneIds: [],
     stageCompleted: false,
@@ -659,6 +660,7 @@ export function resetFlowForContext(flow) {
     ...initialFlow(),
     seenSceneFamilies: [...flow.seenSceneFamilies],
     seenSceneIds: [...(flow.seenSceneIds ?? [])],
+    seenKnowledgeIds: [...(flow.seenKnowledgeIds ?? [])],
     view: "capacity"
   };
 }
@@ -668,6 +670,7 @@ export function resetFlowForNextStage(flow) {
     ...initialFlow(),
     seenSceneFamilies: [...flow.seenSceneFamilies],
     seenSceneIds: [...(flow.seenSceneIds ?? [])],
+    seenKnowledgeIds: [...(flow.seenKnowledgeIds ?? [])],
     view: "stage-intro"
   };
 }
@@ -717,6 +720,13 @@ export function markKnowledgeVisited(flow, knowledgeId) {
     ? flow.visitedKnowledge
     : [...flow.visitedKnowledge, knowledgeId];
   return { ...flow, visitedKnowledge: visited };
+}
+
+export function markKnowledgeSeen(flow, knowledgeId) {
+  const seen = (flow.seenKnowledgeIds ?? []).includes(knowledgeId)
+    ? flow.seenKnowledgeIds
+    : [...(flow.seenKnowledgeIds ?? []), knowledgeId];
+  return { ...flow, seenKnowledgeIds: seen };
 }
 
 export function markSceneSeen(flow, familyId) {

@@ -1,5 +1,5 @@
 {
-  "content_version": "0.6.0-w9-candidate",
+  "content_version": "0.6.1-w9-candidate",
   "scope": "Actually rendered candidate text after all editorial overrides.",
   "counts": {
     "nodes": 260,
@@ -10,11 +10,17 @@
     "changed_titles": 259,
     "changed_choice_labels": 605,
     "repeated_long_sentences_across_scene_families": 0,
-    "suspicious_pattern_findings": 0
+    "suspicious_pattern_findings": 0,
+    "perspective_role_findings": 0,
+    "repeated_perspective_endings_t04_t12": 0,
+    "external_view_formula_t04_t12": 0
   },
   "exact_source_bodies_remaining": [],
   "whitespace_only_source_bodies_remaining": [],
   "repeated_long_sentences_across_scene_families": [],
   "suspicious_pattern_findings": [],
+  "perspective_role_findings": [],
+  "repeated_perspective_endings_t04_t12": [],
+  "external_view_formula_t04_t12": [],
   "limitation": "Automated checks support but do not replace independent literary, clinical, legal, accessibility, or browser review."
 }

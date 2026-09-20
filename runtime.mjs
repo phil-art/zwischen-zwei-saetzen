@@ -1,3 +1,5 @@
+import { prerequisiteFor } from "./flow.mjs";
+
 export function clone(value) {
   return JSON.parse(JSON.stringify(value));
 }
@@ -30,7 +32,7 @@ export function canEnter(node, state, mode = "flow", nodeIndex = {}) {
   if (state.safety === "concern") return node.gate === "support" || node.kind === "closing";
   if (node.kind === "practice") {
     if (!node.topic_ids.includes(state.topic)) return false;
-    if (["planned", "performed"].includes(state.action_state) && state.planned_action !== node.id) return false;
+    if (["planned", "performed", "not_done"].includes(state.action_state) && state.planned_action !== node.id) return false;
   }
   if (node.requires_performed) {
     const planned = nodeIndex[state.planned_action];
@@ -120,7 +122,9 @@ export function applyEvent(state, event, contract, nodeIndex) {
   if (type === "plan_action") {
     const action = nodeIndex[event.action_id];
     if (!action || action.kind !== "practice" || !canEnter(action, next, "flow", nodeIndex)) throw new Error("Action not eligible");
-    if (next.action_state === "performed") throw new Error("One reported action per stage");
+    if (next.action_state !== "not_planned") throw new Error("One reported action per stage");
+    const prerequisite = prerequisiteFor(action.id);
+    if (prerequisite && !event.visited_knowledge?.includes(prerequisite)) throw new Error("Practice prerequisite was not read in this stage");
     Object.assign(next, { planned_action: action.id, action_state: "planned", outcome: "unknown" });
     return next;
   }
@@ -159,7 +163,7 @@ export function routeStatus(node, state, mode, nodeIndex) {
   if (node.kind === "scene" && (!node.topic_ids.includes(state.topic) || node.perspective !== state.perspective)) return "blocked";
   if (canEnter(node, state, mode, nodeIndex)) return "allowed";
   const topicMatches = node.kind === "practice" && node.topic_ids.includes(state.topic);
-  const actionMatches = !["planned", "performed"].includes(state.action_state) || state.planned_action === node.id;
+  const actionMatches = !["planned", "performed", "not_done"].includes(state.action_state) || state.planned_action === node.id;
   if (topicMatches && actionMatches && state.safety !== "concern" && ["partner", "agreement"].includes(node.gate)) return "confirmation";
   return "blocked";
 }

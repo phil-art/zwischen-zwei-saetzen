@@ -3,7 +3,7 @@ import { applyW9Content, GOAL_LABELS, PERSPECTIVE_LABELS, SUPPORT_CONTACTS, UI_C
 import { applyEvent, canEnter, diagramText, initialState, routeStatus } from "./runtime.mjs";
 import { loadSelection, saveSelection } from "./storage.mjs";
 import {
-  FLOW_PLAN, SECTION_LABELS, initialFlow, markKnowledgeVisited, markSceneSeen,
+  FLOW_PLAN, SECTION_LABELS, initialFlow, markKnowledgeSeen, markKnowledgeVisited, markSceneSeen,
   markSceneIdSeen, moveFlow, knowledgeCandidates, practiceChoices, prerequisiteFor, preferredSceneId, primaryKnowledgeId,
   progressPercent, resetFlowForContext, resetFlowForNextStage, stagePlan, topicPlan
 } from "./flow.mjs";
@@ -75,7 +75,7 @@ function syncStorage(write = true) {
 }
 
 function snapshot() {
-  return { view: { ...view }, flow: { ...flow, visitedKnowledge: [...flow.visitedKnowledge], seenSceneFamilies: [...flow.seenSceneFamilies], seenSceneIds: [...(flow.seenSceneIds ?? [])] }, contextRev: state.context_rev, day: state.day };
+  return { view: { ...view }, flow: { ...flow, visitedKnowledge: [...flow.visitedKnowledge], seenKnowledgeIds: [...(flow.seenKnowledgeIds ?? [])], seenSceneFamilies: [...flow.seenSceneFamilies], seenSceneIds: [...(flow.seenSceneIds ?? [])] }, contextRev: state.context_rev, day: state.day };
 }
 
 function navigate(next, remember = true) {
@@ -103,8 +103,17 @@ function goBack() {
     } else {
       view = previous.view;
       if (view.name === "guided") {
-        const reached = flow.highWater;
-        flow = { ...previous.flow, highWater: Math.max(reached, previous.flow.highWater) };
+        const current = flow;
+        const union = (left = [], right = []) => [...new Set([...left, ...right])];
+        flow = {
+          ...previous.flow,
+          highWater: Math.max(current.highWater, previous.flow.highWater),
+          stageCompleted: current.stageCompleted || previous.flow.stageCompleted,
+          visitedKnowledge: union(current.visitedKnowledge, previous.flow.visitedKnowledge),
+          seenKnowledgeIds: union(current.seenKnowledgeIds, previous.flow.seenKnowledgeIds),
+          seenSceneFamilies: union(current.seenSceneFamilies, previous.flow.seenSceneFamilies),
+          seenSceneIds: union(current.seenSceneIds, previous.flow.seenSceneIds)
+        };
       }
     }
   }
@@ -182,21 +191,21 @@ function renderStageIntro() {
 }
 
 function renderContext() {
-  return `<form class="gate-card setup-grid" data-form="context"><p class="eyebrow">Ankommen</p><h2 id="view-title">Was passt heute zu dir?</h2>
+  return `<form class="gate-card setup-grid" data-form="context" data-revision="${state.context_rev}" data-day="${state.day}"><p class="eyebrow">Ankommen</p><h2 id="view-title">Was passt heute zu dir?</h2>
     <p>Eine ungefähre Auswahl reicht. Du kannst sie später ändern.</p>
     ` + options("goal", "Was wäre dir heute hilfreich?", Object.entries(GOAL_LABELS), state.goal, true) + `
     <label class="select-label">Worum soll es gehen?<select name="topic">`
     + data.topics.map((topic) => `<option value="` + topic.id + `" ` + (topic.id === state.topic ? "selected" : "") + `>` + esc(topic.title) + `</option>`).join("")
     + `</select></label>` + options("perspective", "Aus welcher Richtung möchtest du lesen?", Object.entries(PERSPECTIVE_LABELS), state.perspective, true)
-    + `<p class="form-error" role="alert" hidden></p><button class="button" type="submit">So weiterlesen →</button></form>`;
+    + `<p class="form-error" role="alert" tabindex="-1" hidden></p><button class="button" type="submit">So weiterlesen →</button></form>`;
 }
 
 function renderCapacity() {
-  return `<form class="gate-card setup-grid" data-form="capacity"><p class="eyebrow">Ankommen</p><h2 id="view-title">Wie viel ist heute möglich?</h2>
+  return `<form class="gate-card setup-grid" data-form="capacity" data-revision="${state.context_rev}" data-day="${state.day}"><p class="eyebrow">Ankommen</p><h2 id="view-title">Wie viel ist heute möglich?</h2>
     <p>Diese Angaben gelten nur für den aktuellen Durchgang und werden nicht gespeichert.</p>
     ` + options("capacity", "Wie viel Zeit und Kraft hast du gerade?", Object.entries(capacityLabels), state.capacity, true)
     + options("resources", "Sind Zeit, Energie und nötige Mittel gerade vorhanden?", Object.entries(resourceLabels), state.resources, true)
-    + `<p class="form-error" role="alert" hidden></p><button class="button" type="submit">Weiter →</button></form>`;
+    + `<p class="form-error" role="alert" tabindex="-1" hidden></p><button class="button" type="submit">Weiter →</button></form>`;
 }
 
 function safetyExamples() {
@@ -209,7 +218,7 @@ function renderSafety() {
   return `<form class="gate-card setup-grid" data-form="safety" data-revision="${state.context_rev}" data-day="${state.day}"><p class="eyebrow">Bevor es weitergeht</p><h2 id="view-title">Eine wichtige Unterscheidung</h2>
     <p>` + esc(UI_COPY.safetyExplanation) + `</p>` + safetyExamples()
     + options("safety", UI_COPY.safetyQuestion, Object.entries(UI_COPY.safetyAnswers), null, true)
-    + `<p class="form-error" role="alert" hidden></p><button class="button" type="submit">Antwort übernehmen →</button></form>`;
+    + `<p class="form-error" role="alert" tabindex="-1" hidden></p><button class="button" type="submit">Antwort übernehmen →</button></form>`;
 }
 
 function renderSafetyExamples() {
@@ -260,10 +269,8 @@ function renderChoice() {
   }
   const ids = practiceChoices(state);
   const noPreferredFit = topicPlan(state.topic).preferred_private_by_goal[state.goal] == null;
-  return `<section class="gate-card"><p class="eyebrow">Dein nächster Schritt</p><h2 id="view-title">Was könnte jetzt passen?</h2>
-    <p>` + (noPreferredFit
-      ? `Keiner der vorhandenen Vorschläge ist deinem heutigen Ziel eindeutig zugeordnet. Du kannst beim Lesen bleiben oder eine weitere Möglichkeit dieses Themas ansehen.`
-      : `Wähle höchstens eine Möglichkeit. Lesen allein ist ebenfalls ein vollständiger Abschluss.`) + `</p><div class="practice-grid">`
+  const readingFirst = state.capacity === "low" || noPreferredFit;
+  const practiceGrid = `<div class="practice-grid">`
     + ids.map((id) => {
       const node = nodeIndex[id];
       const status = practiceStatus(node);
@@ -272,7 +279,14 @@ function renderChoice() {
         + esc(node.body.split(/\n\n/)[0]) + `</p>` + (status === "blocked"
           ? `<p class="small-note">Diese Möglichkeit ist im aktuellen Durchgang nicht verfügbar.</p>`
           : button("practice-select", status === "allowed" ? "Ansehen →" : "Voraussetzungen ansehen →", id, "quiet-button", `data-revision="${state.context_rev}" data-day="${state.day}"`)) + `</article>`;
-    }).join("") + `</div><div class="choices">` + button("reading-finish", UI_COPY.readingOnly) + `</div></section>`;
+    }).join("") + `</div>`;
+  const practices = readingFirst
+    ? `<div class="choices">` + button("reading-finish", UI_COPY.readingOnly, "", "button") + `</div><details><summary>Weitere Möglichkeiten ansehen</summary>` + practiceGrid + `</details>`
+    : practiceGrid + `<div class="choices">` + button("reading-finish", UI_COPY.readingOnly) + `</div>`;
+  return `<section class="gate-card"><p class="eyebrow">Dein nächster Schritt</p><h2 id="view-title">Was könnte jetzt passen?</h2>
+    <p>` + (noPreferredFit
+      ? `Keiner der vorhandenen Vorschläge ist deinem heutigen Ziel eindeutig zugeordnet. Du kannst beim Lesen bleiben oder eine weitere Möglichkeit dieses Themas ansehen.`
+      : `Wähle höchstens eine Möglichkeit. Lesen allein ist ebenfalls ein vollständiger Abschluss.`) + `</p>` + practices + `</section>`;
 }
 
 function renderPrerequisite() {
@@ -295,13 +309,14 @@ function renderPracticeGate() {
     + options("can_decline", "Kann sie ohne Druck Nein oder Später sagen?", yesNo, null, true)
     + options("resources", "Sind Zeit, Energie und nötige Mittel ausreichend?", Object.entries(resourceLabels), state.resources, true)
     + (target.gate === "agreement" ? options("mutual_agreement", "Habt ihr dieser konkreten Vereinbarung beide freiwillig zugestimmt?", yesNo, null, true) : "")
-    + `<p class="form-error" role="alert" hidden></p><button class="button" type="submit">Angaben prüfen →</button>
+    + `<p class="form-error" role="alert" tabindex="-1" hidden></p><button class="button" type="submit">Angaben prüfen →</button>
     <div class="side-actions">` + button("choice", "Etwas für mich allein wählen") + button("support", UI_COPY.supportVoluntary) + `</div></form>`;
 }
 
 function renderPractice() {
   const node = nodeIndex[flow.selectedPractice];
-  if (!node || !canEnter(node, state, "flow", rules)) return renderChoice();
+  const prerequisite = prerequisiteFor(node?.id);
+  if (!node || !canEnter(node, state, "flow", rules) || (prerequisite && !flow.visitedKnowledge.includes(prerequisite))) return renderChoice();
   const extra = `<div class="choices">` + button("plan-practice", UI_COPY.plan, node.id, "button", `data-revision="${state.context_rev}" data-day="${state.day}"`)
     + button("choice", "Eine andere Möglichkeit wählen") + button("reading-finish", UI_COPY.readingOnly) + `</div>`;
   return contentCard(node, extra, "Dein nächster Schritt");
@@ -317,14 +332,14 @@ function renderReport() {
   return `<section class="gate-card"><p class="eyebrow">Deine Auswahl</p><h2 id="view-title">` + esc(action.title) + `</h2>
     <p>Du hast diese Möglichkeit für später vorgemerkt. Das ist noch keine Durchführung.</p><div class="choices">`
     + button("plan-later", UI_COPY.later, "", "button") + button("report-performed", UI_COPY.performed)
-    + button("report-not-done", UI_COPY.notDone) + `</div></section>`;
+    + button("report-not-done", UI_COPY.notDone, action.id, "quiet-button", `data-revision="${state.context_rev}" data-day="${state.day}"`) + `</div></section>`;
 }
 
 function renderOutcome() {
   return `<form class="gate-card setup-grid" data-form="outcome" data-action-id="` + esc(state.planned_action) + `" data-revision="${state.context_rev}" data-day="${state.day}"><p class="eyebrow">Rückblick</p><h2 id="view-title">Wie war es für dich?</h2>
     <p>Beziehe dich nur auf die Möglichkeit, die du gerade ausgewählt hast. Eine erfreuliche Antwort ist nicht vorausgesetzt.</p>
     ` + options("outcome", "Was hat sich für dich gezeigt?", Object.entries(outcomeLabels), "unknown", true)
-    + `<p class="form-error" role="alert" hidden></p><button class="button" type="submit">Antwort übernehmen →</button></form>`;
+    + `<p class="form-error" role="alert" tabindex="-1" hidden></p><button class="button" type="submit">Antwort übernehmen →</button></form>`;
 }
 
 function renderReflection() {
@@ -410,7 +425,9 @@ function renderGuided() {
 
 function renderResourceKnowledge() {
   const node = nodeIndex.K21;
-  return contentCard(node, `<div class="choices">` + button("resource-next", "Weiter zur Geschichte →", "", "button")
+  const repeated = Boolean(knowledgeWasSeen);
+  return contentCard(node, (repeated ? `<p class="small-note">` + esc(UI_COPY.repeatedCard) + `</p>` : "")
+    + `<div class="choices">` + button("resource-next", "Weiter zur Geschichte →", "", "button")
     + button("library", "Wenn du noch etwas nachlesen möchtest") + `</div>`, "Bevor die Geschichte beginnt");
 }
 
@@ -447,7 +464,7 @@ function renderSafetyRevision() {
     <h2 id="view-title">Was meintest du?</h2><p>Eine Änderung beginnt die Orientierung für diese Situation neu. Frühere Zustimmungen und geplante Versuche werden nicht übernommen.</p>
     <p>` + esc(UI_COPY.safetyExplanation) + `</p>` + safetyExamples()
     + options("safety", UI_COPY.safetyQuestion, Object.entries(UI_COPY.safetyAnswers), null, true)
-    + `<p class="form-error" role="alert" hidden></p><button class="button" type="submit">Antwort neu übernehmen →</button></form>`;
+    + `<p class="form-error" role="alert" tabindex="-1" hidden></p><button class="button" type="submit">Antwort neu übernehmen →</button></form>`;
 }
 
 function renderContacts() {
@@ -501,12 +518,16 @@ function formError(form, message = UI_COPY.missingAnswer) {
   error.focus?.();
 }
 
-function formIsCurrent(form) {
-  return Number(form.dataset.revision ?? state.context_rev) === state.context_rev
+function formIsCurrent(form, source = null) {
+  const sourceIsCurrent = !source || (source === "revise-safety"
+    ? view.name === "revise-safety"
+    : view.name === "guided" && flow.view === source);
+  return sourceIsCurrent && Number(form.dataset.revision ?? state.context_rev) === state.context_rev
     && Number(form.dataset.day ?? state.day) === state.day;
 }
 
 function submitContext(form) {
+  if (!formIsCurrent(form, "context")) return formError(form, "Diese Auswahl gehört zu einem früheren Stand. Bitte öffne sie für die aktuelle Situation neu.");
   const values = new FormData(form);
   const next = { goal: values.get("goal"), topic: values.get("topic"), perspective: values.get("perspective") };
   if (!data.contract.enum_fields.goal.includes(next.goal) || !data.contract.enum_fields.topic.includes(next.topic)
@@ -520,6 +541,7 @@ function submitContext(form) {
 }
 
 function submitCapacity(form) {
+  if (!formIsCurrent(form, "capacity")) return formError(form, "Diese Angaben gehören zu einem früheren Stand. Bitte öffne sie für die aktuelle Situation neu.");
   const values = new FormData(form);
   try {
     state = applyEvent(state, { type: "set_capacity", value: values.get("capacity") }, data.contract, rules);
@@ -533,7 +555,7 @@ function safetyValue(form) {
 }
 
 function submitSafety(form) {
-  if (!formIsCurrent(form)) return formError(form, "Diese Ansicht gehört zu einem früheren Stand. Bitte beginne für die aktuelle Situation erneut.");
+  if (!formIsCurrent(form, "safety")) return formError(form, "Diese Ansicht gehört zu einem früheren Stand. Bitte beginne für die aktuelle Situation erneut.");
   const value = safetyValue(form);
   if (value === "examples") {
     return guided("safety-examples", 1, true, { safetyOrigin: "safety" });
@@ -546,8 +568,8 @@ function submitSafety(form) {
     return navigate({ name: "support", returnToGuided: true });
   }
   if (state.resources === "limited" && !flow.visitedKnowledge.includes(FLOW_PLAN.policy.limited_resources_prelude)) {
-    flow = markKnowledgeVisited(flow, FLOW_PLAN.policy.limited_resources_prelude);
-    knowledgeWasSeen = false;
+    knowledgeWasSeen = (flow.seenKnowledgeIds ?? []).includes(FLOW_PLAN.policy.limited_resources_prelude);
+    flow = markKnowledgeSeen(markKnowledgeVisited(flow, FLOW_PLAN.policy.limited_resources_prelude), FLOW_PLAN.policy.limited_resources_prelude);
     return guided("resource-knowledge", 1);
   }
   selectPreferredScene();
@@ -565,22 +587,27 @@ function selectPreferredScene() {
 }
 
 function openPrimaryKnowledge() {
-  const id = knowledgeCandidates(state).find((candidate) => !flow.visitedKnowledge.includes(candidate)) ?? primaryKnowledgeId(state);
+  const id = knowledgeCandidates(state).find((candidate) => !(flow.seenKnowledgeIds ?? []).includes(candidate));
+  if (!id) return guided("choice", 4);
   selectedKnowledge = id;
-  knowledgeWasSeen = flow.visitedKnowledge.includes(id);
-  flow = markKnowledgeVisited(flow, id);
+  knowledgeWasSeen = (flow.seenKnowledgeIds ?? []).includes(id);
+  flow = markKnowledgeSeen(markKnowledgeVisited(flow, id), id);
   flow = { ...flow, openedKnowledgeRepeat: knowledgeWasSeen };
   guided("knowledge", 3);
 }
 
 function selectPractice(id, revision = state.context_rev, day = state.day) {
-  if (Number(revision) !== state.context_rev || Number(day) !== state.day || state.safety === "concern") return guided("concern", Math.min(flow.section, 4));
+  if (state.safety === "concern") return guided("concern", Math.min(flow.section, 4));
+  if (Number(revision) !== state.context_rev || Number(day) !== state.day) {
+    notice = "Diese Auswahl gehört zu einem früheren Stand. Bitte wähle für die aktuelle Situation neu.";
+    return guided("choice", 4);
+  }
   const node = nodeIndex[id];
   if (!node || node.kind !== "practice" || !node.topic_ids.includes(state.topic)) return;
   flow = { ...flow, pendingPractice: id };
   const prerequisite = prerequisiteFor(id);
   if (prerequisite && !flow.visitedKnowledge.includes(prerequisite)) {
-    flow = markKnowledgeVisited(flow, prerequisite);
+    flow = markKnowledgeSeen(markKnowledgeVisited(flow, prerequisite), prerequisite);
     return guided("prerequisite", 4);
   }
   const status = routeStatus(node, state, "flow", rules);
@@ -597,7 +624,7 @@ function selectPractice(id, revision = state.context_rev, day = state.day) {
 
 function submitPracticeGate(form) {
   const target = nodeIndex[form.dataset.target];
-  if (!formIsCurrent(form) || !target || target.id !== flow.pendingPractice || !["partner", "agreement"].includes(target.gate)) {
+  if (!formIsCurrent(form, "practice-gate") || !target || target.id !== flow.pendingPractice || !["partner", "agreement"].includes(target.gate)) {
     return formError(form, "Diese Prüfung gehört nicht mehr zur aktuellen Auswahl. Bitte wähle die Möglichkeit neu.");
   }
   const values = new FormData(form);
@@ -623,7 +650,7 @@ function submitPracticeGate(form) {
 }
 
 function submitOutcome(form) {
-  if (!formIsCurrent(form) || form.dataset.actionId !== state.planned_action || state.action_state !== "planned") {
+  if (!formIsCurrent(form, "outcome") || form.dataset.actionId !== state.planned_action || state.action_state !== "planned") {
     return formError(form, "Diese Rückmeldung gehört nicht mehr zur aktuell vorgemerkten Möglichkeit.");
   }
   const value = new FormData(form).get("outcome");
@@ -634,7 +661,7 @@ function submitOutcome(form) {
 }
 
 function submitSafetyRevision(form) {
-  if (!formIsCurrent(form)) return formError(form, "Diese Ansicht gehört zu einem früheren Stand. Öffne die Korrektur bitte erneut.");
+  if (!formIsCurrent(form, "revise-safety")) return formError(form, "Diese Ansicht gehört zu einem früheren Stand. Öffne die Korrektur bitte erneut.");
   const value = safetyValue(form);
   if (value === "examples") {
     notice = "Die Beispiele sind auf der Unterstützungsseite erklärt. Deine bisherige Antwort bleibt bestehen, bis du eine neue Antwort bestätigst.";
@@ -694,32 +721,70 @@ function handle(action, value, meta = {}) {
     flow = { ...flow, openedSceneRepeat: sceneWasSeen };
     return render();
   }
-  if (action === "resource-next") { selectPreferredScene(); return guided("scene", 2); }
-  if (action === "scene-next") return openPrimaryKnowledge();
-  if (action === "knowledge-next" || action === "choice") return guided("choice", 4);
-  if (action === "practice-select") return selectPractice(value, meta.revision, meta.day);
-  if (action === "prerequisite-next") return selectPractice(value, state.context_rev, state.day);
+  if (action === "resource-next") {
+    if (view.name !== "guided" || flow.view !== "resource-knowledge") return render();
+    selectPreferredScene(); return guided("scene", 2);
+  }
+  if (action === "scene-next") {
+    if (view.name !== "guided" || flow.view !== "scene") return render();
+    return openPrimaryKnowledge();
+  }
+  if (action === "knowledge-next") {
+    if (view.name !== "guided" || flow.view !== "knowledge") return render();
+    return guided("choice", 4);
+  }
+  if (action === "choice") return guided("choice", 4);
+  if (action === "practice-select") {
+    if (view.name !== "guided" || flow.view !== "choice") return render();
+    return selectPractice(value, meta.revision, meta.day);
+  }
+  if (action === "prerequisite-next") {
+    if (view.name !== "guided" || flow.view !== "prerequisite" || value !== flow.pendingPractice) return render();
+    return selectPractice(value, state.context_rev, state.day);
+  }
   if (action === "safety-answer") return guided(value === "practice-gate" ? "practice-gate" : "safety", flow.section, true, { safetyOrigin: null });
   if (action === "safety-private") {
     try { state = applyEvent(state, { type: "report_safety", value: "unknown" }, data.contract, rules); }
     catch { return guided("concern", Math.min(flow.section, 4)); }
     if (flow.safetyOrigin === "practice-gate") return guided("choice", 4, true, { pendingPractice: null, safetyOrigin: null });
+    if (state.goal === "support") {
+      flow = moveFlow(flow, 6, "closing", { stageCompleted: true, safetyOrigin: null });
+      return navigate({ name: "support", returnToGuided: true });
+    }
+    if (state.resources === "limited" && !flow.visitedKnowledge.includes(FLOW_PLAN.policy.limited_resources_prelude)) {
+      knowledgeWasSeen = (flow.seenKnowledgeIds ?? []).includes(FLOW_PLAN.policy.limited_resources_prelude);
+      flow = markKnowledgeSeen(markKnowledgeVisited(flow, FLOW_PLAN.policy.limited_resources_prelude), FLOW_PLAN.policy.limited_resources_prelude);
+      return guided("resource-knowledge", 1, true, { safetyOrigin: null });
+    }
     selectPreferredScene();
     return guided("scene", 2, true, { safetyOrigin: null });
   }
   if (action === "plan-practice" && value === flow.selectedPractice) {
+    if (view.name !== "guided" || flow.view !== "practice") return render();
     if (Number(meta.revision ?? state.context_rev) !== state.context_rev || Number(meta.day ?? state.day) !== state.day) {
       notice = "Diese Möglichkeit gehört zu einem früheren Stand. Bitte wähle für die aktuelle Situation neu.";
       return guided("choice", 4);
     }
-    try { state = applyEvent(state, { type: "plan_action", action_id: value }, data.contract, rules); }
+    const prerequisite = prerequisiteFor(value);
+    if (prerequisite && !flow.visitedKnowledge.includes(prerequisite)) {
+      notice = "Der zugehörige Gedanke gehört zu diesem Vorschlag. Bitte öffne ihn zuerst noch einmal.";
+      return selectPractice(value, state.context_rev, state.day);
+    }
+    try { state = applyEvent(state, { type: "plan_action", action_id: value, visited_knowledge: flow.visitedKnowledge }, data.contract, rules); }
     catch { notice = UI_COPY.noSuggestion; return guided("choice", 4); }
     return guided("report", 4);
   }
   if (action === "plan-later") return guided("closing", 6);
-  if (action === "report-performed") return guided("outcome", 5);
+  if (action === "report-performed") {
+    if (view.name !== "guided" || flow.view !== "report" || state.action_state !== "planned") return render();
+    return guided("outcome", 5);
+  }
   if (action === "report-not-done") {
-    try { state = applyEvent(state, { type: "report_action", action_id: state.planned_action, status: "not_done", outcome: "unknown" }, data.contract, rules); }
+    if (view.name !== "guided" || flow.view !== "report" || Number(meta.revision) !== state.context_rev || Number(meta.day) !== state.day || value !== state.planned_action || state.action_state !== "planned") {
+      notice = "Diese Rückmeldung gehört nicht mehr zur aktuell vorgemerkten Möglichkeit.";
+      return guided("choice", 4);
+    }
+    try { state = applyEvent(state, { type: "report_action", action_id: value, status: "not_done", outcome: "unknown" }, data.contract, rules); }
     catch { notice = UI_COPY.noSuggestion; }
     notice = UI_COPY.notDoneNote;
     return guided("not-done", 5);
