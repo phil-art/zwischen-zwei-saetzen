@@ -81,9 +81,9 @@ const EDITORIAL_EXTENSIONS = Object.freeze({
 
 export const UI_COPY = Object.freeze({
   title: "Zwischen zwei Sätzen",
-  description: "Kurze Geschichten und ruhige Gedankenwege über alltägliche Beziehungsmissverständnisse – ohne Freitext und ohne Diagnose.",
+  description: "Kurze Geschichten und ruhige Gedankenwege über alltägliche Beziehungsmissverständnisse – ohne Diagnose.",
   disclaimer: "Geschichten und Anregungen für den Alltag. Keine Diagnose und keine Therapie.",
-  prototype: "Literarischer Prototyp in 14 Etappen. Du bestimmst, wie weit du heute gehen möchtest. Die menschliche Fachprüfung steht noch aus.",
+  prototype: "Vierzehn literarische Etappen. Du bestimmst, wie weit du heute gehen möchtest.",
   heroEyebrow: "Ein ruhiger Weg durch kleine Missverständnisse",
   hero: [
     "Manchmal bleibt ein Satz hängen. Eine knappe Nachricht, ein schiefer Ton, eine Absprache, die für euch beide etwas anderes bedeutete.",

@@ -9,15 +9,15 @@
     },
     {
       "file": "app.mjs",
-      "sha256": "90a311681953c72c2792e66908690642ea66fbcdb4ec9a39a117101fecd353f8"
+      "sha256": "2e174109d39fa39716fb23bbd11f628562242a65dd1ce2ecdd4bdd1a5ee4d3ae"
     },
     {
       "file": "content-w9.mjs",
-      "sha256": "f965ed2117ef711f554fb2bf0dda470888a00909726579a8b6c52507c48e0427"
+      "sha256": "4a89a0ac3e04d201e2a69003a6e7b0d668791bd233b4b5ca095abe4fd5302ec1"
     },
     {
       "file": "data.mjs",
-      "sha256": "3efabf2fa6da0b8108b495854be32b3c1e54388e2d9e8d069278478a570d6dd5"
+      "sha256": "b3818b5be1178d204daaca0cdce11038f8160fa69b8223f2995ed2c7774808a1"
     },
     {
       "file": "datenschutz.html",
@@ -29,7 +29,7 @@
     },
     {
       "file": "index.html",
-      "sha256": "a830935ed06109682d7e37800c210d0c3e6f35ff33e99b6c5052db6a238a7f0b"
+      "sha256": "0dd45bed472be45c202c607415ad94eeca5cb4cbb0301b4f5ae68b6f2b454142"
     },
     {
       "file": "revisions/closing.mjs",

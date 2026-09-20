@@ -173,7 +173,7 @@ function renderStart() {
   return `<section class="hero" aria-labelledby="hero-title"><div><p class="eyebrow">` + esc(UI_COPY.heroEyebrow) + `</p>
     <h1 id="hero-title">` + esc(UI_COPY.title) + `</h1><div class="hero-copy">` + UI_COPY.hero.map((item) => `<p class="lede">` + esc(item) + `</p>`).join("") + `</div>
     <div class="hero-actions">` + button("start-stage", primary, "", "button") + button("library", UI_COPY.browse) + `</div></div>
-    <aside class="hero-note"><strong>Ohne Freitext</strong><p>` + esc(UI_COPY.prototype) + `</p>` + stageTrack() + `</aside></section>
+    <aside class="hero-note"><strong>In deinem Tempo</strong><p>` + esc(UI_COPY.prototype) + `</p>` + stageTrack() + `</aside></section>
     <section class="topic-section" aria-labelledby="topics-title"><div class="section-heading"><p class="eyebrow">Zwölf Alltagsthemen</p>
     <h2 id="topics-title">Womit möchtest du beginnen?</h2><p>Du kannst ein Thema wählen, ohne deine Geschichte zu erzählen.</p></div>
     <div class="topic-grid">` + data.topics.map((topic) => `<article class="topic-card"><h3>` + esc(topic.title) + `</h3>`
